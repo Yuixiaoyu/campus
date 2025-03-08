@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyu.campus.mapper.ArticleReportMapper">
+
+    <resultMap id="BaseResultMap" type="com.xiaoyu.campus.model.entity.ArticleReport">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="userId" column="userId" jdbcType="BIGINT"/>
+            <result property="articleId" column="articleId" jdbcType="BIGINT"/>
+            <result property="reason" column="reason" jdbcType="VARCHAR"/>
+            <result property="images" column="images" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,userId,articleId,
+        reason,images
+    </sql>
+</mapper>
