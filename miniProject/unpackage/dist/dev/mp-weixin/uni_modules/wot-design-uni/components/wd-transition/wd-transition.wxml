@@ -1,0 +1,1 @@
+<view wx:if="{{a}}" class="{{['data-v-af59a128', b]}}" style="{{c}}" bindtransitionend="{{d}}" bindtap="{{e}}"><slot/></view>

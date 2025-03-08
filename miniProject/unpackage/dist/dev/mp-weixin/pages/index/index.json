@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "wd-notice-bar": "../../uni_modules/wot-design-uni/components/wd-notice-bar/wd-notice-bar",
+    "wd-search": "../../uni_modules/wot-design-uni/components/wd-search/wd-search",
+    "wd-img": "../../uni_modules/wot-design-uni/components/wd-img/wd-img",
+    "wd-icon": "../../uni_modules/wot-design-uni/components/wd-icon/wd-icon",
+    "wd-popover": "../../uni_modules/wot-design-uni/components/wd-popover/wd-popover",
+    "wd-fab": "../../uni_modules/wot-design-uni/components/wd-fab/wd-fab",
+    "wd-toast": "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast",
+    "wd-loadmore": "../../uni_modules/wot-design-uni/components/wd-loadmore/wd-loadmore"
+  }
+}

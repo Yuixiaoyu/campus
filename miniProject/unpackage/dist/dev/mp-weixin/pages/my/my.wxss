@@ -1,0 +1,231 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.my-page.data-v-2f1ef635 {
+  min-height: 100vh;
+  background-color: #fff;
+  /* 容器一 */
+}
+.my-page .user-info.data-v-2f1ef635 {
+  padding: 100px 20px 10px 20px;
+  color: #ffffff;
+  background: linear-gradient(to bottom, #8c989e, #3d4753);
+}
+.my-page .user-info .user-header.data-v-2f1ef635 {
+  display: flex;
+  align-items: center;
+}
+.my-page .user-info .user-header .user-data.data-v-2f1ef635 {
+  margin-left: 20px;
+}
+.my-page .user-info .user-header .user-data .nickname.data-v-2f1ef635 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.my-page .user-info .user-header .user-data .edit.data-v-2f1ef635 {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 100;
+}
+.my-page .user-info .user-stats.data-v-2f1ef635 {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+  align-items: center;
+}
+.my-page .user-info .user-stats .stat-item.data-v-2f1ef635 {
+  flex: 1;
+  padding-left: 10px;
+}
+.my-page .user-info .user-stats .stat-item .num.data-v-2f1ef635 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+.my-page .user-info .user-stats .stat-item .label.data-v-2f1ef635 {
+  font-size: 12px;
+}
+.my-page .user-info .user-stats .stat-item.data-v-2f1ef635:last-child {
+  flex: 1.5;
+  text-align: center;
+}
+.my-page .user-info .user-stats .stat-item.data-v-2f1ef635:last-child .wd-icon-setting {
+  margin: 4px 0;
+}
+.my-page .user-info .user-stats .stat-item:last-child .label.data-v-2f1ef635 {
+  font-size: 13px;
+  font-weight: 100;
+}
+.my-page .user-info .user-bio .bio-text.data-v-2f1ef635 {
+  margin-top: 32px;
+  font-size: 14px;
+  font-weight: 100;
+  margin-bottom: 12px;
+}
+.my-page .user-info .user-bio .user-tags.data-v-2f1ef635 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.my-page .user-info .user-bio .user-tags .tag.data-v-2f1ef635 {
+  padding: 4px 12px;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #666;
+}
+.my-page.data-v-2f1ef635 .wd-tabs__nav {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-top: -10px;
+}
+.my-page .box.data-v-2f1ef635 {
+  padding: 10rpx 20rpx 10rpx 40rpx;
+  background-color: #f6f6f6;
+  /* 圆点 */
+  /* 容器二 */
+  /* 容器三 */
+}
+.my-page .box .point.data-v-2f1ef635 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 15rpx 0;
+}
+.my-page .box .dot.data-v-2f1ef635 {
+  margin-left: -22rpx;
+  background-color: #198fbe;
+  box-shadow: 0 0 5rpx 5rpx #71b2d5;
+  color: white;
+  width: 24rpx;
+  padding: 5rpx;
+  font-size: 16rpx;
+  text-align: center;
+  border-radius: 50rpx;
+}
+.my-page .box .title.data-v-2f1ef635 {
+  font-size: 30rpx;
+  margin-left: 15rpx;
+  background-color: white;
+  padding: 12rpx 25rpx;
+  border-radius: 50rpx;
+  color: #909399;
+}
+.my-page .box .box-line.data-v-2f1ef635 {
+  border-left: 3rpx solid #c8c9cc;
+  padding: 15rpx 10rpx 15rpx 35rpx;
+}
+.my-page .box .box-data.data-v-2f1ef635 {
+  background-color: white;
+  padding: 20rpx 15rpx;
+  border-radius: 15rpx;
+  box-shadow: 1px 2px 5px 1px #c8c9cc;
+  /* 图片列表布局 */
+  /* 图片列表布局 */
+  /* 处理最后一个元素的额外样式（可选） */
+}
+.my-page .box .box-data .userProfile.data-v-2f1ef635 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid #eeeeee;
+}
+.my-page .box .box-data .userProfile .articleAvatar.data-v-2f1ef635 {
+  width: 90rpx;
+  height: 90rpx;
+  display: block;
+  border-radius: 50%;
+}
+.my-page .box .box-data .userProfile .userName.data-v-2f1ef635 {
+  margin-left: 20rpx;
+}
+.my-page .box .box-data .row-info.data-v-2f1ef635 {
+  font-size: 28rpx;
+  color: gray;
+  line-height: 45rpx;
+  padding: 10rpx 15rpx;
+  text-indent: 2rem;
+}
+.my-page .box .box-data .tag.data-v-2f1ef635 {
+  margin: 5px 3px;
+}
+.my-page .box .box-data .row-button.data-v-2f1ef635 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1rpx solid #f1f1f1;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+}
+.my-page .box .box-data .row-button view.data-v-2f1ef635 {
+  padding: 4px 8px;
+  font-size: 28rpx;
+  color: #9e9e9e;
+  border-radius: 10rpx;
+}
+.my-page .box .box-data .image-list.data-v-2f1ef635 {
+  margin-top: 10px;
+  display: flex;
+  gap: 10rpx;
+  /* 图片间距 */
+  /* 图片容器 */
+  /* 当只有一张图片时，调整 flex 值 */
+  /* 蒙版样式 */
+}
+.my-page .box .box-data .image-list .image-wrapper.data-v-2f1ef635 {
+  flex: 1;
+  aspect-ratio: 1;
+  /* 保持正方形 */
+  position: relative;
+  height: auto;
+  overflow: hidden;
+  border-radius: 12rpx;
+  /* 可选圆角 */
+}
+.my-page .box .box-data .image-list .single-item.data-v-2f1ef635 {
+  flex: 0 0 30%;
+  /* 你可以根据需要调整这个值 */
+}
+.my-page .box .box-data .image-list .mask.data-v-2f1ef635 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* +10 文字样式 */
+}
+.my-page .box .box-data .image-list .mask .plus-text.data-v-2f1ef635 {
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.my-page .box .box-data .last-item.data-v-2f1ef635 {
+  margin-right: 0;
+}

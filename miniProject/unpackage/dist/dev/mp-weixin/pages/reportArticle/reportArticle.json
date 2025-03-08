@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "举报",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "wd-notice-bar": "../../uni_modules/wot-design-uni/components/wd-notice-bar/wd-notice-bar",
+    "wd-input": "../../uni_modules/wot-design-uni/components/wd-input/wd-input",
+    "wd-textarea": "../../uni_modules/wot-design-uni/components/wd-textarea/wd-textarea",
+    "wd-upload": "../../uni_modules/wot-design-uni/components/wd-upload/wd-upload",
+    "wd-cell": "../../uni_modules/wot-design-uni/components/wd-cell/wd-cell",
+    "wd-cell-group": "../../uni_modules/wot-design-uni/components/wd-cell-group/wd-cell-group",
+    "wd-button": "../../uni_modules/wot-design-uni/components/wd-button/wd-button",
+    "wd-form": "../../uni_modules/wot-design-uni/components/wd-form/wd-form",
+    "wd-toast": "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast"
+  }
+}

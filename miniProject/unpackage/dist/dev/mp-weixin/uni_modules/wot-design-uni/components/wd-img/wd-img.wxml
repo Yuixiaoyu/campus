@@ -1,0 +1,1 @@
+<view class="{{['data-v-cb0c5dbc', k]}}" bindtap="{{l}}" style="{{m}}"><image class="{{['data-v-cb0c5dbc', a]}}" style="{{b}}" src="{{c}}" mode="{{d}}" show-menu-by-longpress="{{e}}" lazy-load="{{f}}" bindload="{{g}}" binderror="{{h}}"/><slot wx:if="{{i}}" name="loading"></slot><slot wx:if="{{j}}" name="error"></slot></view>

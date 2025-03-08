@@ -1,0 +1,104 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.data-v-cfdfbfe7 .wd-upload__mask.data-v-d50d9cde {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.publish-article.data-v-cfdfbfe7 {
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
+.publish-article .content.data-v-cfdfbfe7 {
+  padding: 16px;
+}
+.publish-article .content .upload-section.data-v-cfdfbfe7 {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+}
+.publish-article .content .upload-section.data-v-cfdfbfe7 .wd-upload__preview {
+  width: 100px;
+  height: 100px;
+}
+.publish-article .content .upload-section.data-v-cfdfbfe7 .data-v-d50d9cde.wd-upload__evoke {
+  height: 100px;
+  width: 100px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+.publish-article .content .upload-section.data-v-cfdfbfe7 .wd-upload {
+  padding: 10px;
+}
+.publish-article .content .upload-section.data-v-cfdfbfe7 .data-v-d50d9cde .wd-upload__preview {
+  margin: 5px 6px;
+}
+.publish-article .content .upload-section .tags.data-v-cfdfbfe7 {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px 10px;
+}
+.publish-article .content .upload-section .tags.data-v-cfdfbfe7 .wd-tag {
+  margin: 6px 5px;
+}
+.publish-article .content .upload-section .lable.data-v-cfdfbfe7 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.publish-article .content .input-area.data-v-cfdfbfe7 {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 12px;
+}
+.publish-article .content .tags-section.data-v-cfdfbfe7 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.publish-article .content .tags-section .tag-item.data-v-cfdfbfe7 {
+  font-size: 12px;
+}
+.publish-article .content .settings.data-v-cfdfbfe7 {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.publish-article .footer.data-v-cfdfbfe7 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background-color: #fff;
+}
+.publish-article.data-v-cfdfbfe7 .wd-action-sheet {
+  overflow: hidden;
+}
+.publish-article.data-v-cfdfbfe7 .wd-action-sheet__actions {
+  max-height: 200px;
+}

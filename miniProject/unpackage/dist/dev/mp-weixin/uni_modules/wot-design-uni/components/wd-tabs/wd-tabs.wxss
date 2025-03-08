@@ -1,0 +1,449 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/**
+ * 辅助函数
+ */
+/**
+ * SCSS 配置项：命名空间以及BEM
+ */
+/* 转换成字符串 */
+/* 判断是否存在 Modifier */
+/* 判断是否存在伪类 */
+/**
+ * 主题色切换
+ * @params $theme-color 主题色
+ * @params $type 变暗’dark‘ 变亮 'light'
+ * @params $mix-color 自己设置的混色
+ */
+/**
+ * 颜色结果切换， 如果开启线性渐变色 使用渐变色，如果没有开启，那么使用主题色
+ * @params $open-linear 是否开启线性渐变色
+ * @params $deg 渐变色角度
+ * @params $theme-color 当前配色
+ * @params [Array] $set 主题色明暗设置，与 $color-list 数量对应
+ * @params [Array] $color-list 渐变色顺序， $color-list 和 $per-list 数量相同
+ * @params [Array] $per-list 渐变色比例
+ */
+/**
+ * UI规范基础变量
+ */
+/*----------------------------------------- Theme color. start ----------------------------------------*/
+/* 主题颜色 */
+/* 辅助色 */
+/* 文字颜色（默认浅色背景下 */
+/* 暗黑模式 */
+/* 图形颜色 */
+/*----------------------------------------- Theme color. end -------------------------------------------*/
+/*-------------------------------- Theme color application size.  start --------------------------------*/
+/* 文字字号 */
+/* 文字字重 */
+/* 尺寸 */
+/*-------------------------------- Theme color application size.  end --------------------------------*/
+/* component var */
+/* action-sheet */
+/* badge */
+/* button */
+/* cell */
+/* calendar */
+/* checkbox */
+/* collapse */
+/* divider */
+/* drop-menu */
+/* input-number */
+/* input */
+/* textarea */
+/* loadmore */
+/* message-box */
+/* notice-bar */
+/* pagination */
+/* picker */
+/* col-picker */
+/* overlay */
+/* popup */
+/* progress */
+/* radio */
+/* search */
+/* slider */
+/* sort-button */
+/* steps */
+/* switch */
+/* tabs */
+/* tag */
+/* toast */
+/* loading */
+/* tooltip */
+/* popover */
+/* grid-item */
+/* statustip */
+/* card */
+/* upload */
+/* curtain */
+/* notify */
+/* skeleton */
+/* circle */
+/* swiper */
+/* swiper-nav */
+/* segmented */
+/* tabbar */
+/* tabbar-item */
+/* navbar */
+/* navbar-capsule */
+/* table */
+/* sidebar */
+/* sidebar-item */
+/* fab */
+/* count-down */
+/* keyboard */
+/* number-keyboard */
+/* passwod-input */
+/* form-item */
+/* backtop */
+/* index-bar */
+/* text */
+/* video-preview */
+/* img-cropper */
+/* floating-panel */
+/* signature */
+/**
+ * 混合宏
+ */
+/**
+ * SCSS 配置项：命名空间以及BEM
+ */
+/**
+ * 辅助函数
+ */
+/**
+ * SCSS 配置项：命名空间以及BEM
+ */
+/* 转换成字符串 */
+/* 判断是否存在 Modifier */
+/* 判断是否存在伪类 */
+/**
+ * 主题色切换
+ * @params $theme-color 主题色
+ * @params $type 变暗’dark‘ 变亮 'light'
+ * @params $mix-color 自己设置的混色
+ */
+/**
+ * 颜色结果切换， 如果开启线性渐变色 使用渐变色，如果没有开启，那么使用主题色
+ * @params $open-linear 是否开启线性渐变色
+ * @params $deg 渐变色角度
+ * @params $theme-color 当前配色
+ * @params [Array] $set 主题色明暗设置，与 $color-list 数量对应
+ * @params [Array] $color-list 渐变色顺序， $color-list 和 $per-list 数量相同
+ * @params [Array] $per-list 渐变色比例
+ */
+/**
+  * BEM，定义块（b)
+  */
+/* 定义元素（e），对于伪类，会自动将 e 嵌套在 伪类 底下 */
+/* 此方法用于生成穿透样式 */
+/* 定义元素（e），对于伪类，会自动将 e 嵌套在 伪类 底下 */
+/* 定义状态（m） */
+/* 定义状态（m） */
+/* 对于需要需要嵌套在 m 底下的 e，调用这个混合宏，一般在切换整个组件的状态，如切换颜色的时候 */
+/* 状态，生成 is-$state 类名 */
+/**
+  * 常用混合宏
+  */
+/* 单行超出隐藏 */
+/* 多行超出隐藏 */
+/* 清除浮动 */
+/* 0.5px 边框 指定方向*/
+/* 0.5px 边框 环绕 */
+/**
+  * 三角形实现尖角样式，适用于背景透明情况
+  * @param $size 三角形高，底边为 $size * 2
+  * @param $bg 三角形背景颜色
+  */
+/**
+  * 正方形实现尖角样式，适用于背景不透明情况
+  * @param $size 正方形边长
+  * @param $bg 正方形背景颜色
+  * @param $z-index z-index属性值，不得大于外部包裹器
+  * @param $box-shadow 阴影
+*/
+.wot-theme-dark .wd-tabs.data-v-4388d15d {
+  background: var(--wot-dark-background2, #1b1b1b);
+}
+.wot-theme-dark .wd-tabs__nav.data-v-4388d15d {
+  background: var(--wot-dark-background2, #1b1b1b);
+}
+.wot-theme-dark .wd-tabs__nav-item.data-v-4388d15d {
+  color: var(--wot-dark-color3, rgba(232, 230, 227, 0.8));
+}
+.wot-theme-dark .wd-tabs__nav-item.is-active.data-v-4388d15d {
+  font-weight: 600;
+  color: var(--wot-dark-color, var(--wot-color-white, white));
+}
+.wot-theme-dark .wd-tabs__nav-item.is-disabled.data-v-4388d15d {
+  color: var(--wot-dark-color-gray, var(--wot-color-secondary, #595959));
+}
+.wot-theme-dark .wd-tabs__map-nav-btn.data-v-4388d15d {
+  background-color: var(--wot-dark-background4, #323233);
+  color: var(--wot-dark-color3, rgba(232, 230, 227, 0.8));
+}
+.wot-theme-dark .wd-tabs__map-nav-btn.is-active.data-v-4388d15d {
+  color: var(--wot-dark-color, var(--wot-color-white, white));
+  border: 1px solid var(--wot-tabs-nav-active-color, var(--wot-color-theme, #4d80f0));
+  background-color: var(--wot-dark-background, #131313);
+}
+.wot-theme-dark .wd-tabs__map-nav-btn.is-disabled.data-v-4388d15d {
+  color: var(--wot-dark-color-gray, var(--wot-color-secondary, #595959));
+  border-color: #f4f4f4;
+}
+.wot-theme-dark .wd-tabs__map-btn.data-v-4388d15d {
+  background: var(--wot-dark-background2, #1b1b1b);
+  color: var(--wot-dark-color3, rgba(232, 230, 227, 0.8));
+}
+.wot-theme-dark .wd-tabs__map-header.data-v-4388d15d {
+  background: var(--wot-dark-background2, #1b1b1b);
+  color: var(--wot-dark-color, var(--wot-color-white, white));
+}
+.wot-theme-dark .wd-tabs__map-header.data-v-4388d15d::after {
+  background: var(--wot-dark-background4, #323233);
+}
+.wot-theme-dark .wd-tabs__map-body.data-v-4388d15d {
+  background: var(--wot-dark-background2, #1b1b1b);
+}
+.wd-tabs.data-v-4388d15d {
+  position: relative;
+  background: #fff;
+  width: 100%;
+}
+.wd-tabs__nav.data-v-4388d15d {
+  left: 0;
+  right: 0;
+  height: var(--wot-tabs-nav-height, 42px);
+  background-color: #fff;
+  width: 100%;
+  position: relative;
+}
+.wd-tabs__nav--wrap.data-v-4388d15d {
+  height: 100%;
+  overflow: hidden;
+}
+.wd-tabs__nav--sticky.data-v-4388d15d {
+  width: 100vw;
+}
+.wd-tabs__nav-container.data-v-4388d15d {
+  position: relative;
+  display: flex;
+  -webkit-user-select: none;
+          user-select: none;
+}
+.wd-tabs__nav-item.data-v-4388d15d {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  height: var(--wot-tabs-nav-height, 42px);
+  font-size: var(--wot-tabs-nav-fs, var(--wot-fs-content, 14px));
+  color: var(--wot-tabs-nav-color, rgba(0, 0, 0, 0.85));
+  transition: color 0.3s;
+}
+.wd-tabs__nav-item.is-active.data-v-4388d15d {
+  font-weight: 600;
+}
+.wd-tabs__nav-item.is-disabled.data-v-4388d15d {
+  color: var(--wot-tabs-nav-disabled-color, rgba(0, 0, 0, 0.25));
+}
+.wd-tabs__nav-item-text.data-v-4388d15d {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.data-v-4388d15d  .wd-tabs__nav-item-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  min-width: 0;
+}
+.wd-tabs__line.data-v-4388d15d {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  z-index: 1;
+  height: var(--wot-tabs-nav-line-height, 3px);
+  width: var(--wot-tabs-nav-line-width, 19px);
+  background: var(--wot-tabs-nav-line-bg-color, var(--wot-color-theme, #4d80f0));
+  border-radius: calc(var(--wot-tabs-nav-line-height, 3px) / 2);
+}
+.wd-tabs__line--inner.data-v-4388d15d {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wd-tabs__container.data-v-4388d15d {
+  overflow: hidden;
+}
+.wd-tabs__body.data-v-4388d15d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.wd-tabs__body.is-animated.data-v-4388d15d {
+  display: flex;
+  transition-property: left;
+}
+.wd-tabs__map.data-v-4388d15d {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.wd-tabs__map-btn.data-v-4388d15d {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: var(--wot-tabs-nav-height, 42px);
+  height: var(--wot-tabs-nav-height, 42px);
+  line-height: var(--wot-tabs-nav-height, 42px);
+  text-align: center;
+  color: var(--wot-tabs-nav-map-arrow-color, rgba(0, 0, 0, 0.65));
+  z-index: 1;
+  background: var(--wot-tabs-nav-bg, var(--wot-color-white, white));
+  -webkit-tap-highlight-color: transparent;
+}
+.wd-tabs__map-btn.data-v-4388d15d::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: -24px;
+  width: 24px;
+  height: var(--wot-tabs-nav-height, 42px)-1;
+  background: var(--wot-tabs-nav-map-btn-before-bg, linear-gradient(270deg, white 1%, rgba(255, 255, 255, 0) 100%));
+}
+.wd-tabs__map-arrow.data-v-4388d15d {
+  display: block;
+  transition: transform 0.3s;
+}
+.wd-tabs__map-arrow.is-open.data-v-4388d15d {
+  transform: rotate(180deg);
+}
+.wd-tabs__map-header.data-v-4388d15d {
+  position: relative;
+  padding-left: 17px;
+  height: var(--wot-tabs-nav-height, 42px);
+  line-height: var(--wot-tabs-nav-height, 42px);
+  font-size: var(--wot-tabs-nav-map-fs, var(--wot-fs-content, 14px));
+  color: var(--wot-tabs-nav-map-color, rgba(0, 0, 0, 0.85));
+  transition: opacity 0.3s;
+  background: #fff;
+  opacity: 0;
+  position: relative;
+}
+.wd-tabs__map-header.data-v-4388d15d::after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1px;
+  left: 0;
+  bottom: 0;
+  transform: scaleY(0.5);
+  background: var(--wot-color-border-light, #e8e8e8);
+}
+.wd-tabs__map-header.data-v-4388d15d::after {
+  z-index: 3;
+}
+.wd-tabs__map-body.data-v-4388d15d {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 15px 10px;
+  background: #fff;
+  transition: transform 0.3s;
+  transform: scaleY(0);
+  transform-origin: center top;
+}
+.wd-tabs__map-body.is-open.data-v-4388d15d {
+  transform: scaleY(1);
+}
+.wd-tabs__map-nav-item.data-v-4388d15d {
+  flex-basis: 33%;
+}
+.wd-tabs__map-nav-item.data-v-4388d15d:nth-child(3n+2) {
+  text-align: center;
+}
+.wd-tabs__map-nav-item.data-v-4388d15d:nth-child(3n+3) {
+  text-align: right;
+}
+.wd-tabs__map-nav-btn.data-v-4388d15d {
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  background: transparent;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  width: 107px;
+  height: 32px;
+  line-height: 32px;
+  background-color: var(--wot-tabs-nav-map-button-back-color, rgba(0, 0, 0, 0.04));
+  border-color: transparent;
+  margin-bottom: 10px;
+  border-radius: var(--wot-tabs-nav-map-button-radius, 16px);
+  color: var(--wot-tabs-nav-map-color, rgba(0, 0, 0, 0.85));
+  font-size: var(--wot-tabs-nav-map-fs, var(--wot-fs-content, 14px));
+  text-align: center;
+  transition: color 0.3s, border-color 0.3s;
+}
+.wd-tabs__map-nav-btn.is-active.data-v-4388d15d {
+  color: var(--wot-tabs-nav-active-color, var(--wot-color-theme, #4d80f0));
+  border: 1px solid var(--wot-tabs-nav-active-color, var(--wot-color-theme, #4d80f0));
+  background-color: var(--wot-tabs-nav-bg, var(--wot-color-white, white));
+}
+.wd-tabs__map-nav-btn.is-disabled.data-v-4388d15d {
+  color: var(--wot-tabs-nav-disabled-color, rgba(0, 0, 0, 0.25));
+  border-color: #f4f4f4;
+}
+.wd-tabs__mask.data-v-4388d15d {
+  position: absolute;
+  top: var(--wot-tabs-nav-height, 42px);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--wot-tabs-nav-map-modal-bg, var(--wot-overlay-bg, rgba(0, 0, 0, 0.65)));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.wd-tabs.is-slide .wd-tabs__nav-item.data-v-4388d15d {
+  flex: 0 0 auto;
+  padding: 0 17px;
+}
+.wd-tabs.is-map .wd-tabs__nav--wrap.data-v-4388d15d {
+  padding-right: 40px;
+}
+@media screen and (max-width: 330px) {
+.wd-tabs__map-nav-btn.data-v-4388d15d {
+    width: 90px;
+}
+}

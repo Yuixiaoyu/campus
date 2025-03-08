@@ -1,0 +1,21 @@
+{
+  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
+  "navigationBarRightButton": {
+    "hide": true
+  },
+  "usingComponents": {
+    "wd-navbar": "../../uni_modules/wot-design-uni/components/wd-navbar/wd-navbar",
+    "wd-textarea": "../../uni_modules/wot-design-uni/components/wd-textarea/wd-textarea",
+    "wd-upload": "../../uni_modules/wot-design-uni/components/wd-upload/wd-upload",
+    "wd-tag": "../../uni_modules/wot-design-uni/components/wd-tag/wd-tag",
+    "wd-icon": "../../uni_modules/wot-design-uni/components/wd-icon/wd-icon",
+    "wd-cell": "../../uni_modules/wot-design-uni/components/wd-cell/wd-cell",
+    "wd-switch": "../../uni_modules/wot-design-uni/components/wd-switch/wd-switch",
+    "wd-cell-group": "../../uni_modules/wot-design-uni/components/wd-cell-group/wd-cell-group",
+    "wd-gap": "../../uni_modules/wot-design-uni/components/wd-gap/wd-gap",
+    "wd-button": "../../uni_modules/wot-design-uni/components/wd-button/wd-button",
+    "wd-action-sheet": "../../uni_modules/wot-design-uni/components/wd-action-sheet/wd-action-sheet",
+    "wd-toast": "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast"
+  }
+}

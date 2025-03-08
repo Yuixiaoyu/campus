@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "登录",
+  "usingComponents": {
+    "wd-button": "../../uni_modules/wot-design-uni/components/wd-button/wd-button",
+    "wd-toast": "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast"
+  }
+}

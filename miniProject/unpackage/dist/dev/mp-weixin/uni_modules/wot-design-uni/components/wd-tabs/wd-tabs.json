@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wd-badge": "../wd-badge/wd-badge",
+    "wd-icon": "../wd-icon/wd-icon",
+    "wd-sticky": "../wd-sticky/wd-sticky",
+    "wd-sticky-box": "../wd-sticky-box/wd-sticky-box"
+  }
+}

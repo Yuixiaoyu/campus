@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wd-button": "../wd-button/wd-button",
+    "wd-icon": "../wd-icon/wd-icon",
+    "wd-transition": "../wd-transition/wd-transition"
+  }
+}

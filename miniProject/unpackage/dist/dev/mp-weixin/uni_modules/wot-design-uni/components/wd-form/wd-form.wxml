@@ -1,0 +1,1 @@
+<view class="{{['data-v-6504e7d0', c]}}" style="{{d}}"><slot></slot><wd-toast wx:if="{{a}}" class="data-v-6504e7d0" u-i="6504e7d0-0" bind:__l="__l" u-p="{{b}}"/></view>

@@ -1,0 +1,1 @@
+<view class="data-v-2722b5fd" style="{{g}}"><view class="{{['data-v-2722b5fd', d]}}" style="{{e}}" id="{{f}}"><view class="wd-sticky__container data-v-2722b5fd" style="{{c}}"><wd-resize wx:if="{{b}}" class="data-v-2722b5fd" u-s="{{['d']}}" bindresize="{{a}}" u-i="2722b5fd-0" bind:__l="__l" u-p="{{b}}"><slot/></wd-resize></view></view></view>
