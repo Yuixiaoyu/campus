@@ -9,12 +9,14 @@
             <result property="articleId" column="articleId" jdbcType="BIGINT"/>
             <result property="userId" column="userId" jdbcType="BIGINT"/>
             <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="parentId" column="parentId" jdbcType="BIGINT"/>
             <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
             <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,articleId,userId,
-        content,createTime,isDelete
+        content,parentId,createTime,
+        isDelete
     </sql>
 </mapper>

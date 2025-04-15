@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NotLoginException.class)
     public BaseResponse<?> notLoginExceptionHandler(NotLoginException e) {
         log.error("NotLoginException", e);
-        return ResultUtils.error(ErrorCode.NOT_LOGIN_ERROR);
+        return ResultUtils.error(ErrorCode.NOT_LOGIN_ERROR, "未登录");
     }
 
 }

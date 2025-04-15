@@ -3,12 +3,11 @@ package com.xiaoyu.campus.model.entity;
 import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
-
-import lombok.AllArgsConstructor;
+import java.util.Date;
 import lombok.Data;
 
 /**
- * 
+ *
  * @TableName image
  */
 @TableName(value ="image")
@@ -29,6 +28,11 @@ public class Image implements Serializable {
      * 图片URL
      */
     private String url;
+
+    /**
+     * 删除时间
+     */
+    private Date deleteTime;
 
     /**
      * 是否删除

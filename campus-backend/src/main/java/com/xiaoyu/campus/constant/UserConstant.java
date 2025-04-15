@@ -17,6 +17,12 @@ public interface UserConstant {
      */
     String USER_LOGIN_STATE = "user_login";
 
+
+    /**
+     * 用户登录态键
+     */
+    String WX_LOGIN_STATUS = "loginUser";
+
     //  region 权限
 
     /**

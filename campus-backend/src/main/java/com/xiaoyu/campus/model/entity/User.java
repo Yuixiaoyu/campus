@@ -46,6 +46,11 @@ public class User implements Serializable {
     private String userRole;
 
     /**
+     * 用户标签
+     */
+    private String tag;
+
+    /**
      * 用户积分
      */
     private Integer userScore;
@@ -54,6 +59,16 @@ public class User implements Serializable {
      * 用户手机号
      */
     private String userPhone;
+
+    /**
+     * 用户性别
+     */
+    private Integer gender;
+
+    /**
+     * 用户星座
+     */
+    private String constellation;
 
     /**
      * 用户简介

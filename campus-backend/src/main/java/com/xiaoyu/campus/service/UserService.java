@@ -7,10 +7,11 @@ import com.xiaoyu.campus.model.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiaoyu.campus.model.vo.LoginUserVo;
 import com.xiaoyu.campus.model.vo.UserVO;
-import com.xiaoyu.campus.model.vo.WxLoginVO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
 * @author 张飞宇
@@ -31,14 +32,13 @@ public interface UserService extends IService<User> {
 
     User getLoginUser();
 
-    boolean userLogout(HttpServletRequest request);
+    boolean userLogout();
 
     QueryWrapper<User> getQueryWrapper(UserQueryRequest userQueryRequest);
 
     String getEncryptPassword(String userPassword);
 
     boolean isAdmin(User user);
-
 
     /**
      *  微信登录
@@ -47,4 +47,9 @@ public interface UserService extends IService<User> {
      */
     LoginUserVo wxLogin(String code);
 
+    // UserServiceImpl.java
+    Map<Long, UserVO> getUserVOMapByIds(Set<Long> userIds);
+
+
+    UserVO getUserVOByUserId(Long userId);
 }

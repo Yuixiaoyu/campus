@@ -1,5 +1,6 @@
 package com.xiaoyu.campus.service.impl;
 
+import cn.hutool.core.io.resource.InputStreamResource;
 import cn.hutool.core.util.ObjUtil;
 import com.xiaoyu.campus.model.vo.ConvertResult;
 import com.xiaoyu.campus.model.vo.UploadResult;
@@ -7,13 +8,16 @@ import com.xiaoyu.campus.exception.BusinessException;
 import com.xiaoyu.campus.exception.ErrorCode;
 import com.xiaoyu.campus.model.entity.User;
 import com.xiaoyu.campus.service.UserService;
-import io.minio.MinioClient;
-import io.minio.PutObjectArgs;
-import io.minio.S3Escaper;
+import io.minio.*;
+import io.minio.errors.ErrorResponseException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -27,6 +31,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -67,6 +74,7 @@ public class UploadFilesService {
             "image/bmp"
     );
 
+    @Transactional
     public List<String> uploadFileList(MultipartFile[] files) throws IOException {
         if (ObjUtil.isEmpty(files)){
             return new ArrayList<>();
@@ -95,7 +103,9 @@ public class UploadFilesService {
 
                 // 生成访问URL
                 String fileUrl = generatePublicUrl(conversion.getFileName());
-
+                log.info("File uploaded successfully: {}", fileUrl);
+                //将url中的IP地址替换为域名
+                fileUrl = fileUrl.replace("http://121.4.252.156:9001", "https://minio.fybreeze.cn");
                 // 记录成功结果
                 filesUrl.add(fileUrl);
             } catch (Exception e) {
@@ -121,11 +131,9 @@ public class UploadFilesService {
             throw new RuntimeException("URL生成失败", e);
         }
     }
-
     private ConvertResult convertToWebpIfNeeded(MultipartFile file) throws IOException {
         String originalFileName = file.getOriginalFilename();
         String contentType = file.getContentType();
-
         // 非图片文件直接返回
         if (!isImage(contentType)) {
             return new ConvertResult(
@@ -135,7 +143,6 @@ public class UploadFilesService {
                     contentType
             );
         }
-
         // 生成新的文件名（替换扩展名为webp）
         String newFileName = FilenameUtils.removeExtension(originalFileName) + ".webp";
 
@@ -153,6 +160,43 @@ public class UploadFilesService {
             );
         }
     }
+
+    /**
+     * 文件删除方法
+     * @param fileName 存储在MinIO中的完整文件名
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteFile(String fileName) {
+        try {
+            // 检查文件是否存在
+            minioClient.statObject(
+                    StatObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(fileName)
+                            .build()
+            );
+            // 执行删除操作
+            minioClient.removeObject(
+                    RemoveObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(fileName)
+                            .build()
+            );
+
+            log.info("文件删除成功: {}", fileName);
+
+            // 这里可以添加数据库记录删除操作
+            // userService.logDeleteOperation(fileName);
+
+        } catch (ErrorResponseException e) {
+            log.warn("删除不存在的文件: {}", fileName);
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "文件不存在");
+        } catch (Exception e) {
+            log.error("文件删除失败: {}", fileName, e);
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "文件删除失败");
+        }
+    }
+
 
     private boolean isImage(String contentType) {
         return contentType != null && SUPPORTED_IMAGE_TYPES.contains(contentType.toLowerCase());

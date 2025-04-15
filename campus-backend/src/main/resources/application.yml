@@ -8,6 +8,10 @@ server:
   tomcat:
     max-swallow-size: 60MB  # Tomcat吞入最大尺寸
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm  #全局日期格式
+    time-zone: GMT+8
+    default-property-inclusion: non_null
   application:
     name: campus
   #数据库配置
@@ -59,7 +63,9 @@ mybatis-plus:
       logic-delete-value: 1 #逻辑已删除值
       logic-not-delete-value: 0 #逻辑未删除值
     enable-sql-runner: true
-
+# 接入DeepSeek大模型
+ai:
+  apiKey: xxxxx
 knife4j:
   enable: true
   openapi:

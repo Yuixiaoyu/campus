@@ -1,9 +1,15 @@
 package com.xiaoyu.campus.article;
 
 import com.github.houbb.sensitive.word.bs.SensitiveWordBs;
+import com.xiaoyu.campus.config.SensitiveWordConfig;
+import com.xiaoyu.campus.service.impl.UploadFilesService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,10 +24,16 @@ import java.util.List;
 @SpringBootTest
 public class ArticleReportTest {
 
+    @Resource
+    private UploadFilesService uploadFilesService;
+
+    @Resource
+    private SensitiveWordBs sensitiveWordBs;
+
     @Test
     public void articleReportTest(){
-        String text = "这是一个包含敏感词的测试文本，比如包含色情、赌博等词汇。vx:123123123120";
-        List<String> allWords = SensitiveWordBs.newInstance().enableNumCheck(false).findAll(text);
+        String text = "测试我的页面同步更新文章信息";
+        List<String> allWords = sensitiveWordBs.enableNumCheck(false).findAll(text);
         System.out.println("所有敏感词: " + allWords);
     }
 
@@ -30,5 +42,11 @@ public class ArticleReportTest {
         List<String> list = Arrays.asList("abc", "bcz", "aaa");
         String string = list.toString();
         System.out.println(string);
+    }
+
+    @Test
+    public void testRemoveFile(){
+        String path = "oLVGRAmxedr059d8084868d79c9b3aa19644e705d2a6.webp";
+        uploadFilesService.deleteFile(path);
     }
 }

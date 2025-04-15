@@ -3,6 +3,7 @@ package com.xiaoyu.campus.model.dto.user;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 public class UserUpdateRequest implements Serializable {
@@ -21,6 +22,11 @@ public class UserUpdateRequest implements Serializable {
      * 用户头像
      */
     private String userAvatar;
+
+    /**
+     * 用户标签
+     */
+    private List<String> tagList;
 
     /**
      * 简介

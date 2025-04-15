@@ -3,6 +3,7 @@ package com.xiaoyu.campus.service;
 import com.xiaoyu.campus.model.entity.Image;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -21,5 +22,23 @@ public interface ImageService extends IService<Image> {
      * @return 返回图片链接
      */
     List<String> getImagesByArticleId(Long articleId);
+
+    /**
+     * 根据文章id列表获取图片
+     * @param articleIds
+     * @return
+     */
+    List<Image> getImagesByArticleIds(Collection<Long> articleIds);
+
+
+    /**
+     * 通过url列表获取image列表
+     * @param urlList
+     * @return
+     */
+    List<Image> getImagesByImageUrlList(List<String> urlList);
+
+
+
 
 }

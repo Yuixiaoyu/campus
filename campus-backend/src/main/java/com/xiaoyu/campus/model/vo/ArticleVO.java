@@ -19,7 +19,6 @@ public class ArticleVO implements Serializable {
     /**
      * 文章id
      */
-    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
@@ -66,9 +65,19 @@ public class ArticleVO implements Serializable {
     private List<String> imagesList;
 
     /**
+     * 敏感词
+     */
+    private List<String> sensitive;
+
+    /**
      * 发布时间
      */
     private Date createTime;
+
+    /**
+     * 是否点赞
+     */
+    private Boolean isLike;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

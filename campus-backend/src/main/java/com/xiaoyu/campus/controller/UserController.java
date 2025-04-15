@@ -2,6 +2,7 @@ package com.xiaoyu.campus.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xiaoyu.campus.annotation.AuthCheck;
 import com.xiaoyu.campus.common.BaseResponse;
@@ -13,9 +14,10 @@ import com.xiaoyu.campus.exception.ErrorCode;
 import com.xiaoyu.campus.exception.ThrowUtils;
 import com.xiaoyu.campus.model.dto.user.*;
 import com.xiaoyu.campus.model.entity.User;
+import com.xiaoyu.campus.model.vo.ItemsDetailVO;
 import com.xiaoyu.campus.model.vo.LoginUserVo;
 import com.xiaoyu.campus.model.vo.UserVO;
-import com.xiaoyu.campus.model.vo.WxLoginVO;
+import com.xiaoyu.campus.model.vo.WxUserVO;
 import com.xiaoyu.campus.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +55,17 @@ public class UserController {
         return ResultUtils.success(loginUserVo);
     }
 
+    /**
+     * 根据id获取失物招领详情
+     */
+    @PostMapping("/{id}")
+    public BaseResponse<UserVO> getUserVOById(@PathVariable("id") Long id) {
+        if (id ==null||id<=0){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        return ResultUtils.success(userService.getUserVOByUserId(id));
+    }
+
 
     /**
      * 获取当前登录用户
@@ -71,20 +84,18 @@ public class UserController {
     @GetMapping("/logout")
     public BaseResponse<Boolean> userLogout(HttpServletRequest request) {
         ThrowUtils.throwIf(request==null, ErrorCode.PARAMS_ERROR);
-        boolean result = userService.userLogout(request);
+        boolean result = userService.userLogout();
         return ResultUtils.success(result);
     }
 
     @PostMapping("/wx/login")
     public BaseResponse<LoginUserVo> wxLogin(@RequestParam("code") String code) {
-
         if (StrUtil.isEmpty(code)){
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         LoginUserVo wxLoginVO = userService.wxLogin(code);
         return ResultUtils.success(wxLoginVO);
     }
-
 
     /**
      * 创建用户
@@ -150,6 +161,25 @@ public class UserController {
         boolean result = userService.updateById(user);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return ResultUtils.success(true);
+    }
+
+    /**
+     * 更新wx用户
+     */
+    @PostMapping("/update/wx")
+    public BaseResponse<WxUserVO> updateUserWX(@RequestBody UserWxUpdateRequest userWxUpdateRequest) {
+        if (userWxUpdateRequest == null || userWxUpdateRequest.getId() == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User user = new User();
+        BeanUtils.copyProperties(userWxUpdateRequest, user);
+        user.setTag(JSONUtil.toJsonStr(userWxUpdateRequest.getTagList()));
+        boolean result = userService.updateById(user);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        User newUser = userService.getById(user.getId());
+        WxUserVO wxUserVO = BeanUtil.copyProperties(newUser, WxUserVO.class);
+        wxUserVO.setTagList(JSONUtil.toList(newUser.getTag(), String.class));
+        return ResultUtils.success(wxUserVO);
     }
 
     /**

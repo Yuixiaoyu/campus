@@ -13,6 +13,8 @@ public class ArticleQueryRequest extends PageRequest implements Serializable {
 
     private String content;
 
+    private Long userId;
+
     private static final long serialVersionUID = 1L;
 
 }

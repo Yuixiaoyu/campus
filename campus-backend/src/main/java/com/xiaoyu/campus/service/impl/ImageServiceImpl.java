@@ -1,5 +1,6 @@
 package com.xiaoyu.campus.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaoyu.campus.exception.ErrorCode;
@@ -10,7 +11,9 @@ import com.xiaoyu.campus.mapper.ImageMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,6 +42,24 @@ public class ImageServiceImpl extends ServiceImpl<ImageMapper, Image>
         LambdaQueryWrapper<Image> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Image::getArticleId, articleId);
         return this.list(queryWrapper).stream().map(Image::getUrl).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Image> getImagesByArticleIds(Collection<Long> articleIds) {
+        //校验参数
+        ThrowUtils.throwIf(CollUtil.isEmpty(articleIds), ErrorCode.PARAMS_ERROR, "文章ID不能为空");
+        LambdaQueryWrapper<Image> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.in(Image::getArticleId, articleIds);
+        return this.list(queryWrapper);
+    }
+
+    @Override
+    public List<Image> getImagesByImageUrlList(List<String> urlList) {
+        List<Image> images = this.baseMapper.selectList(new LambdaQueryWrapper<Image>().in(Image::getUrl, urlList));
+        if (CollUtil.isEmpty(images)){
+            return new ArrayList<>();
+        }
+        return images;
     }
 }
 

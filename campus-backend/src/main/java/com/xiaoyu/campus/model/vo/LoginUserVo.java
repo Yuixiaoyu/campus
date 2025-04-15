@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 已登录用户视图（脱敏）
@@ -14,6 +15,7 @@ public class LoginUserVo implements Serializable {
 
 
     private static final long serialVersionUID = 4778493586101283309L;
+
     /**
      * id
      */
@@ -40,6 +42,21 @@ public class LoginUserVo implements Serializable {
     private String userProfile;
 
     /**
+     * 用户星座
+     */
+    private String constellation;
+
+    /**
+     * 用户性别
+     */
+    private Integer gender;
+
+    /**
+     * 用户标签列表
+     */
+    private List<String> tagList;
+
+    /**
      * 用户角色：user/admin
      */
     private String userRole;
@@ -63,6 +80,5 @@ public class LoginUserVo implements Serializable {
      * 返回token信息随后每次请求携带token
      */
     private String token;
-
 
 }

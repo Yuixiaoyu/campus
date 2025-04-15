@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>campus-backend</name>
     <description>campus-backend</description>
+    <packaging>jar</packaging>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -131,6 +132,17 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--火山引擎DeepSeek-R1大模型-->
+        <dependency>
+            <groupId>com.volcengine</groupId>
+            <artifactId>volcengine-java-sdk-ark-runtime</artifactId>
+            <version>0.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15to18</artifactId>
+            <version>1.64</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -150,7 +162,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <build>
         <plugins>
             <plugin>
@@ -168,9 +179,11 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.xiaoyu.campus.CampusApplication
+                    <mainClass>
+                        com.xiaoyu.campus.CampusApplication
                     </mainClass>
-                    <skip>true</skip>
+                    <!--排除掉bouncycastle-->
+                    <excludeGroupIds>org.bouncycastle</excludeGroupIds>
                 </configuration>
                 <executions>
                     <execution>
@@ -181,7 +194,23 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeScope>runtime</includeScope>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-
 </project>

@@ -1,5 +1,7 @@
 package com.xiaoyu.campus.model.enums;
 
+import lombok.Getter;
+
 /**
  * 文章状态枚举
  * 
@@ -9,7 +11,8 @@ package com.xiaoyu.campus.model.enums;
  * 2: 未通过（REJECTED）
  * 3: 已驳回（DENIED）
  */
-public enum ArticleStatus {
+@Getter
+public enum ArticleStatusEnum {
     /**
      * 待审核状态（code: 0）
      * 表示文章已提交但尚未审核
@@ -42,25 +45,9 @@ public enum ArticleStatus {
      * @param code 数据库存储的状态码
      * @param description 状态描述
      */
-    ArticleStatus(int code, String description) {
+    ArticleStatusEnum(int code, String description) {
         this.code = code;
         this.description = description;
-    }
-
-    /**
-     * 获取状态码
-     * @return 当前枚举对应的状态码
-     */
-    public int getCode() {
-        return code;
-    }
-
-    /**
-     * 获取状态描述
-     * @return 当前枚举对应的中文描述
-     */
-    public String getDescription() {
-        return description;
     }
 
     /**
@@ -69,8 +56,8 @@ public enum ArticleStatus {
      * @return 对应的枚举实例
      * @throws IllegalArgumentException 如果传入无效的状态码
      */
-    public static ArticleStatus fromCode(int code) {
-        for (ArticleStatus status : values()) {
+    public static ArticleStatusEnum fromCode(int code) {
+        for (ArticleStatusEnum status : values()) {
             if (status.code == code) {
                 return status;
             }

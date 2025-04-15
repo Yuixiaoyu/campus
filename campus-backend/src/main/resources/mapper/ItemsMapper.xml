@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyu.campus.mapper.ItemsMapper">
+
+    <resultMap id="BaseResultMap" type="com.xiaoyu.campus.model.entity.Items">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="itemType" column="itemType" jdbcType="TINYINT"/>
+            <result property="category" column="category" jdbcType="VARCHAR"/>
+            <result property="userId" column="userId" jdbcType="BIGINT"/>
+            <result property="location" column="location" jdbcType="VARCHAR"/>
+            <result property="currentLocation" column="currentLocation" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="url" column="url" jdbcType="VARCHAR"/>
+            <result property="eventTime" column="eventTime" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,title,description,
+        itemType,category,userId,
+        location,status,url,currentLocation
+        eventTime,createTime
+    </sql>
+</mapper>

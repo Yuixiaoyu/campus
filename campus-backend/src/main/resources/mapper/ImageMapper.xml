@@ -5,14 +5,15 @@
 <mapper namespace="com.xiaoyu.campus.mapper.ImageMapper">
 
     <resultMap id="BaseResultMap" type="com.xiaoyu.campus.model.entity.Image">
-            <id property="id" column="id" jdbcType="INTEGER"/>
+            <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="articleId" column="articleId" jdbcType="BIGINT"/>
             <result property="url" column="url" jdbcType="VARCHAR"/>
+            <result property="deleteTime" column="deleteTime" jdbcType="TIMESTAMP"/>
             <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,articleId,url,
-        isDelete
+        deleteTime,isDelete
     </sql>
 </mapper>

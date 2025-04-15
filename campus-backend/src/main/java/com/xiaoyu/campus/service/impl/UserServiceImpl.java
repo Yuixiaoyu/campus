@@ -3,13 +3,12 @@ package com.xiaoyu.campus.service.impl;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.lang.UUID;
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONParser;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -27,7 +26,6 @@ import com.xiaoyu.campus.model.entity.User;
 import com.xiaoyu.campus.model.enums.UserRoleEnum;
 import com.xiaoyu.campus.model.vo.LoginUserVo;
 import com.xiaoyu.campus.model.vo.UserVO;
-import com.xiaoyu.campus.model.vo.WxLoginVO;
 import com.xiaoyu.campus.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -35,9 +33,8 @@ import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -112,12 +109,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      */
     @Override
     public LoginUserVo userLogin(String userAccount, String userPassword, HttpServletRequest request) {
-
         //校验
         if (StrUtil.hasBlank(userAccount, userPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数为空");
         }
-
         if (userAccount.length() < 4 || userPassword.length() < 8) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户账户或密码错误");
         }
@@ -134,11 +129,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             log.info("user login failed,userAccount cannot match UserPassword");
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户不存在或密码错误");
         }
-
         //保存用户的登录态，遗弃，微信小程序无法获取到cookie和session，因此采用saToken来实现持久化
         //request.getSession().setAttribute(UserConstant.USER_LOGIN_STATE, user);
         StpUtil.login(user.getId());
         String tokenValue = StpUtil.getTokenValue();
+        StpUtil.getSession().set(UserConstant.USER_LOGIN_STATE, user);
         LoginUserVo loginUserVO = getLoginUserVO(user);
         loginUserVO.setToken(tokenValue);
         return loginUserVO;
@@ -178,7 +173,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             user = new User();
             user.setUserPhone(phoneNumber);
             user.setUserName("微信用户" + RandomUtil.randomString(5));
-            user.setImageUrl("https://c-ssl.dtstatic.com/uploads/blog/202202/11/20220211171125_9b300.thumb.400_0.jpg");
+            user.setImageUrl("https://minio.fybreeze.cn/campus/INGCaCjrYtS459d8084868d79c9b3aa19644e705d2a6.webp");
             boolean saveResult = save(user);
             ThrowUtils.throwIf(!saveResult, ErrorCode.SYSTEM_ERROR, "创建用户失败");
         }
@@ -186,8 +181,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         //用户信息存在,直接登录
         StpUtil.login(user.getId());
         LoginUserVo loginUserVo = BeanUtil.copyProperties(user, LoginUserVo.class);
+        loginUserVo.setTagList(JSONUtil.toList(user.getTag(), String.class));
         String tokenValue = StpUtil.getTokenValue();
         loginUserVo.setToken(tokenValue);
+        StpUtil.getSession().set(UserConstant.WX_LOGIN_STATUS, user);
         return loginUserVo;
     }
 
@@ -202,7 +199,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (user == null) {
             return null;
         }
-        return BeanUtil.copyProperties(user, LoginUserVo.class);
+        LoginUserVo loginUserVo = BeanUtil.copyProperties(user, LoginUserVo.class);
+        loginUserVo.setTagList(JSONUtil.toList(user.getTag(), String.class));
+        return loginUserVo;
     }
 
     @Override
@@ -226,27 +225,37 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         if (user == null) {
             return null;
         }
-        return BeanUtil.copyProperties(user, UserVO.class);
+        UserVO userVO = BeanUtil.copyProperties(user, UserVO.class);
+        userVO.setTagList(JSONUtil.toList(user.getTag(), String.class));
+        return userVO;
     }
 
-    @Override
     public User getLoginUser() {
-        //判断是否登录,未登录则抛出异常
-        StpUtil.checkLogin();
-
-        Long loginId = StpUtil.getLoginIdAsLong();
-        return this.baseMapper.selectById(loginId);
+        // 先判断是否已登录
+        if (!StpUtil.isLogin()) {
+            throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
+        }
+        //从登录态中获取用户信息
+        Object userObj = StpUtil.getSession().get(UserConstant.USER_LOGIN_STATE);
+        if (userObj == null) {
+            userObj = StpUtil.getSession().get(UserConstant.WX_LOGIN_STATUS);
+        }
+        User currentUser = (User) userObj;
+        // 从数据库查询（追求性能的话可以注释，直接走缓存）
+        long userId = currentUser.getId();
+        currentUser = this.getById(userId);
+        if (currentUser == null) {
+            throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
+        }
+        return currentUser;
     }
 
-    @Override
-    public boolean userLogout(HttpServletRequest request) {
-        //判断是否登录
-        Object userObj = request.getSession().getAttribute(UserConstant.USER_LOGIN_STATE);
-        if (userObj == null) {
+    public boolean userLogout() {
+        if (!StpUtil.isLogin() || StpUtil.getSession().get(UserConstant.USER_LOGIN_STATE) == null) {
             throw new BusinessException(ErrorCode.OPERATION_ERROR, "未登录");
         }
-        //移除登录态
-        request.getSession().removeAttribute(UserConstant.USER_LOGIN_STATE);
+        // 移除登录态
+        StpUtil.logout();
         return true;
     }
 
@@ -272,7 +281,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         return queryWrapper;
     }
 
-
     /**
      * 对密码加密
      *
@@ -295,7 +303,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         return UserRoleEnum.ADMIN.getValue().equals(user.getUserRole());
     }
 
+    // UserServiceImpl.java
+    @Override
+    public Map<Long, UserVO> getUserVOMapByIds(Set<Long> userIds) {
+        if (CollectionUtil.isEmpty(userIds)) {
+            return Collections.emptyMap();
+        }
+        return this.baseMapper.selectBatchIds(userIds)
+                .stream()
+                .map(user -> {
+                    UserVO userVO = BeanUtil.copyProperties(user, UserVO.class);
+                    userVO.setTagList(JSONUtil.toList(user.getTag(), String.class));
+                    return userVO;
+                })
+                .collect(Collectors.toMap(UserVO::getId, Function.identity()));
+    }
 
+    @Override
+    public UserVO getUserVOByUserId(Long userId) {
+        if (userId == null || userId < 1) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User user = getById(userId);
+        return getUserVO(user);
+    }
 }
 
 

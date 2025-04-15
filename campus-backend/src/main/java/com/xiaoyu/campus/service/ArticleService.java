@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
 * @author 张飞宇
@@ -26,8 +27,7 @@ public interface ArticleService extends IService<Article> {
      * 发布文章
      * @param articleAddRequest
      */
-    Long addArticle(ArticleAddRequest articleAddRequest);
-
+    Long addArticle(ArticleAddRequest articleAddRequest) throws ExecutionException, InterruptedException;
 
     /**
      * 查询文章
@@ -35,7 +35,6 @@ public interface ArticleService extends IService<Article> {
      * @return
      */
     QueryWrapper<Article> getQueryWrapper(ArticleQueryRequest articleQueryRequest);
-
 
     /**
      * 获取文章分页
@@ -57,6 +56,42 @@ public interface ArticleService extends IService<Article> {
      * @return
      */
     List<ArticleVO> getArticleVOListByUserId(Long userId);
+
+    /**
+     * 通过文章id获取文章详情信息
+     * @param articleId
+     * @return
+     */
+    ArticleVO getArticleVOByArticleId(Long articleId);
+
+    /**
+     * 文章点赞
+     * @param articleId
+     * @return
+     */
+    boolean likeArticle(Long articleId);
+
+    /**
+     * 获取待审核的文章列表
+     * @return
+     */
+    List<ArticleVO> getArticleCheckList();
+
+
+    /**
+     * 删除文章
+     * @param id
+     * @return
+     */
+    boolean removeArticle(Long id);
+
+
+    /**
+     * 根据当前用户id获取到用户的点赞文章记录
+     * @return
+     */
+    List<ArticleVO> getArticleVOLikeListByUserId(Long userId);
+
 
 
 

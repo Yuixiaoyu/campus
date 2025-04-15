@@ -1,9 +1,7 @@
 package com.xiaoyu.campus.model.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
@@ -37,6 +35,11 @@ public class Comment implements Serializable {
     private String content;
 
     /**
+     * 向谁回复
+     */
+    private Long parentId;
+
+    /**
      * 创建时间
      */
     private Date createTime;
@@ -44,6 +47,7 @@ public class Comment implements Serializable {
     /**
      * 是否删除
      */
+    @TableLogic
     private Integer isDelete;
 
     @TableField(exist = false)
