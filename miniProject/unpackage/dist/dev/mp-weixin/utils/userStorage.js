@@ -70,5 +70,9 @@ function getUserInfo() {
   }
   return null;
 }
+function clearUserInfo() {
+  common_vendor.index.removeStorageSync(USER_INFO_KEY);
+}
+exports.clearUserInfo = clearUserInfo;
 exports.getUserInfo = getUserInfo;
 exports.setUserInfo = setUserInfo;

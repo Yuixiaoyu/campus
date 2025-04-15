@@ -1,0 +1,1 @@
+<wd-transition wx:if="{{c}}" u-s="{{['d']}}" bindclick="{{a}}" catchtouchmove="{{b}}" u-i="3e04ab33-0" bind:__l="__l" u-p="{{c}}"><slot></slot></wd-transition>

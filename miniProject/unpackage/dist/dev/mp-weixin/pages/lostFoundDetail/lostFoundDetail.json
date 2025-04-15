@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "物品详情",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "wd-icon": "../../uni_modules/wot-design-uni/components/wd-icon/wd-icon",
+    "wd-swiper": "../../uni_modules/wot-design-uni/components/wd-swiper/wd-swiper",
+    "wd-img": "../../uni_modules/wot-design-uni/components/wd-img/wd-img",
+    "wd-button": "../../uni_modules/wot-design-uni/components/wd-button/wd-button",
+    "wd-upload": "../../uni_modules/wot-design-uni/components/wd-upload/wd-upload",
+    "wd-textarea": "../../uni_modules/wot-design-uni/components/wd-textarea/wd-textarea",
+    "wd-overlay": "../../uni_modules/wot-design-uni/components/wd-overlay/wd-overlay",
+    "wd-toast": "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast"
+  }
+}

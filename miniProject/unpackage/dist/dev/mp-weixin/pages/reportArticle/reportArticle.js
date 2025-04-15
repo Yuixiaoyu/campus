@@ -27,7 +27,7 @@ const _easycom_wd_toast = () => "../../uni_modules/wot-design-uni/components/wd-
 if (!Math) {
   (_easycom_wd_notice_bar + _easycom_wd_input + _easycom_wd_textarea + _easycom_wd_upload + _easycom_wd_cell + _easycom_wd_cell_group + _easycom_wd_button + _easycom_wd_form + _easycom_wd_toast)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_defineComponent = common_vendor.defineComponent({
   __name: "reportArticle",
   setup(__props) {
     const { success: showSuccess } = uni_modules_wotDesignUni_components_wdToast_index.useToast();
@@ -61,6 +61,23 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       console.log("files:", file);
       imageList.value = file;
     };
+    common_vendor.onShareAppMessage((res) => {
+      console.log(res);
+      return {
+        title: "青春共享站",
+        path: "/pages/index/index",
+        imageUrl: "/static/logo.jpg"
+        // 分享图片
+      };
+    });
+    common_vendor.onShareTimeline(() => {
+      return {
+        title: "青春共享站",
+        path: "/pages/index/index",
+        imageUrl: "/static/logo.jpg"
+        // 分享图片
+      };
+    });
     return (_ctx, _cache) => {
       return {
         a: common_vendor.p({
@@ -127,5 +144,6 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
     };
   }
 });
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-e79f0db3"]]);
+_sfc_defineComponent.__runtimeHooks = 6;
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_defineComponent, [["__scopeId", "data-v-e79f0db3"]]);
 wx.createPage(MiniProgramPage);

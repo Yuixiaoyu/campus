@@ -1,17 +1,15 @@
 <template>
     <view class="viewport">
+      <wd-navbar custom-class="navbar" :bordered="false" title="登陆" safeAreaInsetTop left-arrow @click-left="handleClickLeft"></wd-navbar>
       <view class="logo">
         <image
-            src="http://192.168.34.100:9000/campus/uFxYwGn54XtJ346d1247e247cc30f6ffb1379ac36a47.webp"
+            src="https://minio.fybreeze.cn/campus/logo.webp"
         ></image>
       </view>
       <view class="login">
-        <wd-button  icon="phone" type="success"  block  open-type="getPhoneNumber" @getphonenumber="login">
-          手机号快捷登录
+        <wd-button icon="app" type="success"  block  open-type="getPhoneNumber" @getphonenumber="login">
+          微信登陆
         </wd-button>
-        <view class="tips">
-          登录/注册即视为你同意《服务条款》和《青春共享站隐私协议》
-        </view>
       </view>
       <wd-toast />
     </view>
@@ -20,7 +18,8 @@
 <script lang="ts" setup>
 import {useToast} from "@/uni_modules/wot-design-uni";
 import {wxLogin} from "@/api/userApi";
-import {setUserInfo} from "@/utils/userStorage";
+import {clearUserInfo, setUserInfo} from "@/utils/userStorage";
+import {onLoad} from "@dcloudio/uni-app";
 
 const toast = useToast()
 
@@ -29,8 +28,8 @@ const login = async (e) => {
   uni.showLoading({
     title: '加载中'
   });
-  console.log(e.code)
-  const res = await wxLogin(e.code)
+  const code = e.code;
+  const res = await wxLogin(code)
   if (res.code == 200) {
     console.log(res.data)
     uni.setStorageSync('token', res.data.token)
@@ -41,9 +40,19 @@ const login = async (e) => {
         url: '/pages/index/index'
       })
     },1000)
+  }else{
+    console.log(res)
   }
   uni.hideLoading();
   toast.error(res.msg)
+}
+
+onLoad(()=>{
+  clearUserInfo()
+})
+
+const handleClickLeft = () => {
+  uni.navigateBack()
 }
 
 </script>
@@ -51,11 +60,19 @@ const login = async (e) => {
 
 <style lang="scss" scoped>
 
+:deep(.navbar){
+  background:none;
+}
+
 .viewport {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  padding: 20rpx 40rpx;
+  max-height: 100vh;
+  //padding: 20rpx 40rpx;
+  background-image: url("https://minio.fybreeze.cn/campus/DeWatermark.ai_1744524050762.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-origin: content-box;
 
   .logo {
     flex: 1;
@@ -63,6 +80,7 @@ const login = async (e) => {
     image {
       width: 220rpx;
       height: 220rpx;
+      border-radius: 20rpx;
       margin-top: 15vh;
     }
   }
@@ -71,7 +89,7 @@ const login = async (e) => {
     flex-direction: column;
     height: 60vh;
     padding: 40rpx 20rpx 20rpx;
-    margin-top: 20px;
+    margin-top: 80rpx;
 
     :deep(.wd-button){
       font-size: 16px;

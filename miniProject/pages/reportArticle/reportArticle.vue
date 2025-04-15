@@ -54,6 +54,7 @@ import {reactive, ref} from "vue";
 import {useToast} from "@/uni_modules/wot-design-uni";
 import {onLoad} from "@dcloudio/uni-app";
 import {getUserInfo} from "@/utils/userStorage";
+import {onShareAppMessage,onShareTimeline} from "@dcloudio/uni-app";
 
 const {success: showSuccess} = useToast()
 
@@ -99,6 +100,25 @@ const imageList = ref([])
 const handleUploadImage = ((file) => {
   console.log("files:", file)
   imageList.value = file;
+})
+
+
+// 分享给好友
+onShareAppMessage((res) => {
+  console.log(res)
+  return {
+    title: '青春共享站',
+    path: '/pages/index/index',
+    imageUrl: '/static/logo.jpg', // 分享图片
+  }
+})
+// 分享到朋友圈
+onShareTimeline(() => {
+  return {
+    title: '青春共享站',
+    path: '/pages/index/index',
+    imageUrl: '/static/logo.jpg', // 分享图片
+  }
 })
 
 </script>

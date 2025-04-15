@@ -1,0 +1,1 @@
+<text bindtap="{{f}}" class="{{['data-v-24041fa1', g]}}" style="{{h}}"><block wx:if="{{a}}"><block wx:if="{{$slots.prefix}}"><slot name="prefix"></slot></block><block wx:else>{{b}}</block></block><text class="data-v-24041fa1">{{c}}</text><block wx:if="{{d}}"><block wx:if="{{$slots.suffix}}"><slot name="suffix"></slot></block><block wx:else>{{e}}</block></block></text>

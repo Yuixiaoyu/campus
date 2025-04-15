@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "联系我们",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "wd-navbar": "../../uni_modules/wot-design-uni/components/wd-navbar/wd-navbar",
+    "wd-img": "../../uni_modules/wot-design-uni/components/wd-img/wd-img"
+  }
+}

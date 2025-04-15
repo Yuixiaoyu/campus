@@ -23,63 +23,194 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.activity-page.data-v-da48f91d {
+.clubPage.data-v-da48f91d {
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
   min-height: 100vh;
-  background-color: #f8f8f8;
+  padding-bottom: 80rpx;
 }
-.activity-page .activity-list.data-v-da48f91d {
-  padding: 16px;
+.clubPage .banner.data-v-da48f91d {
+  position: relative;
+  z-index: 1;
 }
-.activity-page .activity-grid.data-v-da48f91d {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+.clubPage .classlist.data-v-da48f91d {
+  display: flex;
+  justify-content: center;
+  height: 250rpx;
+  width: 700rpx;
+  margin: -50rpx auto 30rpx;
+  position: relative;
+  z-index: 2;
 }
-.activity-page .activity-card.data-v-da48f91d {
-  padding: 16px;
-  border-radius: 12px;
-  background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.clubPage .classlist .cardLayout.data-v-da48f91d {
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 15rpx;
+  align-items: center;
+  /* 半透明黑色背景（透明度可调） */
+  background: linear-gradient(135deg, rgba(168, 176, 251, 0.6), rgba(223, 212, 246, 0.6) 60%, rgba(236, 205, 227, 0.6) 100%);
+  /* 指针事件配置（可选） */
+  pointer-events: auto;
+  /* 默认：允许穿透点击 */
+  /* pointer-events: none;  /* 禁止穿透点击 */
+  /* 层级控制（确保在最上层） */
+  z-index: 999;
+  /* 可选：添加模糊效果（需微信小程序支持） */
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: none;
+  box-shadow: 0 8rpx 40rpx rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: 15rpx 10rpx;
+}
+.clubPage .classlist .cardLayout.data-v-da48f91d::-webkit-scrollbar {
+  display: none;
+}
+.clubPage .classlist .cardLayout .item.data-v-da48f91d {
+  flex-shrink: 0;
+  min-width: 140rpx;
+  height: 220rpx;
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15rpx;
+  transition: transform 0.2s ease;
+}
+.clubPage .classlist .cardLayout .item.data-v-da48f91d:first-child {
+  margin-left: 10rpx;
+}
+.clubPage .classlist .cardLayout .item + .item.data-v-da48f91d {
+  margin-left: 40rpx;
+}
+.clubPage .classlist .cardLayout .item.data-v-da48f91d:active {
+  transform: translateY(6rpx);
+}
+.clubPage .classlist .cardLayout .item .wd-img.data-v-da48f91d {
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  margin-top: 20rpx;
+  flex-shrink: 0;
+  width: 120rpx !important;
+  height: 120rpx !important;
+  border: 4rpx solid #fff;
   transition: transform 0.2s;
 }
-.activity-page .activity-card.data-v-da48f91d:active {
-  transform: scale(0.98);
-}
-.activity-page .activity-card.pink.data-v-da48f91d {
-  background-color: #ffeef0;
-}
-.activity-page .activity-card.yellow.data-v-da48f91d {
-  background-color: #fff8e6;
-}
-.activity-page .activity-card .card-title.data-v-da48f91d {
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 8px;
-}
-.activity-page .activity-card .card-desc.data-v-da48f91d {
-  font-size: 12px;
-  color: #666;
-  line-height: 1.5;
-  margin-bottom: 12px;
+.clubPage .classlist .cardLayout .item .text.data-v-da48f91d {
+  width: 140rpx;
+  font-size: 26rpx;
+  line-height: 1.3;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  margin-top: 15rpx;
 }
-.activity-page .activity-card .card-time.data-v-da48f91d {
+.clubPage .activecard.data-v-da48f91d {
+  margin: 60rpx 0;
+  padding: 0 30rpx;
+}
+.clubPage .activecard .title.data-v-da48f91d {
+  margin-bottom: 30rpx;
   display: flex;
   align-items: center;
-  font-size: 12px;
-  color: #999;
 }
-.activity-page .activity-card .card-time.data-v-da48f91d .wd-icon {
-  margin-right: 4px;
+.clubPage .activecard .title .wd-icon.data-v-da48f91d {
+  filter: drop-shadow(0 4rpx 8rpx rgba(34, 166, 179, 0.2));
 }
-.activity-page.data-v-da48f91d .wd-tabs__nav {
-  background-color: #fff;
-  padding: 0 12px;
+.clubPage .activecard .title .text.data-v-da48f91d {
+  margin: 0 30rpx;
+  font-size: 34rpx;
+  color: #333;
+  font-weight: 600;
+  letter-spacing: 1rpx;
 }
-.activity-page.data-v-da48f91d .wd-tab {
-  min-height: calc(100vh - 44px - 44px);
+.clubPage .activecard .activelist .row.data-v-da48f91d {
+  display: flex;
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 32rpx;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  margin: 30rpx 0;
+}
+.clubPage .activecard .activelist .row.data-v-da48f91d:first-child {
+  margin-top: 0;
+}
+.clubPage .activecard .activelist .row.data-v-da48f91d:last-child {
+  margin-bottom: 0;
+}
+.clubPage .activecard .activelist .row.data-v-da48f91d:active {
+  transform: translateY(4rpx) scale(0.98);
+}
+.clubPage .activecard .activelist .row .left.data-v-da48f91d {
+  margin-right: 5rpx;
+}
+.clubPage .activecard .activelist .row .left .Actimage.data-v-da48f91d {
+  width: 220rpx;
+  height: 180rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  position: relative;
+}
+.clubPage .activecard .activelist .row .left .Actimage .status-tag.data-v-da48f91d {
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: 2;
+}
+.clubPage .activecard .activelist .row .left .Actimage .status-tag .status-text.data-v-da48f91d {
+  position: relative;
+  font-size: 22rpx;
+  color: #fff;
+  padding: 6rpx 16rpx;
+  z-index: 2;
+}
+.clubPage .activecard .activelist .row .left .Actimage .status-tag .status-bg.data-v-da48f91d {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8rpx;
+  -webkit-backdrop-filter: blur(4rpx);
+          backdrop-filter: blur(4rpx);
+  z-index: 1;
+}
+.clubPage .activecard .activelist .row .left .Actimage image.data-v-da48f91d {
+  transition: transform 0.3s;
+  border-radius: 20rpx;
+  width: 100%;
+  height: 100%;
+}
+.clubPage .activecard .activelist .row .left .Actimage:active image.data-v-da48f91d {
+  transform: scale(1.05);
+}
+.clubPage .activecard .activelist .row .right.data-v-da48f91d {
+  flex: 1;
+  padding-left: 15rpx;
+}
+.clubPage .activecard .activelist .row .right .Acttitle.data-v-da48f91d {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+  line-height: 1.4;
+}
+.clubPage .activecard .activelist .row .right .Acttime.data-v-da48f91d, .clubPage .activecard .activelist .row .right .address.data-v-da48f91d {
+  padding: 0rpx 0rpx;
+  display: flex;
+  font-size: 26rpx;
+  margin-bottom: 16rpx;
+  gap: 10rpx;
+}
+.clubPage .activecard .activelist .row .right .Acttime .moment.data-v-da48f91d, .clubPage .activecard .activelist .row .right .address .moment.data-v-da48f91d {
+  margin-left: 10rpx;
+}
+.clubPage .activecard .activelist .row .right .Acttime .wd-icon.data-v-da48f91d, .clubPage .activecard .activelist .row .right .address .wd-icon.data-v-da48f91d {
+  margin-right: 12rpx;
+  font-size: 38rpx;
 }

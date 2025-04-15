@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wd-popup": "../wd-popup/wd-popup",
+    "wd-button": "../wd-button/wd-button",
+    "wd-input": "../wd-input/wd-input"
+  }
+}

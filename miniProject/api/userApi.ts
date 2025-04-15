@@ -48,15 +48,20 @@ interface LoginUserVo {
     userName?: string;
     userProfile?: string;
     userRole?: string;
+    gender?: number;
+    constellation?: string;
 }
 
 interface UserVO {
     createTime?: string;
     id?: number;
     imageUrl?: string;
+    gender?: number;
+    constellation?: string;
     userAccount?: string;
     userAvatar?: string;
     userName?: string;
+    tagList?: string[];
     userProfile?: string;
     userRole?: string;
 }
@@ -89,12 +94,18 @@ interface UserUpdateRequest {
     userAvatar?: string;
     userName?: string;
     userProfile?: string;
+    tagList?: string[];
     userRole?: string;
 }
 
-interface WxLoginVO {
+interface UserWxUpdateRequest {
     id?: number;
-    token?: string;
+    imageUrl?: string;
+    userName?: string;
+    userProfile?: string;
+    tagList?: string[];
+    gender?: number
+    constellation?: string
 }
 
 interface Page<T> {
@@ -103,6 +114,19 @@ interface Page<T> {
     records: T[];
     size: number;
     total: number;
+}
+interface WxUserVO {
+    id: number;
+    userName: string;
+    gender: number;
+    constellation: string;
+    imageUrl: string;
+    userProfile: string;
+    userRole: string;
+    tagList?: string[];
+    editTime: string;
+    createTime: string;
+    updateTime: string;
 }
 
 // 用户相关接口封装
@@ -128,6 +152,8 @@ export function getUserById(id?: number): Promise<BaseResponse<User>> {
         method: 'GET'
     });
 }
+
+
 
 export function getLoginUser(): Promise<BaseResponse<LoginUserVo>> {
     return request<BaseResponse<LoginUserVo>>({
@@ -177,6 +203,13 @@ export function userRegister(data: UserRegisterRequest): Promise<BaseResponse<nu
 export function updateUser(data: UserUpdateRequest): Promise<BaseResponse<boolean>> {
     return request<BaseResponse<boolean>>({
         url: '/api/user/update',
+        method: 'POST',
+        data: data
+    });
+}
+export function updateWxUser(data: UserWxUpdateRequest): Promise<BaseResponse<WxUserVO>> {
+    return request<BaseResponse<WxUserVO>>({
+        url: '/api/user/update/wx',
         method: 'POST',
         data: data
     });

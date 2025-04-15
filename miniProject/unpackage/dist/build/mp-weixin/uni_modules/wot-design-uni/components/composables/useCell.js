@@ -1,0 +1,1 @@
+"use strict";const e=require("../../../../common/vendor.js"),r=require("./useParent.js"),s=require("../wd-cell-group/types.js");exports.useCell=function(){const{parent:o,index:t}=r.useParent(s.CELL_GROUP_KEY);return{border:e.computed((()=>o&&o.props.border&&t.value))}};

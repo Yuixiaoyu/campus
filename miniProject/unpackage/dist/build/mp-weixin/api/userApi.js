@@ -1,0 +1,1 @@
+"use strict";const e=require("../utils/request.js");exports.getUserVOById=function(t){return e.request({url:"/api/user/get/vo"+(t?`?id=${t}`:""),method:"GET"})},exports.updateWxUser=function(t){return e.request({url:"/api/user/update/wx",method:"POST",data:t})},exports.wxLogin=function(t){return e.request({url:`/api/user/wx/login?code=${t}`,method:"POST"})};

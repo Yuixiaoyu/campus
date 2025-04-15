@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "详情",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "wd-img": "../../uni_modules/wot-design-uni/components/wd-img/wd-img",
+    "wd-text": "../../uni_modules/wot-design-uni/components/wd-text/wd-text",
+    "wd-icon": "../../uni_modules/wot-design-uni/components/wd-icon/wd-icon",
+    "wd-divider": "../../uni_modules/wot-design-uni/components/wd-divider/wd-divider",
+    "wd-status-tip": "../../uni_modules/wot-design-uni/components/wd-status-tip/wd-status-tip",
+    "wd-gap": "../../uni_modules/wot-design-uni/components/wd-gap/wd-gap",
+    "wd-input": "../../uni_modules/wot-design-uni/components/wd-input/wd-input",
+    "wd-button": "../../uni_modules/wot-design-uni/components/wd-button/wd-button",
+    "wd-toast": "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast"
+  }
+}

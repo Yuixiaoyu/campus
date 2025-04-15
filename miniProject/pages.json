@@ -13,8 +13,9 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "uni-app",
-        "navigationStyle": "custom"
+        "navigationBarTitleText": "首页",
+        "navigationStyle": "custom",
+        "enablePullDownRefresh": true
       }
     },
     {
@@ -38,7 +39,8 @@
     {
       "path": "pages/login/login",
       "style": {
-        "navigationBarTitleText": "登录"
+        "navigationBarTitleText": "登录",
+        "navigationStyle": "custom"
       }
     },
     {
@@ -52,8 +54,163 @@
       "path": "pages/activity/activity",
       "style": {
         "navigationBarTitleText": "校园活动",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/club/club",
+      "style": {
+        "navigationBarTitleText": "社团互动",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/study/study",
+      "style": {
+        "navigationBarTitleText": "学习交流",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/lostFound/lostFound",
+      "style": {
+        "navigationBarTitleText": "失物招领",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/message/message",
+      "style": {
+        "navigationBarTitleText": "消息",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/articleInfo/articleInfo",
+      "style": {
+        "navigationBarTitleText": "详情",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/updateUserInfo/updateUserInfo",
+      "style": {
+        "navigationBarTitleText": "编辑资料",
         "enablePullDownRefresh": false,
         "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/feedback/feedback",
+      "style": {
+        "navigationBarTitleText": "反馈中心",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/relation/relation",
+      "style": {
+        "navigationBarTitleText": "联系我们",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/activityDetail/activityDetail",
+      "style": {
+        "navigationBarTitleText": "活动详情",
+        "enablePullDownRefresh": false
+      }
+    },
+    //    {
+    //      "path": "pages/deepseek/deepseek",
+    //      "style": {
+    //        "navigationBarTitleText": "DeepSeek",
+    //        "enablePullDownRefresh": false,
+    //        "navigationStyle": "custom",
+    //        "app-plus": {
+    //          "softinputNavBar": "none",
+    //          "softinputMode": "adjustResize"
+    //        }
+    //      }
+    //    },
+    {
+      "path": "pages/lostFoundPublish/lostFoundPublish",
+      "style": {
+        "navigationBarTitleText": "发布招领",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/lostFoundDetail/lostFoundDetail",
+      "style": {
+        "navigationBarTitleText": "物品详情",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/userDetail/userDetail",
+      "style": {
+        "navigationBarTitleText": "用户详情",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/clubDetail/clubDetail",
+      "style": {
+        "navigationBarTitleText": "社团详情",
+        "enablePullDownRefresh": false
+      }
+    }
+    },
+    {
+      "path": "pages/message/newFollowers/newFollowers",
+      "style": {
+        "navigationBarTitleText": "新增关注",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/message/likes/likes",
+      "style": {
+        "navigationBarTitleText": "赞和收藏",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/message/comments/comments",
+      "style": {
+        "navigationBarTitleText": "评论消息",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/message/systemMessage/systemMessage",
+      "style": {
+        "navigationBarTitleText": "系统消息",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/message/activityMessage/activityMessage",
+      "style": {
+        "navigationBarTitleText": "活动消息",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/graduateExperience/graduateExperience",
+      "style": {
+        "navigationBarTitleText": "毕业经验分享",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/studentExperience/studentExperience",
+      "style": {
+        "navigationBarTitleText": "学习经验分享",
+        "enablePullDownRefresh": false
       }
     }
   ],
@@ -76,6 +233,18 @@
         "selectedIconPath": "static/tabbar/home-selected.png",
         "text": "首页"
       },
+      {
+        "pagePath": "pages/message/message",
+        "iconPath": "static/tabbar/message.png",
+        "selectedIconPath": "static/tabbar/message-selected.png",
+        "text": "消息"
+      },
+      //      {
+      //        "pagePath": "pages/deepseek/deepseek",
+      //        "iconPath": "static/tabbar/deepseek.png",
+      //        "selectedIconPath": "static/tabbar/deepseek-selected.png",
+      //        "text": "AI探索"
+      //      },
       {
         "pagePath": "pages/my/my",
         "iconPath": "static/tabbar/my.png",

@@ -1,0 +1,1 @@
+<view class="{{['data-v-884face3', f]}}" style="{{g}}" bindtap="{{h}}"><view class="wd-radio__label data-v-884face3" style="{{a}}"><slot></slot></view><view class="wd-radio__shape data-v-884face3" style="{{e}}"><wd-icon wx:if="{{b}}" class="data-v-884face3" style="{{c}}" u-i="884face3-0" bind:__l="__l" u-p="{{d}}"></wd-icon></view></view>

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "社团互动",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "wd-swiper": "../../uni_modules/wot-design-uni/components/wd-swiper/wd-swiper",
+    "wd-img": "../../uni_modules/wot-design-uni/components/wd-img/wd-img",
+    "wd-icon": "../../uni_modules/wot-design-uni/components/wd-icon/wd-icon",
+    "wd-loading": "../../uni_modules/wot-design-uni/components/wd-loading/wd-loading",
+    "wd-toast": "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast"
+  }
+}

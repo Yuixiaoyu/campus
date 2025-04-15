@@ -23,11 +23,17 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.data-v-e4e4508d .navbar {
+  background: none;
+}
 .viewport.data-v-e4e4508d {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  padding: 20rpx 40rpx;
+  max-height: 100vh;
+  background-image: url("https://minio.fybreeze.cn/campus/DeWatermark.ai_1744524050762.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-origin: content-box;
 }
 .viewport .logo.data-v-e4e4508d {
   flex: 1;
@@ -36,6 +42,7 @@
 .viewport .logo image.data-v-e4e4508d {
   width: 220rpx;
   height: 220rpx;
+  border-radius: 20rpx;
   margin-top: 15vh;
 }
 .viewport .login.data-v-e4e4508d {
@@ -43,7 +50,7 @@
   flex-direction: column;
   height: 60vh;
   padding: 40rpx 20rpx 20rpx;
-  margin-top: 20px;
+  margin-top: 80rpx;
 }
 .viewport .login.data-v-e4e4508d .wd-button {
   font-size: 16px;

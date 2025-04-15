@@ -1,0 +1,1 @@
+<view class="{{['data-v-60dce407', f]}}" style="{{g}}"><slot wx:if="{{a}}" name="image"></slot><wd-img wx:elif="{{b}}" class="data-v-60dce407" u-i="60dce407-0" bind:__l="__l" u-p="{{c}}"></wd-img><view wx:if="{{d}}" class="wd-status-tip__text data-v-60dce407">{{e}}</view></view>

@@ -1,0 +1,1 @@
+"use strict";const e=require("../common/props.js"),r=Symbol("wd-form"),o={...e.baseProps,model:e.makeRequiredProp(Object),rules:{type:Object,default:()=>({})},resetOnChange:e.makeBooleanProp(!0),errorType:{type:String,default:"message"}};exports.FORM_KEY=r,exports.formProps=o;

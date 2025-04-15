@@ -41,19 +41,26 @@
   width: 100%;
   height: 70%;
 }
+.pop.data-v-1cf27b2a .wd-skeleton__row {
+  width: 100%;
+}
+.pop.data-v-1cf27b2a .wd-skeleton__col {
+  width: 100% !important;
+  height: 520rpx !important;
+}
 .pop .banner.data-v-1cf27b2a {
   width: 100%;
-  height: 430px;
-  filter: blur(0.5px);
+  height: 300px;
+  overflow: hidden;
+  filter: blur(1px);
 }
 .pop .flag.data-v-1cf27b2a {
   position: absolute;
   bottom: 12px;
-  left: 120px;
+  right: 30px;
   width: 140px;
   height: 140px;
   margin-top: 10px;
-  z-index: 10;
 }
 .pop .message.data-v-1cf27b2a {
   width: 100%;
@@ -68,42 +75,42 @@
   overflow: hidden;
 }
 .module-container.data-v-1cf27b2a {
-  padding: 10px 20px;
+  padding: 0 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   /* 两列等宽 */
   grid-template-rows: 1fr 1fr;
-  gap: 10px;
+  gap: 20rpx;
   /* 间距 */
-  height: 30%;
+  height: auto;
   font-family: "fangsong";
   /* top-left的div */
   /* 右边上面的小 div */
   /* 中间右边的小 div */
 }
 .module-container .module-activity.data-v-1cf27b2a, .module-container .module-club.data-v-1cf27b2a, .module-container .module-study.data-v-1cf27b2a, .module-container .module-lost_found.data-v-1cf27b2a {
-  height: 130px;
+  height: 240rpx;
   position: relative;
   /* 相对定位容器 */
 }
 .module-container .module-activity .title.data-v-1cf27b2a, .module-container .module-club .title.data-v-1cf27b2a, .module-container .module-study .title.data-v-1cf27b2a, .module-container .module-lost_found .title.data-v-1cf27b2a {
   position: absolute;
   right: 10px;
-  top: 30px;
+  top: 58rpx;
   color: #df9c3d;
   font-weight: bold;
   z-index: 10;
   font-size: 20px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
 }
 .module-container .module-activity .profile.data-v-1cf27b2a, .module-container .module-club .profile.data-v-1cf27b2a, .module-container .module-study .profile.data-v-1cf27b2a, .module-container .module-lost_found .profile.data-v-1cf27b2a {
   position: absolute;
   font-size: 15px;
   right: 15px;
   font-weight: bold;
-  color: #df9c3d;
+  color: #cb8e35;
   opacity: 0.5;
-  bottom: 45px;
+  bottom: 80rpx;
   z-index: 10;
 }
 .module-container .module-activity image.data-v-1cf27b2a, .module-container .module-club image.data-v-1cf27b2a, .module-container .module-study image.data-v-1cf27b2a, .module-container .module-lost_found image.data-v-1cf27b2a {
@@ -183,9 +190,15 @@
 }
 .article-list .article-item .image-list.two-columns .image-wrapper.data-v-1cf27b2a {
   width: calc((100% - 10rpx) / 2);
-  /* 第四张单独处理边距 */
 }
-.article-list .article-item .image-list.two-columns .image-wrapper.data-v-1cf27b2a:nth-child(4) {
+.article-list .article-item .image-list.one-column .image-wrapper.data-v-1cf27b2a {
+  width: 500rpx;
+  height: 500rpx;
+  /* 清除横向间距 */
+  margin-right: 0 !important;
+  /* 保持纵向间距 */
+}
+.article-list .article-item .image-list.one-column .image-wrapper.data-v-1cf27b2a:not(:first-child) {
   margin-top: 10rpx;
 }
 .article-list .article-item .image-list .image-wrapper.data-v-1cf27b2a {
@@ -226,4 +239,8 @@
   gap: 4px;
   color: #999;
   font-size: 12px;
+}
+.article-list .article-item .article-footer .footer-left .footer-item.data-v-1cf27b2a .t-icon-like .t-icon-like-selected {
+  height: 17px !important;
+  width: 17px !important;
 }

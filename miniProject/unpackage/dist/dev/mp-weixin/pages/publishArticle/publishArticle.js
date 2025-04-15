@@ -3,42 +3,42 @@ const common_vendor = require("../../common/vendor.js");
 const api_articleApi = require("../../api/articleApi.js");
 const uni_modules_wotDesignUni_components_wdToast_index = require("../../uni_modules/wot-design-uni/components/wd-toast/index.js");
 require("../../uni_modules/wot-design-uni/locale/index.js");
+const api_uploadApi = require("../../api/uploadApi.js");
 if (!Array) {
   const _easycom_wd_navbar2 = common_vendor.resolveComponent("wd-navbar");
+  const _easycom_wd_notice_bar2 = common_vendor.resolveComponent("wd-notice-bar");
   const _easycom_wd_textarea2 = common_vendor.resolveComponent("wd-textarea");
   const _easycom_wd_upload2 = common_vendor.resolveComponent("wd-upload");
   const _easycom_wd_tag2 = common_vendor.resolveComponent("wd-tag");
   const _easycom_wd_icon2 = common_vendor.resolveComponent("wd-icon");
   const _easycom_wd_cell2 = common_vendor.resolveComponent("wd-cell");
-  const _easycom_wd_switch2 = common_vendor.resolveComponent("wd-switch");
   const _easycom_wd_cell_group2 = common_vendor.resolveComponent("wd-cell-group");
   const _easycom_wd_gap2 = common_vendor.resolveComponent("wd-gap");
   const _easycom_wd_button2 = common_vendor.resolveComponent("wd-button");
   const _easycom_wd_action_sheet2 = common_vendor.resolveComponent("wd-action-sheet");
   const _easycom_wd_toast2 = common_vendor.resolveComponent("wd-toast");
-  (_easycom_wd_navbar2 + _easycom_wd_textarea2 + _easycom_wd_upload2 + _easycom_wd_tag2 + _easycom_wd_icon2 + _easycom_wd_cell2 + _easycom_wd_switch2 + _easycom_wd_cell_group2 + _easycom_wd_gap2 + _easycom_wd_button2 + _easycom_wd_action_sheet2 + _easycom_wd_toast2)();
+  (_easycom_wd_navbar2 + _easycom_wd_notice_bar2 + _easycom_wd_textarea2 + _easycom_wd_upload2 + _easycom_wd_tag2 + _easycom_wd_icon2 + _easycom_wd_cell2 + _easycom_wd_cell_group2 + _easycom_wd_gap2 + _easycom_wd_button2 + _easycom_wd_action_sheet2 + _easycom_wd_toast2)();
 }
 const _easycom_wd_navbar = () => "../../uni_modules/wot-design-uni/components/wd-navbar/wd-navbar.js";
+const _easycom_wd_notice_bar = () => "../../uni_modules/wot-design-uni/components/wd-notice-bar/wd-notice-bar.js";
 const _easycom_wd_textarea = () => "../../uni_modules/wot-design-uni/components/wd-textarea/wd-textarea.js";
 const _easycom_wd_upload = () => "../../uni_modules/wot-design-uni/components/wd-upload/wd-upload.js";
 const _easycom_wd_tag = () => "../../uni_modules/wot-design-uni/components/wd-tag/wd-tag.js";
 const _easycom_wd_icon = () => "../../uni_modules/wot-design-uni/components/wd-icon/wd-icon.js";
 const _easycom_wd_cell = () => "../../uni_modules/wot-design-uni/components/wd-cell/wd-cell.js";
-const _easycom_wd_switch = () => "../../uni_modules/wot-design-uni/components/wd-switch/wd-switch.js";
 const _easycom_wd_cell_group = () => "../../uni_modules/wot-design-uni/components/wd-cell-group/wd-cell-group.js";
 const _easycom_wd_gap = () => "../../uni_modules/wot-design-uni/components/wd-gap/wd-gap.js";
 const _easycom_wd_button = () => "../../uni_modules/wot-design-uni/components/wd-button/wd-button.js";
 const _easycom_wd_action_sheet = () => "../../uni_modules/wot-design-uni/components/wd-action-sheet/wd-action-sheet.js";
 const _easycom_wd_toast = () => "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast.js";
 if (!Math) {
-  (_easycom_wd_navbar + _easycom_wd_textarea + _easycom_wd_upload + _easycom_wd_tag + _easycom_wd_icon + _easycom_wd_cell + _easycom_wd_switch + _easycom_wd_cell_group + _easycom_wd_gap + _easycom_wd_button + _easycom_wd_action_sheet + _easycom_wd_toast)();
+  (_easycom_wd_navbar + _easycom_wd_notice_bar + _easycom_wd_textarea + _easycom_wd_upload + _easycom_wd_tag + _easycom_wd_icon + _easycom_wd_cell + _easycom_wd_cell_group + _easycom_wd_gap + _easycom_wd_button + _easycom_wd_action_sheet + _easycom_wd_toast)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_defineComponent = common_vendor.defineComponent({
   __name: "publishArticle",
   setup(__props) {
     const toast = uni_modules_wotDesignUni_components_wdToast_index.useToast();
     const fileList = common_vendor.ref([]);
-    const isAnonymity = common_vendor.ref(false);
     const showActionSheet = common_vendor.ref(false);
     const publishArticleParams = common_vendor.ref({
       content: "",
@@ -66,9 +66,6 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       console.log(publishArticleParams.value.tags);
       publishArticleParams.value.tags.push(item.item.name);
     };
-    const handleAnonymityChange = () => {
-      isAnonymity.value = !isAnonymity.value;
-    };
     const uploadSuccess = (res) => {
       console.log("上传成功res", res.file.response);
       const result = JSON.parse(res.file.response);
@@ -82,27 +79,68 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       fileList.value = file;
     };
     const beforeImageRemove = (res) => {
-      fileList.value.splice(res.index, 1);
-      publishArticleParams.value.images.splice(res.index, 1);
-      console.log("publishArticleParams>>>", publishArticleParams);
+      const url = publishArticleParams.value.images[res.index];
+      console.log("删除前置处理", url);
+      api_uploadApi.deleteFile(url).then((response) => {
+        if (response.code === 200) {
+          console.log("删除成功", response);
+          fileList.value.splice(res.index, 1);
+          publishArticleParams.value.images.splice(res.index, 1);
+          console.log("publishArticleParams>>>", publishArticleParams);
+        } else {
+          console.log("删除失败", response);
+        }
+      });
     };
     const setTime = () => {
+      toast.show("暂不支持哦~");
     };
     const setVisibility = () => {
+      toast.show("暂不支持哦~");
     };
-    const publishArticle = async () => {
+    const publishArticle = common_vendor.lodashExports.debounce(async () => {
+      common_vendor.index.showLoading({
+        title: "加载中",
+        mask: true
+      });
       console.log("发布文章参数：", publishArticleParams.value);
       const res = await api_articleApi.addArticle(publishArticleParams.value);
-      console.log("发布文章接口返回结果：", res);
       if (res.code == 200) {
-        toast.show("发布成功");
+        toast.show({
+          msg: "发布成功，等待审核~",
+          cover: true
+        });
         setTimeout(() => {
-          common_vendor.index.navigateBack();
-        }, 2e3);
+          const pages = getCurrentPages();
+          const indexPage = pages.find((page) => page.route === "pages/index/index");
+          if (indexPage) {
+            indexPage.$vm.setNeedRefresh();
+          }
+          common_vendor.index.switchTab({
+            url: "/pages/index/index"
+          });
+        }, 1500);
       } else {
         toast.error(res.message);
       }
-    };
+    }, 500);
+    common_vendor.onShareAppMessage((res) => {
+      console.log(res);
+      return {
+        title: "青春共享站",
+        path: "/pages/index/index",
+        imageUrl: "/static/logo.jpg"
+        // 分享图片
+      };
+    });
+    common_vendor.onShareTimeline(() => {
+      return {
+        title: "青春共享站",
+        path: "/pages/index/index",
+        imageUrl: "/static/logo.jpg"
+        // 分享图片
+      };
+    });
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: common_vendor.o(onClickLeft),
@@ -113,8 +151,15 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
           placeholder: true,
           safeAreaInsetTop: true
         }),
-        c: common_vendor.o(($event) => publishArticleParams.value.content = $event),
-        d: common_vendor.p({
+        c: common_vendor.p({
+          text: "帖子发布公告：帖子内容禁止有关任何政治立场、色情、暴力等一系列非法言论，如有发现将封禁发布功能",
+          prefix: "check-outline",
+          color: "#34D19D",
+          ["background-color"]: "#f0f9eb",
+          ["custom-class"]: "space"
+        }),
+        d: common_vendor.o(($event) => publishArticleParams.value.content = $event),
+        e: common_vendor.p({
           maxlength: 2e3,
           ["show-word-limit"]: true,
           placeholderStyle: "font-size:18px;",
@@ -125,91 +170,81 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
           rows: 5,
           modelValue: publishArticleParams.value.content
         }),
-        e: common_vendor.sr("uploadFile", "cfdfbfe7-2"),
-        f: common_vendor.o(handleChange),
-        g: common_vendor.o(uploadSuccess),
-        h: common_vendor.o(($event) => fileList.value = $event),
-        i: common_vendor.p({
+        f: common_vendor.sr("uploadFile", "cfdfbfe7-3"),
+        g: common_vendor.o(handleChange),
+        h: common_vendor.o(uploadSuccess),
+        i: common_vendor.o(($event) => fileList.value = $event),
+        j: common_vendor.p({
           limit: 9,
           multiple: true,
           accept: "image",
-          action: "http://localhost:8090/api/article/uploadImages",
+          action: "https://campus.fybreeze.cn/api/article/uploadImages",
           ["before-remove"]: beforeImageRemove,
           ["file-list"]: fileList.value
         }),
-        j: publishArticleParams.value.tags.length != 0
+        k: publishArticleParams.value.tags.length != 0
       }, publishArticleParams.value.tags.length != 0 ? {
-        k: common_vendor.f(publishArticleParams.value.tags, (item, index, i0) => {
+        l: common_vendor.f(publishArticleParams.value.tags, (item, index, i0) => {
           return {
             a: common_vendor.t(item),
             b: common_vendor.o(($event) => handleSelectedClose(index)),
-            c: "cfdfbfe7-3-" + i0
+            c: "cfdfbfe7-4-" + i0
           };
         }),
-        l: common_vendor.p({
+        m: common_vendor.p({
           closable: true,
           round: true,
           type: "primary"
         })
       } : {}, {
-        m: common_vendor.p({
+        n: common_vendor.p({
           round: true,
           ["bg-color"]: "#eee"
         }),
-        n: common_vendor.p({
+        o: common_vendor.p({
           name: "discount"
         }),
-        o: common_vendor.o(showAction),
-        p: common_vendor.p({
+        p: common_vendor.o(showAction),
+        q: common_vendor.p({
           ["custom-class"]: "space",
           round: true,
           ["use-icon-slot"]: true,
           ["bg-color"]: "#eee"
-        }),
-        q: common_vendor.p({
-          name: "location"
         }),
         r: common_vendor.p({
+          name: "location"
+        }),
+        s: common_vendor.p({
           ["custom-class"]: "space",
           round: true,
           ["use-icon-slot"]: true,
           ["bg-color"]: "#eee"
         }),
-        s: common_vendor.o(setVisibility),
-        t: common_vendor.p({
+        t: common_vendor.o(setVisibility),
+        v: common_vendor.p({
           title: "谁可以看",
           ["is-link"]: true,
           icon: "view",
           value: "所有人可见"
         }),
-        v: common_vendor.o(setTime),
-        w: common_vendor.p({
+        w: common_vendor.o(setTime),
+        x: common_vendor.p({
           title: "定时",
           ["is-link"]: true,
           icon: "clock"
         }),
-        x: common_vendor.o(handleAnonymityChange),
-        y: common_vendor.o(($event) => isAnonymity.value = $event),
-        z: common_vendor.p({
-          modelValue: isAnonymity.value
-        }),
-        A: common_vendor.p({
-          title: "匿名",
-          center: true,
-          icon: "note"
-        }),
-        B: common_vendor.p({
+        y: common_vendor.p({
           height: "60px"
         }),
-        C: common_vendor.o(publishArticle),
-        D: common_vendor.p({
+        z: common_vendor.o(common_vendor.unref(publishArticle)),
+        A: common_vendor.p({
           block: true,
           type: "primary"
         }),
-        E: common_vendor.o(selectAction),
-        F: common_vendor.o(($event) => !showActionSheet.value),
-        G: common_vendor.o(($event) => showActionSheet.value = $event),
-        H: common_vendor.p({
+        B: common_vendor.o(selectAction),
+        C: common_vendor.o(($event) => !showActionSheet.value),
+        D: common_vendor.o(($event) => showActionSheet.value = $event),
+        E: common_vendor.p({
           actions: actions.value,
           ["cancel-text"]: "取消",
           modelValue: showActionSheet.value
@@ -218,5 +253,6 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
     };
   }
 });
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-cfdfbfe7"]]);
+_sfc_defineComponent.__runtimeHooks = 6;
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_defineComponent, [["__scopeId", "data-v-cfdfbfe7"]]);
 wx.createPage(MiniProgramPage);

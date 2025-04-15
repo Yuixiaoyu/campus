@@ -1,0 +1,1 @@
+"use strict";const e=require("../../common/vendor.js"),n=e.defineComponent({__name:"graduateExperience",setup(n){const o=e.ref();return e.onLoad((e=>{console.log(e),o.value=e.param})),(e,n)=>({a:o.value})}});wx.createPage(n);

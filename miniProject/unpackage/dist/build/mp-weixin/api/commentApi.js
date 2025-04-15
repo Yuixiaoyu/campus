@@ -1,0 +1,1 @@
+"use strict";const t=require("../utils/request.js");exports.addComment=function(e){return t.request({url:"/api/comment/add",method:"POST",data:e})},exports.getCommentListByArticleId=function(e){return t.request({url:`/api/comment/list?articleId=${e}`,method:"GET"})};

@@ -1,0 +1,16 @@
+{
+  "navigationBarTitleText": "编辑资料",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "wd-navbar": "../../uni_modules/wot-design-uni/components/wd-navbar/wd-navbar",
+    "wd-img": "../../uni_modules/wot-design-uni/components/wd-img/wd-img",
+    "wd-button": "../../uni_modules/wot-design-uni/components/wd-button/wd-button",
+    "wd-input": "../../uni_modules/wot-design-uni/components/wd-input/wd-input",
+    "wd-cell": "../../uni_modules/wot-design-uni/components/wd-cell/wd-cell",
+    "wd-select-picker": "../../uni_modules/wot-design-uni/components/wd-select-picker/wd-select-picker",
+    "wd-textarea": "../../uni_modules/wot-design-uni/components/wd-textarea/wd-textarea",
+    "wd-gap": "../../uni_modules/wot-design-uni/components/wd-gap/wd-gap",
+    "wd-toast": "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast"
+  }
+}

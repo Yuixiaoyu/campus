@@ -16,11 +16,27 @@ interface ArticleAddRequest {
 
 interface ArticleQueryRequest {
     content?: string;
+    userId?: number;
     current?: number;
     pageSize?: number;
     sortField?: string;
     sortOrder?: string;
 }
+
+
+interface UserVO {
+    createTime?: string;
+    id?: number;
+    imageUrl?: string;
+    gender?: number;
+    constellation?: string;
+    userAccount?: string;
+    userAvatar?: string;
+    userName?: string;
+    userProfile?: string;
+    userRole?: string;
+}
+
 
 interface ArticleVO {
     commentCount?: number;
@@ -33,6 +49,7 @@ interface ArticleVO {
     userId?: number;
     userVO?: UserVO;
     viewCount?: number;
+    isLike?: boolean;
 }
 
 interface Page<T> {
@@ -60,9 +77,29 @@ export function getArticleList(data: ArticleQueryRequest): Promise<BaseResponse<
     });
 }
 
+export function getArticleVOLikeListByUserId(id: number): Promise<BaseResponse<ArticleVO[]>> {
+    return request<BaseResponse<ArticleVO[]>>({
+        url: `/api/article/articleLike/${id}`,
+        method: 'GET'
+    });
+}
+
 export function getArticleByUserId(id: number): Promise<BaseResponse<ArticleVO[]>> {
     return request<BaseResponse<ArticleVO[]>>({
         url: `/api/article/get?id=${id}`,
+        method: 'GET'
+    });
+}
+export function likeArticle(id: number): Promise<BaseResponse<Boolean>> {
+    return request<BaseResponse<Boolean>>({
+        url: `/api/article/like/`+id,
+        method: 'GET'
+    });
+}
+
+export function getArticleByArticleId(id: number): Promise<BaseResponse<ArticleVO>> {
+    return request<BaseResponse<ArticleVO>>({
+        url: `/api/article/get/detail?articleId=${id}`,
         method: 'GET'
     });
 }
@@ -73,4 +110,13 @@ export function getArticleTags(): Promise<BaseResponse<string[]>> {
         method: 'GET'
     });
 }
-
+/**
+ * 删除文章接口
+ * @param id 文章ID (通过query参数传递)
+ */
+export function deleteArticle(id: number): Promise<BaseResponse<boolean>> {
+    return request<BaseResponse<boolean>>({
+        url: `/api/article/delete?id=${encodeURIComponent(id)}`,
+        method: 'POST'
+    });
+}

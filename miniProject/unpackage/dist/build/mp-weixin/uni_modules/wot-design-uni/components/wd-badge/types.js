@@ -1,0 +1,1 @@
+"use strict";const o=require("../common/props.js"),r={...o.baseProps,modelValue:o.numericProp,showZero:o.makeBooleanProp(!1),bgColor:String,max:Number,isDot:Boolean,hidden:Boolean,type:o.makeStringProp(void 0),top:o.numericProp,right:o.numericProp};exports.badgeProps=r;

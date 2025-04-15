@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wd-img": "../wd-img/wd-img"
+  }
+}

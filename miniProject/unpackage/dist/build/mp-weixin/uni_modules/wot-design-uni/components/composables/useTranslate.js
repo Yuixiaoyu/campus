@@ -1,0 +1,1 @@
+"use strict";const e=require("../common/util.js"),s=require("../../locale/index.js");exports.useTranslate=t=>{const r=t?e.camelCase(t)+".":"";return{translate:(t,...n)=>{const a=s.Locale.messages(),o=e.getPropByPath(a,r+t);return e.isFunction(o)?o(...n):o}}};

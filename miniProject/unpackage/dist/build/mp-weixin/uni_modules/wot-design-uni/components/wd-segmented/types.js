@@ -1,0 +1,1 @@
+"use strict";const e=require("../common/props.js"),r={...e.baseProps,value:e.makeRequiredProp([String,Number]),disabled:e.makeBooleanProp(!1),size:e.makeStringProp("middle"),options:{type:Array,required:!0,default:()=>[]},vibrateShort:e.makeBooleanProp(!1)};exports.segmentedProps=r;

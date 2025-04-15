@@ -1,0 +1,1 @@
+"use strict";const e=require("../common/props.js"),l={...e.baseProps,value:e.makeRequiredProp([String,Number,Boolean]),shape:String,checkedColor:String,disabled:{type:[Boolean,null],default:null},cell:{type:[Boolean,null],default:null},size:String,inline:{type:[Boolean,null],default:null},maxWidth:String,iconPlacement:{type:String}};exports.radioProps=l;

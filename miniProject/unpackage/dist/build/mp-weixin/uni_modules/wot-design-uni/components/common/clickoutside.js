@@ -1,0 +1,1 @@
+"use strict";let e=[];exports.closeOther=function(u){e.forEach((e=>{e.$.uid!==u.$.uid&&e.$.exposed.close()}))},exports.pushToQueue=function(u){e.push(u)},exports.removeFromQueue=function(u){e=e.filter((e=>e.$.uid!==u.$.uid))};

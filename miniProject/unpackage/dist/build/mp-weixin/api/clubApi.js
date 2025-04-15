@@ -1,0 +1,1 @@
+"use strict";const t=require("../utils/request.js");exports.getClubDetail=function(e){return t.request({url:`/api/club/${e}`,method:"POST"})},exports.getClubList=function(e){return t.request({url:"/api/club/clubList/page",method:"POST",data:e})};

@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wd-icon": "../wd-icon/wd-icon",
+    "wd-search": "../wd-search/wd-search",
+    "wd-action-sheet": "../wd-action-sheet/wd-action-sheet",
+    "wd-checkbox": "../wd-checkbox/wd-checkbox",
+    "wd-checkbox-group": "../wd-checkbox-group/wd-checkbox-group",
+    "wd-radio": "../wd-radio/wd-radio",
+    "wd-radio-group": "../wd-radio-group/wd-radio-group",
+    "wd-button": "../wd-button/wd-button",
+    "wd-loading": "../wd-loading/wd-loading"
+  }
+}

@@ -1,0 +1,414 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/**
+ * 混合宏
+ */
+/**
+ * SCSS 配置项：命名空间以及BEM
+ */
+/**
+ * 辅助函数
+ */
+/**
+ * SCSS 配置项：命名空间以及BEM
+ */
+/* 转换成字符串 */
+/* 判断是否存在 Modifier */
+/* 判断是否存在伪类 */
+/**
+ * 主题色切换
+ * @params $theme-color 主题色
+ * @params $type 变暗’dark‘ 变亮 'light'
+ * @params $mix-color 自己设置的混色
+ */
+/**
+ * 颜色结果切换， 如果开启线性渐变色 使用渐变色，如果没有开启，那么使用主题色
+ * @params $open-linear 是否开启线性渐变色
+ * @params $deg 渐变色角度
+ * @params $theme-color 当前配色
+ * @params [Array] $set 主题色明暗设置，与 $color-list 数量对应
+ * @params [Array] $color-list 渐变色顺序， $color-list 和 $per-list 数量相同
+ * @params [Array] $per-list 渐变色比例
+ */
+/**
+  * BEM，定义块（b)
+  */
+/* 定义元素（e），对于伪类，会自动将 e 嵌套在 伪类 底下 */
+/* 此方法用于生成穿透样式 */
+/* 定义元素（e），对于伪类，会自动将 e 嵌套在 伪类 底下 */
+/* 定义状态（m） */
+/* 定义状态（m） */
+/* 对于需要需要嵌套在 m 底下的 e，调用这个混合宏，一般在切换整个组件的状态，如切换颜色的时候 */
+/* 状态，生成 is-$state 类名 */
+/**
+  * 常用混合宏
+  */
+/* 单行超出隐藏 */
+/* 多行超出隐藏 */
+/* 清除浮动 */
+/* 0.5px 边框 指定方向*/
+/* 0.5px 边框 环绕 */
+/**
+  * 三角形实现尖角样式，适用于背景透明情况
+  * @param $size 三角形高，底边为 $size * 2
+  * @param $bg 三角形背景颜色
+  */
+/**
+  * 正方形实现尖角样式，适用于背景不透明情况
+  * @param $size 正方形边长
+  * @param $bg 正方形背景颜色
+  * @param $z-index z-index属性值，不得大于外部包裹器
+  * @param $box-shadow 阴影
+*/
+/**
+ * 辅助函数
+ */
+/**
+ * SCSS 配置项：命名空间以及BEM
+ */
+/* 转换成字符串 */
+/* 判断是否存在 Modifier */
+/* 判断是否存在伪类 */
+/**
+ * 主题色切换
+ * @params $theme-color 主题色
+ * @params $type 变暗’dark‘ 变亮 'light'
+ * @params $mix-color 自己设置的混色
+ */
+/**
+ * 颜色结果切换， 如果开启线性渐变色 使用渐变色，如果没有开启，那么使用主题色
+ * @params $open-linear 是否开启线性渐变色
+ * @params $deg 渐变色角度
+ * @params $theme-color 当前配色
+ * @params [Array] $set 主题色明暗设置，与 $color-list 数量对应
+ * @params [Array] $color-list 渐变色顺序， $color-list 和 $per-list 数量相同
+ * @params [Array] $per-list 渐变色比例
+ */
+/**
+ * UI规范基础变量
+ */
+/*----------------------------------------- Theme color. start ----------------------------------------*/
+/* 主题颜色 */
+/* 辅助色 */
+/* 文字颜色（默认浅色背景下 */
+/* 暗黑模式 */
+/* 图形颜色 */
+/*----------------------------------------- Theme color. end -------------------------------------------*/
+/*-------------------------------- Theme color application size.  start --------------------------------*/
+/* 文字字号 */
+/* 文字字重 */
+/* 尺寸 */
+/*-------------------------------- Theme color application size.  end --------------------------------*/
+/* component var */
+/* action-sheet */
+/* badge */
+/* button */
+/* cell */
+/* calendar */
+/* checkbox */
+/* collapse */
+/* divider */
+/* drop-menu */
+/* input-number */
+/* input */
+/* textarea */
+/* loadmore */
+/* message-box */
+/* notice-bar */
+/* pagination */
+/* picker */
+/* col-picker */
+/* overlay */
+/* popup */
+/* progress */
+/* radio */
+/* search */
+/* slider */
+/* sort-button */
+/* steps */
+/* switch */
+/* tabs */
+/* tag */
+/* toast */
+/* loading */
+/* tooltip */
+/* popover */
+/* grid-item */
+/* statustip */
+/* card */
+/* upload */
+/* curtain */
+/* notify */
+/* skeleton */
+/* circle */
+/* swiper */
+/* swiper-nav */
+/* segmented */
+/* tabbar */
+/* tabbar-item */
+/* navbar */
+/* navbar-capsule */
+/* table */
+/* sidebar */
+/* sidebar-item */
+/* fab */
+/* count-down */
+/* keyboard */
+/* number-keyboard */
+/* passwod-input */
+/* form-item */
+/* backtop */
+/* index-bar */
+/* text */
+/* video-preview */
+/* img-cropper */
+/* floating-panel */
+/* signature */
+.wot-theme-dark .wd-radio__shape.data-v-a54631cc {
+  background: transparent;
+}
+.wot-theme-dark .wd-radio__label.data-v-a54631cc {
+  color: var(--wot-dark-color, var(--wot-color-white, white));
+}
+.wot-theme-dark .wd-radio.is-button .wd-radio__label.data-v-a54631cc {
+  background-color: var(--wot-dark-background, #131313);
+}
+.wot-theme-dark .wd-radio.is-button.is-checked .wd-radio__label.data-v-a54631cc {
+  background-color: var(--wot-dark-background2, #1b1b1b);
+}
+.wot-theme-dark .wd-radio.is-disabled .wd-radio__label.data-v-a54631cc {
+  color: var(--wot-dark-color-gray, var(--wot-color-secondary, #595959));
+}
+.wot-theme-dark .wd-radio.is-disabled.is-checked .wd-radio__label.data-v-a54631cc {
+  color: var(--wot-dark-color-gray, var(--wot-color-secondary, #595959));
+}
+.wot-theme-dark .wd-radio.is-disabled.is-button .wd-radio__label.data-v-a54631cc {
+  border-color: #c8c9cc;
+  background: #3a3a3c;
+  color: var(--wot-dark-color-gray, var(--wot-color-secondary, #595959));
+}
+.wot-theme-dark .wd-radio.is-disabled.is-button.is-checked .wd-radio__label.data-v-a54631cc {
+  border-color: #c8c9cc;
+  background: #3a3a3c;
+  color: #c8c9cc;
+}
+.wot-theme-dark .wd-radio.is-disabled.is-dot .wd-radio__shape.data-v-a54631cc {
+  border-color: #c8c9cc;
+  background: #3a3a3c;
+}
+.wot-theme-dark .wd-radio.is-disabled.is-dot .wd-radio__shape.data-v-a54631cc::before {
+  background-color: #c8c9cc;
+}
+.wd-radio.data-v-a54631cc {
+  display: flex;
+  margin-top: var(--wot-radio-margin, var(--wot-checkbox-margin, 10px));
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  line-height: 1.2;
+}
+.wd-radio.is-first.data-v-a54631cc {
+  margin-top: 0;
+}
+.wd-radio__shape.data-v-a54631cc {
+  position: relative;
+  display: inline-block;
+  width: var(--wot-radio-size, 16px);
+  height: var(--wot-radio-size, 16px);
+  font-size: var(--wot-radio-size, 16px);
+  color: transparent;
+  display: none;
+  vertical-align: middle;
+  transition: background 0.2s;
+}
+.wd-radio__input.data-v-a54631cc {
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin: 0;
+  opacity: 0;
+}
+.wd-radio__label.data-v-a54631cc {
+  display: inline-block;
+  vertical-align: top;
+  font-size: var(--wot-radio-label-fs, var(--wot-checkbox-label-fs, 14px));
+  color: var(--wot-radio-label-color, var(--wot-checkbox-label-color, rgba(0, 0, 0, 0.85)));
+  line-height: 20px;
+}
+.wd-radio.is-checked .wd-radio__shape.data-v-a54631cc {
+  color: var(--wot-radio-checked-color, var(--wot-checkbox-checked-color, var(--wot-color-theme, #4d80f0)));
+  border-color: currentColor;
+  display: inline-block;
+}
+.wd-radio.is-checked .wd-radio__check.data-v-a54631cc {
+  color: var(--wot-radio-checked-color, var(--wot-checkbox-checked-color, var(--wot-color-theme, #4d80f0)));
+  opacity: 1;
+}
+.wd-radio.is-dot .wd-radio__shape.data-v-a54631cc {
+  border: 2px solid var(--wot-radio-dot-border-color, #dcdcdc);
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: none;
+}
+.wd-radio.is-dot .wd-radio__shape.data-v-a54631cc::before {
+  content: "";
+  position: absolute;
+  width: var(--wot-radio-dot-size, 8px);
+  height: var(--wot-radio-dot-size, 8px);
+  left: calc(50% - var(--wot-radio-dot-size, 8px)/2);
+  top: calc(50% - var(--wot-radio-dot-size, 8px)/2);
+  border-radius: 50%;
+  background-color: #fff;
+  transform: scale(0);
+  transition: transform 0.2s ease-in;
+}
+.wd-radio.is-dot.is-checked .wd-radio__shape.data-v-a54631cc {
+  background-color: currentColor;
+  border-color: currentColor;
+}
+.wd-radio.is-dot.is-checked .wd-radio__shape.data-v-a54631cc::before {
+  transform: scale(1);
+}
+.wd-radio.is-button.data-v-a54631cc {
+  display: inline-block;
+  margin-top: 0;
+  margin-right: 10px;
+}
+.wd-radio.is-button .wd-radio__shape.data-v-a54631cc {
+  display: none;
+}
+.wd-radio.is-button .wd-radio__label.data-v-a54631cc {
+  height: var(--wot-radio-button-height, var(--wot-checkbox-button-height, 32px));
+  min-width: var(--wot-radio-button-min-width, 60px);
+  max-width: var(--wot-radio-button-max-width, 144px);
+  padding: 5px 15px;
+  margin-right: 0;
+  border-radius: var(--wot-radio-button-radius, var(--wot-checkbox-button-radius, 16px));
+  background-color: var(--wot-radio-button-bg, var(--wot-checkbox-button-bg, rgba(0, 0, 0, 0.04)));
+  font-size: var(--wot-radio-button-fs, var(--wot-checkbox-button-font-size, 14px));
+  box-sizing: border-box;
+  border: 1px solid var(--wot-radio-button-border, var(--wot-checkbox-button-border, #f5f5f5));
+  transition: all 0.2s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wd-radio.is-button.is-checked .wd-radio__label.data-v-a54631cc {
+  color: var(--wot-radio-checked-color, var(--wot-checkbox-checked-color, var(--wot-color-theme, #4d80f0)));
+  border-color: currentColor;
+  background-color: var(--wot-radio-bg, var(--wot-color-white, white));
+}
+.wd-radio.icon-placement-left.data-v-a54631cc {
+  flex-direction: row-reverse;
+}
+.wd-radio.is-inline.data-v-a54631cc {
+  display: inline-block;
+  margin-top: 0;
+  margin-right: var(--wot-radio-margin, var(--wot-checkbox-margin, 10px));
+}
+.wd-radio.is-inline.is-first.data-v-a54631cc {
+  margin-left: 0;
+}
+.wd-radio.is-inline .wd-radio__shape.data-v-a54631cc {
+  display: block;
+  margin-right: 4px;
+  float: left;
+}
+.wd-radio.is-inline .wd-radio__shape.data-v-a54631cc::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.wd-radio.is-inline.is-dot .wd-radio__shape.data-v-a54631cc {
+  margin-top: 2px;
+}
+.wd-radio.is-inline.is-dot.is-large .wd-radio__shape.data-v-a54631cc {
+  margin-top: 0;
+}
+.wd-radio.is-inline.icon-placement-right .wd-radio__shape.data-v-a54631cc {
+  margin-right: 0;
+  margin-left: 4px;
+  float: right;
+}
+.wd-radio.is-disabled .wd-radio__label.data-v-a54631cc {
+  color: var(--wot-radio-disabled-label-color, var(--wot-checkbox-disabled-label-color, rgba(0, 0, 0, 0.25)));
+}
+.wd-radio.is-disabled.is-checked .wd-radio__shape.data-v-a54631cc {
+  color: var(--wot-radio-disabled-label-color, var(--wot-checkbox-disabled-label-color, rgba(0, 0, 0, 0.25)));
+}
+.wd-radio.is-disabled.is-checked .wd-radio__check.data-v-a54631cc {
+  color: var(--wot-radio-disabled-label-color, var(--wot-checkbox-disabled-label-color, rgba(0, 0, 0, 0.25)));
+}
+.wd-radio.is-disabled.is-checked .wd-radio__label.data-v-a54631cc {
+  color: var(--wot-radio-disabled-label-color, var(--wot-checkbox-disabled-label-color, rgba(0, 0, 0, 0.25)));
+}
+.wd-radio.is-disabled.is-button .wd-radio__label.data-v-a54631cc {
+  border-color: var(--wot-radio-disabled-color, var(--wot-checkbox-disabled-color, rgba(0, 0, 0, 0.04)));
+  background: var(--wot-radio-disabled-color, var(--wot-checkbox-disabled-color, rgba(0, 0, 0, 0.04)));
+  border-color: var(--wot-radio-button-border, var(--wot-checkbox-button-border, #f5f5f5));
+  color: var(--wot-radio-disabled-label-color, var(--wot-checkbox-disabled-label-color, rgba(0, 0, 0, 0.25)));
+}
+.wd-radio.is-disabled.is-button.is-checked .wd-radio__label.data-v-a54631cc {
+  border-color: var(--wot-radio-button-disabled-border, var(--wot-checkbox-button-disabled-border, rgba(0, 0, 0, 0.15)));
+  background: var(--wot-radio-disabled-color, var(--wot-checkbox-disabled-color, rgba(0, 0, 0, 0.04)));
+}
+.wd-radio.is-disabled.is-dot .wd-radio__shape.data-v-a54631cc {
+  background: var(--wot-radio-dot-disabled-bg, #d9d9d9);
+  border-color: var(--wot-radio-dot-disabled-border, #d9d9d9);
+}
+.wd-radio.is-cell-radio.data-v-a54631cc {
+  padding: 13px 15px;
+  margin: 0;
+}
+.wd-radio.is-cell-radio.is-large.data-v-a54631cc {
+  padding: 14px 15px;
+}
+.wd-radio.is-button-radio.data-v-a54631cc {
+  display: inline-flex;
+  width: 33.3333%;
+  padding: 12px 12px 0px 0px;
+  box-sizing: border-box;
+}
+.wd-radio.is-button-radio .wd-radio__label.data-v-a54631cc {
+  width: 100%;
+  max-width: inherit;
+}
+.wd-radio.is-large .wd-radio__shape.data-v-a54631cc {
+  width: var(--wot-radio-large-size, var(--wot-checkbox-large-size, 18px));
+  height: var(--wot-radio-large-size, var(--wot-checkbox-large-size, 18px));
+  font-size: var(--wot-radio-large-size, var(--wot-checkbox-large-size, 18px));
+}
+.wd-radio.is-large .wd-radio__label.data-v-a54631cc {
+  font-size: var(--wot-radio-large-label-fs, var(--wot-checkbox-large-label-fs, 16px));
+}
+.wd-radio.is-large.is-dot .wd-radio__shape.data-v-a54631cc::before {
+  width: var(--wot-radio-dot-large-size, 10px);
+  height: var(--wot-radio-dot-large-size, 10px);
+  left: calc(50% - var(--wot-radio-dot-large-size, 10px)/2);
+  top: calc(50% - var(--wot-radio-dot-large-size, 10px)/2);
+}

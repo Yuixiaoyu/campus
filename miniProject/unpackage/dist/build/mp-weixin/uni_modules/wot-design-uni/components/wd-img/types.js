@@ -1,0 +1,1 @@
+"use strict";const o=require("../common/props.js"),e={...o.baseProps,customImage:o.makeStringProp(""),src:String,round:o.makeBooleanProp(!1),mode:o.makeStringProp("scaleToFill"),lazyLoad:o.makeBooleanProp(!1),width:o.numericProp,height:o.numericProp,radius:o.numericProp,enablePreview:o.makeBooleanProp(!1),showMenuByLongpress:o.makeBooleanProp(!1)};exports.imgProps=e;

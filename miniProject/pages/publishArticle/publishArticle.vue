@@ -3,6 +3,12 @@
     <!-- 顶部导航栏 -->
     <wd-navbar title="写说说" leftText="取消" fixed placeholder safeAreaInsetTop @click-left="onClickLeft">
     </wd-navbar>
+    <wd-notice-bar
+        text="帖子发布公告：帖子内容禁止有关任何政治立场、色情、暴力等一系列非法言论，如有发现将封禁发布功能"
+        prefix="check-outline"
+        color="#34D19D"
+        background-color="#f0f9eb"
+        custom-class="space"/>
     <!-- 主体内容区域 -->
     <view class="content">
       <view class="upload-section">
@@ -25,7 +31,7 @@
             :limit="9"
             multiple
             accept="image"
-            action="http://localhost:8090/api/article/uploadImages"
+            action="https://campus.fybreeze.cn/api/article/uploadImages"
             @change="handleChange"
             :before-remove="beforeImageRemove"
             @success="uploadSuccess"
@@ -65,11 +71,6 @@
         <wd-cell-group>
           <wd-cell title="谁可以看" is-link icon="view" value="所有人可见" @click="setVisibility"/>
           <wd-cell title="定时" is-link icon="clock" @click="setTime"/>
-          <wd-cell title="匿名" center icon="note">
-            <view class="custom-value" style="height: 32px;">
-              <wd-switch v-model="isAnonymity" @change="handleAnonymityChange"/>
-            </view>
-          </wd-cell>
         </wd-cell-group>
       </view>
     </view>
@@ -77,7 +78,7 @@
 
     <!-- 底部发布按钮 -->
     <view class="footer">
-      <wd-button block type="primary" @click="publishArticle">
+      <wd-button block type="primary" @click.once="publishArticle">
         发布笔记
       </wd-button>
     </view>
@@ -93,12 +94,15 @@
 import {ref} from 'vue'
 import {addArticle, AddArticleParams, getArticleTags} from "@/api/articleApi";
 import { useToast } from '@/uni_modules/wot-design-uni'
+import { debounce } from 'lodash'
+import {deleteFile} from "@/api/uploadApi";
+import {onShareAppMessage,onShareTimeline} from "@dcloudio/uni-app";
 
 const toast = useToast()
+
 // 数据定义
 const fileList = ref([])
-// 是否匿名
-const isAnonymity = ref(false)
+
 // 动作面板
 const showActionSheet = ref(false)
 //发布文章对象
@@ -115,7 +119,6 @@ const actions = ref([])
 const onClickLeft = () => {
   uni.navigateBack()
 }
-
 
 const getTags = () => {
   getArticleTags().then((res: any) => {
@@ -140,10 +143,6 @@ const selectAction = (item) => {
   publishArticleParams.value.tags.push(item.item.name)
 }
 
-// 匿名按钮
-const handleAnonymityChange = () => {
-  isAnonymity.value = !isAnonymity.value
-}
 
 // 上传图片
 const uploadSuccess = (res) => {
@@ -162,34 +161,78 @@ const handleChange = ((file) => {
 })
 
 // 删除图片前置操作
-const beforeImageRemove = ((res) => {
-  fileList.value.splice(res.index, 1)
-  // images.value.splice(res.index, 1)
-  publishArticleParams.value.images.splice(res.index,1)
-  console.log("publishArticleParams>>>",publishArticleParams)
+const beforeImageRemove =  ((res) => {
+  const url = publishArticleParams.value.images[res.index];
+  console.log("删除前置处理",url)
+  deleteFile(url).then((response) => {
+    if (response.code === 200) {
+      console.log("删除成功", response)
+      fileList.value.splice(res.index, 1)
+      // images.value.splice(res.index, 1)
+      publishArticleParams.value.images.splice(res.index,1)
+      console.log("publishArticleParams>>>",publishArticleParams)
+    } else {
+      console.log("删除失败", response)
+    }
+  })
 })
 const setTime = () => {
   // 实现定时发布
+  toast.show("暂不支持哦~")
 }
 
 const setVisibility = () => {
   // 谁可见
+  toast.show("暂不支持哦~")
 }
-
-const publishArticle = async () => {
-  // 实现发布逻辑
+const publishArticle = debounce(async () => {
+  uni.showLoading({
+    title: "加载中",
+    mask: true,
+  })
   console.log("发布文章参数：", publishArticleParams.value)
   const res = await addArticle(publishArticleParams.value)
-  console.log("发布文章接口返回结果：", res)
+  
   if (res.code == 200) {
-    toast.show('发布成功')
+    toast.show({
+      msg: "发布成功，等待审核~",
+      cover: true
+    })
     setTimeout(() => {
-      uni.navigateBack()
-    }, 2000)
-  }else{
+      // 获取页面实例并设置刷新标记
+      const pages = getCurrentPages()
+      const indexPage = pages.find(page => page.route === 'pages/index/index')
+      if (indexPage) {
+        // @ts-ignore
+        indexPage.$vm.setNeedRefresh()
+      }
+      uni.switchTab({
+        url: '/pages/index/index'
+      })
+    }, 1500)
+  } else {
     toast.error(res.message)
   }
-}
+}, 500)
+
+// 分享给好友
+onShareAppMessage((res) => {
+  console.log(res)
+  return {
+    title: '青春共享站',
+    path: '/pages/index/index',
+    imageUrl: '/static/logo.jpg', // 分享图片
+  }
+})
+// 分享到朋友圈
+onShareTimeline(() => {
+  return {
+    title: '青春共享站',
+    path: '/pages/index/index',
+    imageUrl: '/static/logo.jpg', // 分享图片
+  }
+})
+
 </script>
 
 <style lang="scss" scoped>

@@ -51,6 +51,9 @@ const gradient = (startColor, endColor, step = 2) => {
   }
   return gradientColorArr;
 };
+const range = (num, min, max) => {
+  return Math.min(Math.max(num, min), max);
+};
 const isEqual = (value1, value2) => {
   if (value1 === value2) {
     return true;
@@ -67,6 +70,13 @@ const isEqual = (value1, value2) => {
     }
   }
   return true;
+};
+const padZero = (number, length = 2) => {
+  let numStr = number.toString();
+  while (numStr.length < length) {
+    numStr = "0" + numStr;
+  }
+  return numStr;
 };
 const context = {
   id: 1e3
@@ -287,8 +297,10 @@ exports.deepClone = deepClone;
 exports.deepMerge = deepMerge;
 exports.getPropByPath = getPropByPath;
 exports.getRect = getRect;
+exports.getType = getType;
 exports.gradient = gradient;
 exports.isArray = isArray;
+exports.isDate = isDate;
 exports.isDef = isDef;
 exports.isEqual = isEqual;
 exports.isFunction = isFunction;
@@ -302,5 +314,7 @@ exports.isUndefined = isUndefined;
 exports.isVideoUrl = isVideoUrl;
 exports.objToStyle = objToStyle;
 exports.omitBy = omitBy;
+exports.padZero = padZero;
 exports.pause = pause;
+exports.range = range;
 exports.uuid = uuid;

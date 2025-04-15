@@ -1,0 +1,1 @@
+"use strict";const e=require("../common/props.js"),r={...e.baseProps,image:e.makeStringProp("network"),imageSize:{type:[String,Number,Object],default:""},tip:e.makeStringProp(""),imageMode:e.makeStringProp("aspectFill"),urlPrefix:e.makeStringProp("https://registry.npmmirror.com/wot-design-uni-assets/*/files/")};exports.statusTipProps=r;

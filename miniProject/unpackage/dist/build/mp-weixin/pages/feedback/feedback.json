@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "反馈中心",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "wd-navbar": "../../uni_modules/wot-design-uni/components/wd-navbar/wd-navbar",
+    "wd-textarea": "../../uni_modules/wot-design-uni/components/wd-textarea/wd-textarea",
+    "wd-upload": "../../uni_modules/wot-design-uni/components/wd-upload/wd-upload",
+    "wd-input": "../../uni_modules/wot-design-uni/components/wd-input/wd-input",
+    "wd-button": "../../uni_modules/wot-design-uni/components/wd-button/wd-button",
+    "wd-toast": "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast"
+  }
+}

@@ -1,0 +1,1 @@
+<view class="{{['data-v-a54631cc', f]}}" style="{{g}}" bindtap="{{h}}"><view class="wd-radio__label data-v-a54631cc" style="{{a}}"><slot></slot></view><view class="wd-radio__shape data-v-a54631cc" style="{{e}}"><wd-icon wx:if="{{b}}" class="data-v-a54631cc" style="{{c}}" u-i="a54631cc-0" bind:__l="__l" u-p="{{d}}"></wd-icon></view></view>

@@ -1,0 +1,191 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.Lflayout .imageBanner.data-v-2be17064 {
+  display: block;
+  width: 94%;
+  height: 340rpx;
+  margin: 30rpx auto;
+  border-radius: 20rpx;
+  box-shadow: 6px 3px 10px #dfdfdf;
+}
+.Lflayout .PostCard.data-v-2be17064 {
+  margin: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.Lflayout .PostCard .card.data-v-2be17064 {
+  width: 330rpx;
+  height: 170rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+  box-shadow: 3px 3px 10px #dcdcdc;
+}
+.Lflayout .PostCard .card image.data-v-2be17064 {
+  width: 100%;
+  height: 100%;
+}
+.Lflayout .serach-region .serach.data-v-2be17064 {
+  padding-top: 15rpx;
+}
+.Lflayout .serach-region .label.data-v-2be17064 {
+  padding-top: 15rpx;
+  margin: 0 30rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15rpx;
+}
+.Lflayout .tap-page.data-v-2be17064 {
+  margin-top: 10rpx;
+}
+.Lflayout .tap-page .all.data-v-2be17064,
+.Lflayout .tap-page .find.data-v-2be17064,
+.Lflayout .tap-page .lost.data-v-2be17064 {
+  padding: 15rpx 30rpx;
+}
+.Lflayout .tap-page .all .lost-card.data-v-2be17064,
+.Lflayout .tap-page .all .find-card.data-v-2be17064,
+.Lflayout .tap-page .find .lost-card.data-v-2be17064,
+.Lflayout .tap-page .find .find-card.data-v-2be17064,
+.Lflayout .tap-page .lost .lost-card.data-v-2be17064,
+.Lflayout .tap-page .lost .find-card.data-v-2be17064 {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0, 0, 0, 0.06);
+}
+.Lflayout .tap-page .all .lost-card .title-region.data-v-2be17064,
+.Lflayout .tap-page .all .find-card .title-region.data-v-2be17064,
+.Lflayout .tap-page .find .lost-card .title-region.data-v-2be17064,
+.Lflayout .tap-page .find .find-card .title-region.data-v-2be17064,
+.Lflayout .tap-page .lost .lost-card .title-region.data-v-2be17064,
+.Lflayout .tap-page .lost .find-card .title-region.data-v-2be17064 {
+  margin-bottom: 25rpx;
+  display: flex;
+  column-gap: 15rpx;
+  align-items: center;
+  border-bottom: 2rpx solid #cfcfcf;
+  padding-bottom: 20rpx;
+}
+.Lflayout .tap-page .all .lost-card .title-region .title.data-v-2be17064,
+.Lflayout .tap-page .all .find-card .title-region .title.data-v-2be17064,
+.Lflayout .tap-page .find .lost-card .title-region .title.data-v-2be17064,
+.Lflayout .tap-page .find .find-card .title-region .title.data-v-2be17064,
+.Lflayout .tap-page .lost .lost-card .title-region .title.data-v-2be17064,
+.Lflayout .tap-page .lost .find-card .title-region .title.data-v-2be17064 {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.Lflayout .tap-page .all .lost-card .thing-info .row.data-v-2be17064,
+.Lflayout .tap-page .all .find-card .thing-info .row.data-v-2be17064,
+.Lflayout .tap-page .find .lost-card .thing-info .row.data-v-2be17064,
+.Lflayout .tap-page .find .find-card .thing-info .row.data-v-2be17064,
+.Lflayout .tap-page .lost .lost-card .thing-info .row.data-v-2be17064,
+.Lflayout .tap-page .lost .find-card .thing-info .row.data-v-2be17064 {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 18rpx;
+  font-size: 28rpx;
+}
+.Lflayout .tap-page .all .lost-card .thing-info .row .info-title.data-v-2be17064,
+.Lflayout .tap-page .all .find-card .thing-info .row .info-title.data-v-2be17064,
+.Lflayout .tap-page .find .lost-card .thing-info .row .info-title.data-v-2be17064,
+.Lflayout .tap-page .find .find-card .thing-info .row .info-title.data-v-2be17064,
+.Lflayout .tap-page .lost .lost-card .thing-info .row .info-title.data-v-2be17064,
+.Lflayout .tap-page .lost .find-card .thing-info .row .info-title.data-v-2be17064 {
+  color: #666;
+  min-width: 140rpx;
+  margin-right: 10rpx;
+}
+.Lflayout .items-list.data-v-2be17064 {
+  padding: 20rpx 30rpx;
+}
+.Lflayout .items-list .item-card.data-v-2be17064 {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+.Lflayout .items-list .item-card .card-content .title-row.data-v-2be17064 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+.Lflayout .items-list .item-card .card-content .title-row .title.data-v-2be17064 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  margin-right: 16rpx;
+}
+.Lflayout .items-list .item-card .card-content .title-row .status-tag.data-v-2be17064 {
+  font-size: 24rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 24rpx;
+}
+.Lflayout .items-list .item-card .card-content .title-row .status-tag.resolved.data-v-2be17064 {
+  background-color: #e8f5e9;
+  color: #4caf50;
+}
+.Lflayout .items-list .item-card .card-content .title-row .status-tag.pending.data-v-2be17064 {
+  background-color: #fff3e0;
+  color: #ff9800;
+}
+.Lflayout .items-list .item-card .card-content .description.data-v-2be17064 {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.Lflayout .items-list .item-card .card-content .meta-info.data-v-2be17064 {
+  display: flex;
+  gap: 24rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+.Lflayout .items-list .item-card .card-content .meta-info .info-item.data-v-2be17064 {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+}
+.Lflayout .items-list .item-card .card-content .meta-info .info-item .wd-icon.data-v-2be17064 {
+  color: #999;
+}
+.Lflayout .items-list .item-card.data-v-2be17064:active {
+  transform: scale(0.98);
+  transition: transform 0.2s;
+}

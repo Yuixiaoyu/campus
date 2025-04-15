@@ -1,0 +1,1 @@
+"use strict";const e=require("../../../common/vendor.js"),s=require("./lang/zh-CN.js"),r=require("../components/common/util.js"),o=e.ref("zh-CN"),a=e.reactive({"zh-CN":s.zhCN}),i={messages:()=>a[o.value],use(e,s){o.value=e,s&&this.add({[e]:s})},add(e={}){r.deepAssign(a,e)}};exports.Locale=i;

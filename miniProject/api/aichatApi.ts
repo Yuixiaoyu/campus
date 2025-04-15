@@ -1,38 +1,27 @@
-// aichat.ts
+// aiChat.ts
 import request from '@/utils/request';
 
-/**
- * 基础响应类型
- */
+// 类型定义
 interface BaseResponse<T> {
     code: number;
     data: T;
     message: string;
 }
 
-/**
- * 聊天工具调用类型
- */
-interface ChatToolCall {
-    function: ChatFunctionCall;
-    id: string;
-    index: number;
-    type: string;
-}
-
-/**
- * 函数调用类型
- */
 interface ChatFunctionCall {
-    arguments: string;
-    name: string;
+    arguments?: string;
+    name?: string;
 }
 
-/**
- * 聊天消息类型
- */
+interface ChatToolCall {
+    function?: ChatFunctionCall;
+    id?: string;
+    index?: number;
+    type?: string;
+}
+
 interface ChatMessage {
-    content?: any;  // 可以是任意类型
+    content?: any;
     function_call?: ChatFunctionCall;
     name?: string;
     reasoning_content?: string;
@@ -41,43 +30,32 @@ interface ChatMessage {
     tool_calls?: ChatToolCall[];
 }
 
-/**
- * 聊天室类型
- */
 interface ChatRoom {
-    chatMessageList: ChatMessage[];
-    rommId: number;  // 注意文档中字段名为 rommId（疑似 roomId 的拼写错误）
+    chatMessageList?: ChatMessage[];
+    rommId?: number;  // 注意文档中可能存在拼写错误 rommId -> roomId
 }
 
-
-interface ChatRequestParams {
-    roomId: number;
-    message?: string;
-}
-
-
-export function doChat(params: ChatRequestParams): Promise<BaseResponse<string>> {
-    return request<BaseResponse<string>>({
-        url: `/api/ai/${params.roomId}/chat`,
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        params: {
-            message: params.message
-        }
-    });
-}
-
-/**
- * 获取聊天室列表接口
- */
+// 获取聊天室列表
 export function getChatRoomList(): Promise<BaseResponse<ChatRoom[]>> {
     return request<BaseResponse<ChatRoom[]>>({
         url: '/api/ai/rooms',
+        method: 'GET'
+    });
+}
+
+// 发送聊天消息（非流式）
+export function doChat(roomId: number, message?: string): Promise<BaseResponse<string>> {
+    return request<BaseResponse<string>>({
+        url: `/api/ai/${roomId}/chat?message=${message}`,
+        method: 'GET'
+    });
+}
+
+// 发送聊天消息（流式）
+export function doChatStream(roomId: number, message: string):Promise<BaseResponse<any>>  {
+    return request<BaseResponse<any>>({
+        url : `/api/ai/${roomId}/chat?message=${encodeURIComponent(message)}`,
         method: 'GET',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        enableChunked: true
     });
 }

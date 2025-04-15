@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "赞和收藏",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "wd-tab": "../../../uni_modules/wot-design-uni/components/wd-tab/wd-tab",
+    "wd-tabs": "../../../uni_modules/wot-design-uni/components/wd-tabs/wd-tabs",
+    "wd-img": "../../../uni_modules/wot-design-uni/components/wd-img/wd-img"
+  }
+}

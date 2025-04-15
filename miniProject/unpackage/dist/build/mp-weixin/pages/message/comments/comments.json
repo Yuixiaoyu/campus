@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "评论消息",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "wd-img": "../../../uni_modules/wot-design-uni/components/wd-img/wd-img",
+    "wd-icon": "../../../uni_modules/wot-design-uni/components/wd-icon/wd-icon"
+  }
+}

@@ -1,0 +1,1 @@
+<view class="{{['data-v-571a471e', b]}}" style="{{c}}"><slot wx:if="{{a}}"></slot></view>

@@ -14,9 +14,21 @@ function getArticleList(data) {
     data
   });
 }
-function getArticleByUserId(id) {
+function getArticleVOLikeListByUserId(id) {
   return utils_request.request({
-    url: `/api/article/get?id=${id}`,
+    url: `/api/article/articleLike/${id}`,
+    method: "GET"
+  });
+}
+function likeArticle(id) {
+  return utils_request.request({
+    url: `/api/article/like/` + id,
+    method: "GET"
+  });
+}
+function getArticleByArticleId(id) {
+  return utils_request.request({
+    url: `/api/article/get/detail?articleId=${id}`,
     method: "GET"
   });
 }
@@ -26,7 +38,16 @@ function getArticleTags() {
     method: "GET"
   });
 }
+function deleteArticle(id) {
+  return utils_request.request({
+    url: `/api/article/delete?id=${encodeURIComponent(id)}`,
+    method: "POST"
+  });
+}
 exports.addArticle = addArticle;
-exports.getArticleByUserId = getArticleByUserId;
+exports.deleteArticle = deleteArticle;
+exports.getArticleByArticleId = getArticleByArticleId;
 exports.getArticleList = getArticleList;
 exports.getArticleTags = getArticleTags;
+exports.getArticleVOLikeListByUserId = getArticleVOLikeListByUserId;
+exports.likeArticle = likeArticle;

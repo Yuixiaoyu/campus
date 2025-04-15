@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "发布招领",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "wd-input": "../../uni_modules/wot-design-uni/components/wd-input/wd-input",
+    "wd-datetime-picker": "../../uni_modules/wot-design-uni/components/wd-datetime-picker/wd-datetime-picker",
+    "wd-tag": "../../uni_modules/wot-design-uni/components/wd-tag/wd-tag",
+    "wd-upload": "../../uni_modules/wot-design-uni/components/wd-upload/wd-upload",
+    "wd-button": "../../uni_modules/wot-design-uni/components/wd-button/wd-button",
+    "wd-toast": "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast"
+  }
+}

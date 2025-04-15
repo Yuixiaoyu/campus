@@ -1,0 +1,1 @@
+"use strict";const t=require("../common/props.js"),e={theme:t.makeStringProp("text"),rowCol:t.makeArrayProp(),loading:t.makeBooleanProp(!0),animation:{type:String,default:""},customClass:{type:[String,Array,Object],default:""},customStyle:{type:Object,default:()=>({})}};exports.skeletonProps=e;

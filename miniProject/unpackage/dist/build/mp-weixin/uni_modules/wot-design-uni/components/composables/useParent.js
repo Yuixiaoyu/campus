@@ -1,0 +1,1 @@
+"use strict";const n=require("../../../../common/vendor.js");exports.useParent=function(e){const t=n.inject(e,null);if(t){const e=n.getCurrentInstance(),{link:r,unlink:i,internalChildren:u}=t;r(e),n.onUnmounted((()=>i(e)));return{parent:t,index:n.computed((()=>u.indexOf(e)))}}return{parent:null,index:n.ref(-1)}};

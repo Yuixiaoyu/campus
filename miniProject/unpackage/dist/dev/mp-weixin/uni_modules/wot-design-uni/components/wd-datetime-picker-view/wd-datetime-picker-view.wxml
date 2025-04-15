@@ -1,0 +1,1 @@
+<view class="data-v-db34fecd"><wd-picker-view wx:if="{{f}}" class="r data-v-db34fecd" u-r="datePickerview" bindchange="{{b}}" bindpickstart="{{c}}" bindpickend="{{d}}" u-i="db34fecd-0" bind:__l="__l" bindupdateModelValue="{{e}}" u-p="{{f}}"></wd-picker-view></view>

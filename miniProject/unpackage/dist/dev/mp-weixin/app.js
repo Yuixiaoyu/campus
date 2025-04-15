@@ -8,6 +8,26 @@ if (!Math) {
   "./pages/login/login.js";
   "./pages/reportArticle/reportArticle.js";
   "./pages/activity/activity.js";
+  "./pages/club/club.js";
+  "./pages/study/study.js";
+  "./pages/lostFound/lostFound.js";
+  "./pages/message/message.js";
+  "./pages/articleInfo/articleInfo.js";
+  "./pages/updateUserInfo/updateUserInfo.js";
+  "./pages/feedback/feedback.js";
+  "./pages/relation/relation.js";
+  "./pages/activityDetail/activityDetail.js";
+  "./pages/lostFoundPublish/lostFoundPublish.js";
+  "./pages/lostFoundDetail/lostFoundDetail.js";
+  "./pages/userDetail/userDetail.js";
+  "./pages/clubDetail/clubDetail.js";
+  "./pages/message/newFollowers/newFollowers.js";
+  "./pages/message/likes/likes.js";
+  "./pages/message/comments/comments.js";
+  "./pages/message/systemMessage/systemMessage.js";
+  "./pages/message/activityMessage/activityMessage.js";
+  "./pages/graduateExperience/graduateExperience.js";
+  "./pages/studentExperience/studentExperience.js";
 }
 const _sfc_main = {
   onLaunch: function() {

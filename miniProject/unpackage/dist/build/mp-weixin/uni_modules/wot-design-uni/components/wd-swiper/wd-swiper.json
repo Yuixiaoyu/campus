@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "wd-swiper-nav": "../wd-swiper-nav/wd-swiper-nav"
+  }
+}
