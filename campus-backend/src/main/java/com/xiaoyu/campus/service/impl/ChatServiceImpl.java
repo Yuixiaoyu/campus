@@ -1,28 +1,23 @@
 package com.xiaoyu.campus.service.impl;
 
-import com.volcengine.ark.runtime.model.bot.completion.chat.BotChatCompletionChunk;
-import com.volcengine.ark.runtime.model.bot.completion.chat.BotChatCompletionRequest;
+import cn.hutool.core.thread.ThreadUtil;
+import cn.hutool.core.util.ObjUtil;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessage;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessageRole;
-import com.volcengine.ark.runtime.service.ArkService;
 import com.xiaoyu.campus.manager.ai.AiManager;
 import com.xiaoyu.campus.model.entity.ChatRoom;
 import com.xiaoyu.campus.service.ChatService;
-import io.reactivex.disposables.Disposable;
+import com.xiaoyu.campus.utils.SseUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.FluxSink;
 
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * ClassName: ChatServiceImpl
@@ -33,13 +28,14 @@ import java.util.concurrent.TimeUnit;
  * @version: 1.0
  */
 @Service
+@Slf4j
 public class ChatServiceImpl implements ChatService {
 
     @Resource
     private AiManager aiManager;
 
     @Resource
-    private ArkService arkService;
+    private SseUtils sseUtils;
 
     final Map<Long, List<ChatMessage>> globalMessagesMap = new ConcurrentHashMap<>();
 
@@ -59,9 +55,9 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    @Deprecated
     public String doChat(Long roomId, String message) {
         lastActiveTimeMap.put(roomId, System.currentTimeMillis());
+
         String systemPrompt = "【身份声明】\n" +
                 "您好！我是「青春共享站」小程序的AI智能助手，你可以叫我小鱼，是由西安市雁塔区星河云端软件开发俱乐部公司技术支持。专注于解决校园生活与学习问题，当前暂未接入教务系统，随时为您解答心理健康与学习相关问题。我的主要功能是帮助在校学生和老师解决生活、学习、工作等方面遇到的困难";
         final ChatMessage systemMessage = ChatMessage.builder().role(ChatMessageRole.SYSTEM).content(systemPrompt).build();
@@ -79,6 +75,7 @@ public class ChatServiceImpl implements ChatService {
         messages.add(userMessage);
         //调用Ai
         String answer = aiManager.doChat(messages);
+
         final ChatMessage assistantMessage = ChatMessage.builder().role(ChatMessageRole.ASSISTANT).content(answer).build();
         messages.add(assistantMessage);
         //返回消息
@@ -86,57 +83,44 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    public Flux<String> streamChat(Long roomId, String message) {
+    public void streamChat(Long userId,Long roomId, String message) throws ExecutionException, InterruptedException {
         lastActiveTimeMap.put(roomId, System.currentTimeMillis());
-
         String systemPrompt = "【身份声明】\n" +
-                "您好！我是「青春共享站」小程序的AI智能助手，你可以叫我小鱼，是由西安市雁塔区星河云端软件开发俱乐部公司技术支持。" +
+                "您好！我是「青春共享站」小程序的AI智能助手，" +
+                "你可以叫我小鱼，是由西安市雁塔区星河云端软件开发俱乐部公司技术支持。" +
                 "专注于解决校园生活与学习问题，当前暂未接入教务系统，随时为您解答心理健康与学习相关问题。" +
                 "我的主要功能是帮助在校学生和老师解决生活、学习、工作等方面遇到的困难";
-
-        List<ChatMessage> messages = aiManager.buildMessages(systemPrompt, message);
+        final ChatMessage streamSystemMessage = ChatMessage.builder().role(ChatMessageRole.SYSTEM).content(systemPrompt).build();
+        final ChatMessage streamUserMessage = ChatMessage.builder().role(ChatMessageRole.USER).content(message).build();
         //准备消息列表（关联历史上下文）
-        //List<ChatMessage> messages = new ArrayList<>();
+        List<ChatMessage> messages;
         //首次与AI对话,需要初始化消息列表，并额外添加系统消息到记录中
-        //if (!globalMessagesMap.containsKey(roomId)) {
-        //    globalMessagesMap.put(roomId, messages);
-        //    messages.add(systemMessage);
-        //} else {
-        //    //之后不用重复初始化而是获取过去的消息列表
-        //    messages = globalMessagesMap.get(roomId);
-        //}
-        //messages.add(userMessage);
-        BotChatCompletionRequest request = BotChatCompletionRequest.builder()
-                .botId("bot-20250328192459-wzlgj")
-                .messages(messages)
-                .build();
+        if (!globalMessagesMap.containsKey(roomId)) {
+            messages = new ArrayList<>();
+            globalMessagesMap.put(roomId, messages);
+            messages.add(streamSystemMessage);
+        } else {
+            //之后不用重复初始化而是获取过去的消息列表
+            messages = globalMessagesMap.get(roomId);
+        }
+        messages.add(streamUserMessage);
 
-        return Flux.create(emitter -> {
-            Disposable subscription = arkService.streamBotChatCompletion(request)
-                    .subscribe(
-                            choice -> processChoice(choice, emitter),
-                            emitter::error,
-                            emitter::complete
-                    );
+        //异步请求
+        Future<?> future = ThreadUtil.execAsync(() -> {
+            Flux<String> result = aiManager.streamChat(messages);
+            //将流式数据返回给用户
+            result.subscribe(
+                    data -> sseUtils.sendMessage(userId,String.valueOf(roomId), data.toString()),  // 处理每个字符串
+                    error -> log.error(error.getMessage()),  // 错误处理
+                    () -> sseUtils.deleteUser(userId)  // 流完成后的回调
+            );
+        });
+        if (ObjUtil.isNotNull(future.get())) {
+            log.info("异步请求成功");
+            final ChatMessage assistantMessage = ChatMessage.builder().role(ChatMessageRole.ASSISTANT).content(future.get().toString()).build();
+            messages.add(assistantMessage);
+        }
 
-            emitter.onCancel(subscription::dispose);
-        }, FluxSink.OverflowStrategy.BUFFER);
-    }
-
-
-    private void processChoice(BotChatCompletionChunk choice, FluxSink<String> emitter) {
-        // 处理参考文献
-        Optional.ofNullable(choice.getReferences())
-                .ifPresent(refs -> refs.forEach(ref ->
-                        emitter.next("[REF] " + ref.getUrl())
-                ));
-
-        // 处理消息内容
-        Optional.ofNullable(choice.getChoices())
-                .filter(c -> !c.isEmpty())
-                .ifPresent(choices ->
-                        emitter.next((String) choices.get(0).getMessage().getContent())
-                );
     }
 
     @Override

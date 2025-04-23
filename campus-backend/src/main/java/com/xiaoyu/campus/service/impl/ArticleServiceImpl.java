@@ -1,5 +1,6 @@
 package com.xiaoyu.campus.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
@@ -252,6 +253,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
 
     // 使用Redis Pipeline批量获取点赞状态
     private Map<Long, Boolean> getLikeStatusMap(List<Article> articles, HttpServletRequest request) {
+        //用户首次进入不应直接获取登陆用户信息，会报未登录
+        if (!StpUtil.isLogin()) {
+            return Collections.emptyMap();
+        }
+        //User loginUser = (User) StpUtil.getSession().get(UserConstant.WX_LOGIN_STATUS);
         User loginUser = userService.getLoginUser();
         if (loginUser == null) return Collections.emptyMap();
 

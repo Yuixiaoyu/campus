@@ -1,11 +1,9 @@
 package com.xiaoyu.campus.service;
 
-import com.volcengine.ark.runtime.model.completion.chat.ChatMessage;
 import com.xiaoyu.campus.model.entity.ChatRoom;
-import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * ClassName: ChatService
@@ -28,12 +26,13 @@ public interface ChatService {
 
 
     /**
-     * 和AI对话，支持流式返回
+     * 和AI对话(流式)
      *
      * @param message
      * @return
      */
-    Flux<String> streamChat(Long roomId, String message);
+    void streamChat(Long userId, Long roomId, String message) throws ExecutionException, InterruptedException;
+
 
     /**
      * 获取聊天室列表
