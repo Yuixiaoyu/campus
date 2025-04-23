@@ -1,1 +1,1 @@
-<view><web-view src="{{a}}"/></view>
+<view><wd-img wx:if="{{a}}" u-i="17713edb-0" bind:__l="__l" u-p="{{a}}"></wd-img></view>

@@ -17,6 +17,7 @@ if (!Math) {
   "./pages/feedback/feedback.js";
   "./pages/relation/relation.js";
   "./pages/activityDetail/activityDetail.js";
+  "./pages/aiService/aiService.js";
   "./pages/lostFoundPublish/lostFoundPublish.js";
   "./pages/lostFoundDetail/lostFoundDetail.js";
   "./pages/userDetail/userDetail.js";
@@ -28,6 +29,9 @@ if (!Math) {
   "./pages/message/activityMessage/activityMessage.js";
   "./pages/graduateExperience/graduateExperience.js";
   "./pages/studentExperience/studentExperience.js";
+  "./pages/agreement/user.js";
+  "./pages/agreement/privacy.js";
+  "./pages/aiService/aiChat/aiChat.js";
 }
 const _sfc_main = {
   onLaunch: function() {

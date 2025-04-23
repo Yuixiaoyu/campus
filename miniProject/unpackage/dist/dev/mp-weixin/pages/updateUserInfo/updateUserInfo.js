@@ -8,6 +8,7 @@ const api_uploadApi = require("../../api/uploadApi.js");
 if (!Array) {
   const _easycom_wd_navbar2 = common_vendor.resolveComponent("wd-navbar");
   const _easycom_wd_img2 = common_vendor.resolveComponent("wd-img");
+  const _easycom_wd_icon2 = common_vendor.resolveComponent("wd-icon");
   const _easycom_wd_button2 = common_vendor.resolveComponent("wd-button");
   const _easycom_wd_input2 = common_vendor.resolveComponent("wd-input");
   const _easycom_wd_cell2 = common_vendor.resolveComponent("wd-cell");
@@ -15,10 +16,11 @@ if (!Array) {
   const _easycom_wd_textarea2 = common_vendor.resolveComponent("wd-textarea");
   const _easycom_wd_gap2 = common_vendor.resolveComponent("wd-gap");
   const _easycom_wd_toast2 = common_vendor.resolveComponent("wd-toast");
-  (_easycom_wd_navbar2 + _easycom_wd_img2 + _easycom_wd_button2 + _easycom_wd_input2 + _easycom_wd_cell2 + _easycom_wd_select_picker2 + _easycom_wd_textarea2 + _easycom_wd_gap2 + _easycom_wd_toast2)();
+  (_easycom_wd_navbar2 + _easycom_wd_img2 + _easycom_wd_icon2 + _easycom_wd_button2 + _easycom_wd_input2 + _easycom_wd_cell2 + _easycom_wd_select_picker2 + _easycom_wd_textarea2 + _easycom_wd_gap2 + _easycom_wd_toast2)();
 }
 const _easycom_wd_navbar = () => "../../uni_modules/wot-design-uni/components/wd-navbar/wd-navbar.js";
 const _easycom_wd_img = () => "../../uni_modules/wot-design-uni/components/wd-img/wd-img.js";
+const _easycom_wd_icon = () => "../../uni_modules/wot-design-uni/components/wd-icon/wd-icon.js";
 const _easycom_wd_button = () => "../../uni_modules/wot-design-uni/components/wd-button/wd-button.js";
 const _easycom_wd_input = () => "../../uni_modules/wot-design-uni/components/wd-input/wd-input.js";
 const _easycom_wd_cell = () => "../../uni_modules/wot-design-uni/components/wd-cell/wd-cell.js";
@@ -27,7 +29,7 @@ const _easycom_wd_textarea = () => "../../uni_modules/wot-design-uni/components/
 const _easycom_wd_gap = () => "../../uni_modules/wot-design-uni/components/wd-gap/wd-gap.js";
 const _easycom_wd_toast = () => "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast.js";
 if (!Math) {
-  (_easycom_wd_navbar + _easycom_wd_img + _easycom_wd_button + _easycom_wd_input + _easycom_wd_cell + _easycom_wd_select_picker + _easycom_wd_textarea + _easycom_wd_gap + _easycom_wd_toast)();
+  (_easycom_wd_navbar + _easycom_wd_img + _easycom_wd_icon + _easycom_wd_button + _easycom_wd_input + _easycom_wd_cell + _easycom_wd_select_picker + _easycom_wd_textarea + _easycom_wd_gap + _easycom_wd_toast)();
 }
 const _sfc_defineComponent = common_vendor.defineComponent({
   __name: "updateUserInfo",
@@ -198,24 +200,45 @@ const _sfc_defineComponent = common_vendor.defineComponent({
       }
     };
     const chooseAvatar = (e) => {
-      console.log(e);
-      const avatarUrl = e.avatarUrl;
+      var _a;
+      console.log("选择头像:", e);
+      const avatarUrl = ((_a = e.detail) == null ? void 0 : _a.avatarUrl) || e.avatarUrl;
+      if (!avatarUrl) {
+        toast.error("获取头像失败");
+        return;
+      }
+      common_vendor.index.showLoading({
+        title: "上传中..."
+      });
       common_vendor.index.uploadFile({
         url: "https://campus.fybreeze.cn/api/article/uploadImages",
-        // 仅为示例，并非真实的接口地址
         filePath: avatarUrl,
         name: "file",
         formData: {
           "user": "test"
         },
         success(res) {
-          oldImage.value = user.value.imageUrl;
-          const data = JSON.parse(res.data);
-          user.value.imageUrl = data.data[0];
-          toast.show("上传成功");
+          var _a2, _b;
+          try {
+            const data = JSON.parse(res.data);
+            if (data.code === 200 && ((_a2 = data.data) == null ? void 0 : _a2[0])) {
+              oldImage.value = ((_b = user.value) == null ? void 0 : _b.imageUrl) || "";
+              user.value.imageUrl = data.data[0];
+              toast.show("上传成功");
+            } else {
+              toast.error("上传失败：" + (data.message || "未知错误"));
+            }
+          } catch (error) {
+            console.error("解析响应失败:", error);
+            toast.error("上传失败：数据格式错误");
+          }
         },
         fail(err) {
-          toast.error("上传失败");
+          console.error("上传失败:", err);
+          toast.error("上传失败：" + (err.errMsg || "网络错误"));
+        },
+        complete() {
+          common_vendor.index.hideLoading();
         }
       });
     };
@@ -240,8 +263,8 @@ const _sfc_defineComponent = common_vendor.defineComponent({
       };
     });
     return (_ctx, _cache) => {
-      var _a;
-      return {
+      var _a, _b;
+      return common_vendor.e({
         a: common_vendor.o(handleClickLeft),
         b: common_vendor.p({
           ["custom-class"]: "navbar",
@@ -250,48 +273,62 @@ const _sfc_defineComponent = common_vendor.defineComponent({
           safeAreaInsetTop: true,
           ["left-arrow"]: true
         }),
-        c: common_vendor.p({
+        c: (_a = user.value) == null ? void 0 : _a.imageUrl
+      }, ((_b = user.value) == null ? void 0 : _b.imageUrl) ? {
+        d: common_vendor.p({
           width: 100,
           height: 100,
           round: true,
-          src: (_a = user.value) == null ? void 0 : _a.imageUrl
-        }),
-        d: common_vendor.o(chooseAvatar),
+          src: user.value.imageUrl
+        })
+      } : {
         e: common_vendor.p({
+          name: "person",
+          size: "50px",
+          color: "#acc4f9"
+        })
+      }, {
+        f: common_vendor.p({
+          name: "camera",
+          size: "20px",
+          color: "#fff"
+        }),
+        g: common_vendor.o(chooseAvatar),
+        h: common_vendor.p({
           ["custom-class"]: "userAvatar",
           type: "text",
           ["open-type"]: "chooseAvatar"
         }),
-        f: common_vendor.o(handleChangeName),
-        g: common_vendor.o(($event) => user.value.userName = $event),
-        h: common_vendor.p({
+        i: common_vendor.o(handleChangeName),
+        j: common_vendor.o(($event) => user.value.userName = $event),
+        k: common_vendor.p({
           type: "nickname",
           ["no-border"]: true,
           placeholder: "请输入用户名",
           modelValue: user.value.userName
         }),
-        i: common_vendor.p({
+        l: common_vendor.p({
           title: "昵称",
           center: true
         }),
-        j: common_vendor.o(handleGender),
-        k: common_vendor.o(($event) => user.value.gender = $event),
-        l: common_vendor.p({
+        m: common_vendor.o(handleGender),
+        n: common_vendor.o(($event) => user.value.gender = $event),
+        o: common_vendor.p({
           type: "radio",
           label: "性别",
           columns: genderColumns.value,
           modelValue: user.value.gender
         }),
-        m: common_vendor.o(handleGender),
-        n: common_vendor.o(($event) => user.value.constellation = $event),
-        o: common_vendor.p({
+        p: common_vendor.o(handleGender),
+        q: common_vendor.o(($event) => user.value.constellation = $event),
+        r: common_vendor.p({
           type: "radio",
           label: "星座",
           columns: constellationColumns.value,
           modelValue: user.value.constellation
         }),
-        p: common_vendor.o(($event) => user.value.tagList = $event),
-        q: common_vendor.p({
+        s: common_vendor.o(($event) => user.value.tagList = $event),
+        t: common_vendor.p({
           label: "标签",
           prop: "tagList",
           type: "checkbox",
@@ -300,8 +337,8 @@ const _sfc_defineComponent = common_vendor.defineComponent({
           placeholder: "请选择个性标签",
           modelValue: user.value.tagList
         }),
-        r: common_vendor.o(($event) => user.value.userProfile = $event),
-        s: common_vendor.p({
+        v: common_vendor.o(($event) => user.value.userProfile = $event),
+        w: common_vendor.p({
           label: "简介",
           clearable: true,
           placeholder: "请输入简介",
@@ -309,16 +346,16 @@ const _sfc_defineComponent = common_vendor.defineComponent({
           maxlength: 100,
           modelValue: user.value.userProfile
         }),
-        t: common_vendor.o(updateUserInfo),
-        v: common_vendor.p({
+        x: common_vendor.o(updateUserInfo),
+        y: common_vendor.p({
           ["custom-class"]: "btn",
           block: true,
           type: "primary"
         }),
-        w: common_vendor.p({
+        z: common_vendor.p({
           height: "60rpx"
         })
-      };
+      });
     };
   }
 });

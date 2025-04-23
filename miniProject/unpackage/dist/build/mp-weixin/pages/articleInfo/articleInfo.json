@@ -3,7 +3,6 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "wd-img": "../../uni_modules/wot-design-uni/components/wd-img/wd-img",
-    "wd-text": "../../uni_modules/wot-design-uni/components/wd-text/wd-text",
     "wd-icon": "../../uni_modules/wot-design-uni/components/wd-icon/wd-icon",
     "wd-divider": "../../uni_modules/wot-design-uni/components/wd-divider/wd-divider",
     "wd-status-tip": "../../uni_modules/wot-design-uni/components/wd-status-tip/wd-status-tip",

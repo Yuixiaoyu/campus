@@ -178,130 +178,158 @@ onShareTimeline(() => {
 
 <style lang="scss" scoped>
 .clubPage {
-  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%); //控制背景颜色
+  background: linear-gradient(180deg, 
+    rgba(248, 249, 250, 0.8) 0%, 
+    rgba(255, 255, 255, 0.95) 50%,
+    #ffffff 100%
+  );
   min-height: 100vh;
-  padding-bottom: 80rpx;
+  padding-bottom: 100rpx;
 
   .banner {
     position: relative;
     z-index: 1;
+    margin: 0 auto;
+    padding: 30rpx 0;
+    
+    .card-swiper {
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -30rpx;
+        height: 60rpx;
+        background: linear-gradient(180deg, 
+          rgba(248, 249, 250, 0) 0%,
+          rgba(248, 249, 250, 0.8) 100%
+        );
+        z-index: 2;
+      }
+    }
   }
 
-  //这是圆形活动图标区域的父组件
   .classlist {
     display: flex;
     justify-content: center;
-    height: 250rpx;
-    width: 700rpx;
-    margin: -50rpx auto 30rpx;
+    height: 280rpx;
+    width: 720rpx;
+    margin: -60rpx auto 40rpx;
     position: relative;
     z-index: 2;
 
     .cardLayout {
       &::-webkit-scrollbar {
-        display: none; // 隐藏滚动条
+        display: none;
       }
-
-      -webkit-overflow-scrolling: touch; // 启用弹性滚动
+      -webkit-overflow-scrolling: touch;
       display: flex;
       width: 100%;
       height: 100%;
-      border-radius: 15rpx;
-      //justify-content: space-around;
+      border-radius: 24rpx;
       align-items: center;
-      /* 半透明黑色背景（透明度可调） */
-      //background-color: rgba(0, 0, 0, 0.5);
       background: linear-gradient(135deg,
-          rgb(168, 176, 251, 0.6),
-          rgb(223, 212, 246, 0.6) 60%,
-          rgb(236, 205, 227, 0.6) 100%
+        rgba(168, 176, 251, 0.35) 0%,
+        rgba(223, 212, 246, 0.35) 50%,
+        rgba(236, 205, 227, 0.35) 100%
       );
-
-      /* 指针事件配置（可选） */
-      pointer-events: auto; /* 默认：允许穿透点击 */
-      /* pointer-events: none;  /* 禁止穿透点击 */
-
-      /* 层级控制（确保在最上层） */
+      pointer-events: auto;
       z-index: 999;
-
-      /* 可选：添加模糊效果（需微信小程序支持） */
-      backdrop-filter: blur(10px);
-
-      border: none;
-      box-shadow: 0 8rpx 40rpx rgba(0, 0, 0, 0.08);
-      //padding: 15rpx 0;
-
-      overflow-x: auto; // 允许横向滚动
-      flex-wrap: nowrap; // 强制不换行
-      justify-content: flex-start; // 左对齐
-      padding: 15rpx 10rpx; // 增加左右内边距
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 
+        0 8rpx 30rpx rgba(0, 0, 0, 0.05),
+        0 2rpx 6rpx rgba(0, 0, 0, 0.02);
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      padding: 25rpx 20rpx;
 
       .item {
-        flex-shrink: 0; // 禁止缩小
-        min-width: 140rpx;
-        height: 220rpx;
+        flex-shrink: 0;
+        min-width: 150rpx;
+        height: 230rpx;
         justify-content: flex-start;
-
+        
         &:first-child {
-          margin-left: 10rpx;
+          margin-left: 15rpx;
         }
 
         & + .item {
-          margin-left: 40rpx;
+          margin-left: 45rpx;
         }
 
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 15rpx;
-        transition: transform 0.2s ease;
+        gap: 18rpx;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
         &:active {
           transform: translateY(6rpx);
         }
 
+        &:hover {
+          transform: translateY(-4rpx);
+        }
+
         .wd-img {
-          box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+          box-shadow: 
+            0 6rpx 16rpx rgba(0, 0, 0, 0.06),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
           margin-top: 20rpx;
           flex-shrink: 0;
-          width: 120rpx !important;
-          height: 120rpx !important;
-          border: 4rpx solid #fff;
-          transition: transform 0.2s;
+          width: 130rpx !important;
+          height: 130rpx !important;
+          border: 4rpx solid rgba(255, 255, 255, 0.9);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          
+          &:hover {
+            transform: scale(1.05);
+            box-shadow: 
+              0 8rpx 20rpx rgba(0, 0, 0, 0.1),
+              0 0 0 1px rgba(255, 255, 255, 0.2);
+          }
         }
 
         .text {
           width: 140rpx;
           font-size: 26rpx;
-          line-height: 1.3;
+          line-height: 1.4;
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
           text-overflow: ellipsis;
           text-align: center;
           margin-top: 15rpx;
+          color: rgba(51, 51, 51, 0.9);
+          font-weight: 500;
+          letter-spacing: 0.5rpx;
         }
       }
     }
   }
 
   .activecard {
-    margin: 60rpx 0;
-    padding: 0 30rpx;
+    margin: 70rpx 0;
+    padding: 0 35rpx;
 
     .title {
-      margin-bottom: 30rpx;
+      margin-bottom: 35rpx;
       display: flex;
       align-items: center;
 
       .wd-icon {
-        filter: drop-shadow(0 4rpx 8rpx rgba(34, 166, 179, 0.2));
+        filter: drop-shadow(0 4rpx 12rpx rgba(34, 166, 179, 0.25));
+        transform: scale(1.1);
       }
 
       .text {
         margin: 0 30rpx;
-        font-size: 34rpx;
-        color: #333;
+        font-size: 36rpx;
+        color: #2d3436;
         font-weight: 600;
         letter-spacing: 1rpx;
       }
@@ -310,13 +338,26 @@ onShareTimeline(() => {
     .activelist {
       .row {
         display: flex;
-        padding: 20rpx;
+        padding: 28rpx;
         background: #fff;
         border-radius: 32rpx;
-        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s;
+        box-shadow: 
+          0 8rpx 24rpx rgba(0, 0, 0, 0.06),
+          0 1rpx 4rpx rgba(0, 0, 0, 0.02);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        margin: 35rpx 0;
+        animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
-        margin: 30rpx 0; // 统一垂直间距
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(30rpx);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
         &:first-child {
           margin-top: 0;
@@ -327,31 +368,41 @@ onShareTimeline(() => {
         }
 
         &:active {
-          transform: translateY(4rpx) scale(0.98);
+          transform: translateY(4rpx) scale(0.985);
+        }
+
+        &:hover {
+          box-shadow: 
+            0 12rpx 36rpx rgba(0, 0, 0, 0.08),
+            0 2rpx 8rpx rgba(0, 0, 0, 0.03);
+          transform: translateY(-3rpx);
         }
 
         .left {
-          margin-right: 5rpx;
+          margin-right: 25rpx;
 
           .Actimage {
-            width: 220rpx;
-            height: 180rpx;
+            width: 240rpx;
+            height: 190rpx;
             border-radius: 24rpx;
             overflow: hidden;
-            position: relative; // 父级相对定位
-
+            position: relative;
+            box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+            
             .status-tag {
               position: absolute;
-              top: 0rpx;
-              left: 0rpx;
+              top: 12rpx;
+              left: 12rpx;
               z-index: 2;
 
               .status-text {
                 position: relative;
-                font-size: 22rpx;
+                font-size: 24rpx;
                 color: #fff;
-                padding: 6rpx 16rpx;
+                padding: 8rpx 20rpx;
                 z-index: 2;
+                font-weight: 500;
+                letter-spacing: 0.5rpx;
               }
 
               .status-bg {
@@ -360,43 +411,59 @@ onShareTimeline(() => {
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: rgba(0, 0, 0, 0.5);
-                border-radius: 8rpx;
+                background: rgba(0, 0, 0, 0.65);
+                border-radius: 12rpx;
                 backdrop-filter: blur(4rpx);
                 z-index: 1;
               }
             }
 
             image {
-              transition: transform 0.3s;
+              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
               border-radius: 20rpx;
               width: 100%;
               height: 100%;
+              object-fit: cover;
+              
+              &.loading {
+                filter: blur(4rpx);
+                opacity: 0.8;
+              }
             }
 
-            &:active image {
-              transform: scale(1.05);
+            &:hover image {
+              transform: scale(1.08);
             }
           }
         }
 
         .right {
           flex: 1;
-          padding-left: 15rpx;
+          padding-left: 20rpx;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
 
           .Acttitle {
-            font-size: 32rpx;
+            font-size: 34rpx;
             font-weight: 600;
-            margin-bottom: 20rpx;
+            margin-bottom: 24rpx;
             line-height: 1.4;
+            color: #2d3436;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
           }
 
           .Acttime, .address {
-            padding: 0rpx 0rpx;
+            padding: 4rpx 0;
             display: flex;
+            align-items: center;
             font-size: 26rpx;
             margin-bottom: 16rpx;
-            gap: 10rpx;
+            gap: 12rpx;
+            color: #636e72;
 
             .moment {
               margin-left: 10rpx;
@@ -404,14 +471,13 @@ onShareTimeline(() => {
 
             .wd-icon {
               margin-right: 12rpx;
-              font-size: 38rpx;
+              font-size: 32rpx;
+              color: #74b9ff;
             }
           }
         }
-
       }
     }
   }
-
 }
 </style>

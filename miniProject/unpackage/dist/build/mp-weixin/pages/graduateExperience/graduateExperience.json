@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "毕业经验分享",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "wd-img": "../../uni_modules/wot-design-uni/components/wd-img/wd-img"
+  }
 }

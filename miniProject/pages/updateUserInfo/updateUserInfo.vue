@@ -2,9 +2,20 @@
   <view class="updateUserInfo">
     <wd-navbar custom-class="navbar"  :bordered="false" title="修改信息" safeAreaInsetTop left-arrow @click-left="handleClickLeft"></wd-navbar>
     <view class="container">
-      <wd-button custom-class="userAvatar" type="text" open-type="chooseAvatar" @chooseavatar="chooseAvatar">
-        <wd-img :width="100" :height="100" round :src="user?.imageUrl"/>
-      </wd-button>
+      <view class="avatar-wrapper">
+        <wd-button custom-class="userAvatar" type="text" open-type="chooseAvatar" @chooseavatar="chooseAvatar">
+          <view class="avatar-container">
+            <wd-img v-if="user?.imageUrl" :width="100" :height="100" round :src="user.imageUrl"/>
+            <view v-else class="avatar-placeholder">
+              <wd-icon name="person" size="50px" color="#acc4f9"/>
+              <text class="placeholder-text">点击设置头像</text>
+            </view>
+            <view class="avatar-edit-hint">
+              <wd-icon name="camera" size="20px" color="#fff"/>
+            </view>
+          </view>
+        </wd-button>
+      </view>
       <view class="info">
         <wd-cell title="昵称" center>
           <wd-input type="nickname" no-border v-model="user.userName" placeholder="请输入用户名" @change="handleChangeName" />
@@ -265,28 +276,47 @@ const updateUserInfo = async () => {
   }
 }
 
-// 点击获取头像
+// 修改头像选择函数
 const chooseAvatar = (e) => {
-  console.log(e)
-  const avatarUrl = e.avatarUrl
+  console.log('选择头像:', e)
+  const avatarUrl = e.detail?.avatarUrl || e.avatarUrl
+  if (!avatarUrl) {
+    toast.error('获取头像失败')
+    return
+  }
+
+  uni.showLoading({
+    title: '上传中...'
+  })
+
   uni.uploadFile({
-    url: 'https://campus.fybreeze.cn/api/article/uploadImages', // 仅为示例，并非真实的接口地址
+    url: 'https://campus.fybreeze.cn/api/article/uploadImages',
     filePath: avatarUrl,
     name: 'file',
     formData: {
       'user': 'test'
     },
     success(res) {
-      // 将旧的image保存
-      oldImage.value = user.value.imageUrl
-      // console.log(res)
-      const data = JSON.parse(res.data)
-      // 上传完成需要更新头像
-      user.value.imageUrl = data.data[0]
-      toast.show("上传成功")
+      try {
+        const data = JSON.parse(res.data)
+        if (data.code === 200 && data.data?.[0]) {
+          oldImage.value = user.value?.imageUrl || ''
+          user.value.imageUrl = data.data[0]
+          toast.show('上传成功')
+        } else {
+          toast.error('上传失败：' + (data.message || '未知错误'))
+        }
+      } catch (error) {
+        console.error('解析响应失败:', error)
+        toast.error('上传失败：数据格式错误')
+      }
     },
     fail(err) {
-      toast.error("上传失败")
+      console.error('上传失败:', err)
+      toast.error('上传失败：' + (err.errMsg || '网络错误'))
+    },
+    complete() {
+      uni.hideLoading()
     }
   })
 }
@@ -343,25 +373,92 @@ onShareTimeline(() => {
     margin: 100rpx auto 100rpx auto;
     background-color: #fff;
 
-    :deep(.userAvatar) {
+    .avatar-wrapper {
       width: 100%;
-      height: 220rpx;
-      z-index: 1 !important;
-    }
+      padding: 40rpx 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
 
-    :deep(.wd-img) {
-      width: 100% !important;
-      height: 220rpx !important;
-      margin-top: 30rpx;
-      z-index: 100 !important;
-    }
+      :deep(.userAvatar) {
+        width: 160rpx !important;
+        height: 160rpx !important;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        border-radius: 50%;
+        overflow: visible;
+        background: none;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          top: -6rpx;
+          left: -6rpx;
+          right: -6rpx;
+          bottom: -6rpx;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #acc4f9 0%, #8498f0 100%);
+          opacity: 0.1;
+          z-index: 1;
+        }
 
-    :deep(.wd-img__image) {
-      width: 100px;
-      height: 100px;
-      margin: 10rpx auto;
-      z-index: 100 !important;
-      border-radius: 50%;
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+
+      .avatar-container {
+        width: 160rpx;
+        height: 160rpx;
+        position: relative;
+        border-radius: 50%;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
+        
+        :deep(.wd-img) {
+          width: 160rpx !important;
+          height: 160rpx !important;
+          display: block;
+        }
+      }
+
+      .avatar-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #f8f9ff;
+        
+        .placeholder-text {
+          font-size: 24rpx;
+          color: #8498f0;
+          margin-top: 12rpx;
+        }
+      }
+
+      .avatar-edit-hint {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50rpx;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+      }
+
+      &:active .avatar-edit-hint {
+        opacity: 1;
+      }
     }
 
     .info {

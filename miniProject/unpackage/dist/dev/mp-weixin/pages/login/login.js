@@ -21,50 +21,76 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
   setup(__props) {
     const toast = uni_modules_wotDesignUni_components_wdToast_index.useToast();
     const login = async (e) => {
-      common_vendor.index.showLoading({
-        title: "加载中"
-      });
-      const code = e.code;
-      const res = await api_userApi.wxLogin(code);
-      if (res.code == 200) {
-        console.log(res.data);
-        common_vendor.index.setStorageSync("token", res.data.token);
-        utils_userStorage.setUserInfo(res.data);
-        toast.success("登录成功");
-        setTimeout(() => {
-          common_vendor.index.switchTab({
-            url: "/pages/index/index"
-          });
-        }, 1e3);
-      } else {
-        console.log(res);
+      if (!e.code) {
+        toast.error("未授权手机号，请重试");
+        return;
       }
-      common_vendor.index.hideLoading();
-      toast.error(res.msg);
+      common_vendor.index.showLoading({
+        title: "登录中..."
+      });
+      try {
+        const res = await api_userApi.wxLogin(e.code);
+        if (res.code === 200) {
+          console.log(res.data);
+          common_vendor.index.setStorageSync("token", res.data.token);
+          utils_userStorage.setUserInfo(res.data);
+          toast.success("登录成功");
+          setTimeout(() => {
+            common_vendor.index.switchTab({
+              url: "/pages/index/index"
+            });
+          }, 1e3);
+        } else {
+          toast.error(res.message || "登录失败");
+        }
+      } catch (error) {
+        console.error("登录错误:", error);
+        toast.error("登录失败，请重试");
+      } finally {
+        common_vendor.index.hideLoading();
+      }
+    };
+    const handleCancel = () => {
+      common_vendor.index.switchTab({
+        url: "/pages/index/index"
+      });
+    };
+    const openUserAgreement = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/agreement/user"
+      });
+    };
+    const openPrivacyPolicy = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/agreement/privacy"
+      });
     };
     common_vendor.onLoad(() => {
       utils_userStorage.clearUserInfo();
     });
-    const handleClickLeft = () => {
-      common_vendor.index.navigateBack();
-    };
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.o(handleClickLeft),
-        b: common_vendor.p({
+        a: common_vendor.p({
           ["custom-class"]: "navbar",
           bordered: false,
-          title: "登陆",
-          safeAreaInsetTop: true,
-          ["left-arrow"]: true
+          title: "登录",
+          safeAreaInsetTop: true
         }),
-        c: common_vendor.o(login),
-        d: common_vendor.p({
-          icon: "app",
+        b: common_vendor.o(login),
+        c: common_vendor.p({
+          icon: "wechat",
           type: "success",
           block: true,
           ["open-type"]: "getPhoneNumber"
-        })
+        }),
+        d: common_vendor.o(handleCancel),
+        e: common_vendor.p({
+          type: "info",
+          block: true,
+          plain: true
+        }),
+        f: common_vendor.o(openUserAgreement),
+        g: common_vendor.o(openPrivacyPolicy)
       };
     };
   }

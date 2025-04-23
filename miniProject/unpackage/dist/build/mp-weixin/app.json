@@ -15,6 +15,7 @@
     "pages/feedback/feedback",
     "pages/relation/relation",
     "pages/activityDetail/activityDetail",
+    "pages/aiService/aiService",
     "pages/lostFoundPublish/lostFoundPublish",
     "pages/lostFoundDetail/lostFoundDetail",
     "pages/userDetail/userDetail",
@@ -25,7 +26,10 @@
     "pages/message/systemMessage/systemMessage",
     "pages/message/activityMessage/activityMessage",
     "pages/graduateExperience/graduateExperience",
-    "pages/studentExperience/studentExperience"
+    "pages/studentExperience/studentExperience",
+    "pages/agreement/user",
+    "pages/agreement/privacy",
+    "pages/aiService/aiChat/aiChat"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -50,6 +54,12 @@
         "iconPath": "static/tabbar/message.png",
         "selectedIconPath": "static/tabbar/message-selected.png",
         "text": "消息"
+      },
+      {
+        "pagePath": "pages/aiService/aiService",
+        "iconPath": "static/tabbar/deepseek.png",
+        "selectedIconPath": "static/tabbar/deepseek-selected.png",
+        "text": "AI探索"
       },
       {
         "pagePath": "pages/my/my",

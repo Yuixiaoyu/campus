@@ -1,7 +1,6 @@
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
+import {
+  __commonJS
+} from "./chunk-TYRVL62N.js";
 
 // G:/Code/campus/miniProject/node_modules/crypto-js/core.js
 var require_core = __commonJS({

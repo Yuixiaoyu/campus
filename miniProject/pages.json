@@ -123,18 +123,18 @@
         "enablePullDownRefresh": false
       }
     },
-    //    {
-    //      "path": "pages/deepseek/deepseek",
-    //      "style": {
-    //        "navigationBarTitleText": "DeepSeek",
-    //        "enablePullDownRefresh": false,
-    //        "navigationStyle": "custom",
-    //        "app-plus": {
-    //          "softinputNavBar": "none",
-    //          "softinputMode": "adjustResize"
-    //        }
-    //      }
-    //    },
+    {
+      "path": "pages/aiService/aiService",
+      "style": {
+        "navigationBarTitleText": "智能助手",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "app-plus": {
+          "softinputNavBar": "none",
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
     {
       "path": "pages/lostFoundPublish/lostFoundPublish",
       "style": {
@@ -162,7 +162,6 @@
         "navigationBarTitleText": "社团详情",
         "enablePullDownRefresh": false
       }
-    }
     },
     {
       "path": "pages/message/newFollowers/newFollowers",
@@ -212,6 +211,28 @@
         "navigationBarTitleText": "学习经验分享",
         "enablePullDownRefresh": false
       }
+    },
+    {
+      "path": "pages/agreement/user",
+      "style": {
+        "navigationBarTitleText": "用户协议",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/agreement/privacy",
+      "style": {
+        "navigationBarTitleText": "隐私政策",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/aiService/aiChat/aiChat",
+      "style": {
+        "navigationBarTitleText": "AI对话",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom"
+      }
     }
   ],
   "globalStyle": {
@@ -239,12 +260,12 @@
         "selectedIconPath": "static/tabbar/message-selected.png",
         "text": "消息"
       },
-      //      {
-      //        "pagePath": "pages/deepseek/deepseek",
-      //        "iconPath": "static/tabbar/deepseek.png",
-      //        "selectedIconPath": "static/tabbar/deepseek-selected.png",
-      //        "text": "AI探索"
-      //      },
+      {
+        "pagePath": "pages/aiService/aiService",
+        "iconPath": "static/tabbar/deepseek.png",
+        "selectedIconPath": "static/tabbar/deepseek-selected.png",
+        "text": "AI探索"
+      },
       {
         "pagePath": "pages/my/my",
         "iconPath": "static/tabbar/my.png",

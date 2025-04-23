@@ -1,15 +1,25 @@
 {
-  "hash": "49c64a6d",
+  "hash": "f3d98494",
   "configHash": "60cba9bf",
-  "lockfileHash": "483a84c9",
-  "browserHash": "e50bdcc6",
+  "lockfileHash": "c31e015e",
+  "browserHash": "15760f96",
   "optimized": {
     "crypto-js": {
       "src": "../../../../../node_modules/crypto-js/index.js",
       "file": "crypto-js.js",
-      "fileHash": "84b381e7",
+      "fileHash": "b101a1cd",
       "needsInterop": true
+    },
+    "marked": {
+      "src": "../../../../../node_modules/marked/lib/marked.esm.js",
+      "file": "marked.js",
+      "fileHash": "3f55c9ae",
+      "needsInterop": false
     }
   },
-  "chunks": {}
+  "chunks": {
+    "chunk-TYRVL62N": {
+      "file": "chunk-TYRVL62N.js"
+    }
+  }
 }

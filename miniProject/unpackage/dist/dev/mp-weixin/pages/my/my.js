@@ -8,8 +8,8 @@ const utils_activityEnum = require("../../utils/activityEnum.js");
 const api_activityApi = require("../../api/activityApi.js");
 if (!Array) {
   const _easycom_wd_img2 = common_vendor.resolveComponent("wd-img");
-  const _easycom_wd_tag2 = common_vendor.resolveComponent("wd-tag");
   const _easycom_wd_icon2 = common_vendor.resolveComponent("wd-icon");
+  const _easycom_wd_tag2 = common_vendor.resolveComponent("wd-tag");
   const _easycom_wd_cell2 = common_vendor.resolveComponent("wd-cell");
   const _easycom_wd_cell_group2 = common_vendor.resolveComponent("wd-cell-group");
   const _easycom_wd_popup2 = common_vendor.resolveComponent("wd-popup");
@@ -19,11 +19,11 @@ if (!Array) {
   const _easycom_wd_popover2 = common_vendor.resolveComponent("wd-popover");
   const _easycom_wd_loadmore2 = common_vendor.resolveComponent("wd-loadmore");
   const _easycom_wd_toast2 = common_vendor.resolveComponent("wd-toast");
-  (_easycom_wd_img2 + _easycom_wd_tag2 + _easycom_wd_icon2 + _easycom_wd_cell2 + _easycom_wd_cell_group2 + _easycom_wd_popup2 + _easycom_wd_segmented2 + _easycom_wd_text2 + _easycom_wd_loading2 + _easycom_wd_popover2 + _easycom_wd_loadmore2 + _easycom_wd_toast2)();
+  (_easycom_wd_img2 + _easycom_wd_icon2 + _easycom_wd_tag2 + _easycom_wd_cell2 + _easycom_wd_cell_group2 + _easycom_wd_popup2 + _easycom_wd_segmented2 + _easycom_wd_text2 + _easycom_wd_loading2 + _easycom_wd_popover2 + _easycom_wd_loadmore2 + _easycom_wd_toast2)();
 }
 const _easycom_wd_img = () => "../../uni_modules/wot-design-uni/components/wd-img/wd-img.js";
-const _easycom_wd_tag = () => "../../uni_modules/wot-design-uni/components/wd-tag/wd-tag.js";
 const _easycom_wd_icon = () => "../../uni_modules/wot-design-uni/components/wd-icon/wd-icon.js";
+const _easycom_wd_tag = () => "../../uni_modules/wot-design-uni/components/wd-tag/wd-tag.js";
 const _easycom_wd_cell = () => "../../uni_modules/wot-design-uni/components/wd-cell/wd-cell.js";
 const _easycom_wd_cell_group = () => "../../uni_modules/wot-design-uni/components/wd-cell-group/wd-cell-group.js";
 const _easycom_wd_popup = () => "../../uni_modules/wot-design-uni/components/wd-popup/wd-popup.js";
@@ -34,7 +34,7 @@ const _easycom_wd_popover = () => "../../uni_modules/wot-design-uni/components/w
 const _easycom_wd_loadmore = () => "../../uni_modules/wot-design-uni/components/wd-loadmore/wd-loadmore.js";
 const _easycom_wd_toast = () => "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast.js";
 if (!Math) {
-  (_easycom_wd_img + _easycom_wd_tag + _easycom_wd_icon + _easycom_wd_cell + _easycom_wd_cell_group + _easycom_wd_popup + _easycom_wd_segmented + _easycom_wd_text + _easycom_wd_loading + _easycom_wd_popover + _easycom_wd_loadmore + _easycom_wd_toast)();
+  (_easycom_wd_img + _easycom_wd_icon + _easycom_wd_tag + _easycom_wd_cell + _easycom_wd_cell_group + _easycom_wd_popup + _easycom_wd_segmented + _easycom_wd_text + _easycom_wd_loading + _easycom_wd_popover + _easycom_wd_loadmore + _easycom_wd_toast)();
 }
 const _sfc_defineComponent = common_vendor.defineComponent({
   __name: "my",
@@ -110,6 +110,10 @@ const _sfc_defineComponent = common_vendor.defineComponent({
       });
     };
     const fetchArticles = async (isRefresh = false) => {
+      if (!isLogin.value) {
+        loadStatus.value = "finished";
+        return;
+      }
       if (pagination.isRefreshing)
         return;
       pagination.isRefreshing = true;
@@ -146,6 +150,10 @@ const _sfc_defineComponent = common_vendor.defineComponent({
       }
     };
     const fetchActivityList = async (isRefresh = false) => {
+      if (!isLogin.value) {
+        loadStatus.value = "finished";
+        return;
+      }
       if (activityPagination.isRefreshing)
         return;
       activityPagination.isRefreshing = true;
@@ -179,6 +187,10 @@ const _sfc_defineComponent = common_vendor.defineComponent({
     };
     const fetchCollectList = async (isRefresh = false) => {
       var _a;
+      if (!isLogin.value) {
+        loadStatus.value = "finished";
+        return;
+      }
       if (collectPagination.isRefreshing)
         return;
       collectPagination.isRefreshing = true;
@@ -210,6 +222,10 @@ const _sfc_defineComponent = common_vendor.defineComponent({
     };
     const fetchLikeList = async (isRefresh = false) => {
       var _a;
+      if (!isLogin.value) {
+        loadStatus.value = "finished";
+        return;
+      }
       if (likePagination.isRefreshing)
         return;
       likePagination.isRefreshing = true;
@@ -330,78 +346,137 @@ const _sfc_defineComponent = common_vendor.defineComponent({
         // 分享图片
       };
     });
-    return (_ctx, _cache) => {
+    const getTagType = (index) => {
+      const types = ["success", "primary", "warning", "danger"];
+      return types[index % types.length];
+    };
+    const isLogin = common_vendor.computed(() => {
       var _a;
+      return !!((_a = userInfo.value) == null ? void 0 : _a.id);
+    });
+    const handleLoginClick = () => {
+      if (!isLogin.value) {
+        common_vendor.index.showModal({
+          title: "提示",
+          content: "登录后可查看更多信息",
+          confirmText: "去登录",
+          cancelText: "取消",
+          success: (res) => {
+            if (res.confirm) {
+              common_vendor.index.navigateTo({
+                url: "/pages/login/login"
+              });
+            }
+          }
+        });
+      } else {
+        handleToInfo();
+      }
+    };
+    return (_ctx, _cache) => {
+      var _a, _b;
       return common_vendor.e({
         a: common_vendor.p({
-          src: userInfo.value.imageUrl,
-          width: "80",
-          height: "80",
+          src: ((_a = userInfo.value) == null ? void 0 : _a.imageUrl) || "/static/default-avatar.jpg",
+          width: "88",
+          height: "88",
           round: true
         }),
-        b: common_vendor.t(userInfo.value.userName),
-        c: common_vendor.t(((_a = userInfo.value) == null ? void 0 : _a.constellation) || `修仙熬夜座~`),
-        d: common_vendor.o(handleToInfo),
-        e: common_vendor.t(userInfo.value.userProfile || "这个人很懒，简介都不想写，估计是没有对象吧"),
-        f: common_vendor.f(userInfo.value.tagList, (item, index, i0) => {
+        b: isLogin.value
+      }, isLogin.value ? {
+        c: common_vendor.p({
+          name: "edit-outline",
+          size: "12px",
+          color: "#fff"
+        })
+      } : {}, {
+        d: common_vendor.t(isLogin.value ? userInfo.value.userName : "未登录"),
+        e: isLogin.value
+      }, isLogin.value ? {
+        f: common_vendor.p({
+          name: "star",
+          size: "14px",
+          color: "#FFB52B"
+        }),
+        g: common_vendor.t(((_b = userInfo.value) == null ? void 0 : _b.constellation) || `修仙熬夜座~`)
+      } : {}, {
+        h: !isLogin.value
+      }, !isLogin.value ? {} : {
+        i: common_vendor.t(userInfo.value.id || "未设置")
+      }, {
+        j: common_vendor.o(handleLoginClick),
+        k: isLogin.value
+      }, isLogin.value ? {
+        l: common_vendor.t(userInfo.value.userProfile || "这个人很懒，简介都不想写，估计是没有对象吧"),
+        m: common_vendor.f(userInfo.value.tagList, (item, index, i0) => {
           return {
             a: common_vendor.t(item),
             b: index,
-            c: "2f1ef635-1-" + i0,
+            c: "2f1ef635-3-" + i0,
             d: common_vendor.p({
-              type: index == 1 ? "primary" : index == 2 ? "warning" : "success",
+              type: getTagType(index),
+              size: "small",
               round: true
             })
           };
-        }),
-        g: common_vendor.t(userInfo.value.follows || 0),
-        h: common_vendor.t(userInfo.value.fans || 0),
-        i: common_vendor.t(userInfo.value.likes || 0),
-        j: common_vendor.p({
-          name: "view-list",
+        })
+      } : {}, {
+        n: common_vendor.t(isLogin.value ? userInfo.value.follows || 0 : "-"),
+        o: common_vendor.o(handleLoginClick),
+        p: common_vendor.t(isLogin.value ? userInfo.value.fans || 0 : "-"),
+        q: common_vendor.o(handleLoginClick),
+        r: common_vendor.t(isLogin.value ? userInfo.value.likes || 0 : "-"),
+        s: common_vendor.o(handleLoginClick),
+        t: isLogin.value
+      }, isLogin.value ? {
+        v: common_vendor.p({
+          name: "setting",
           size: "20px",
-          color: "#adadad"
+          color: "#333"
         }),
-        k: common_vendor.o(handleSet),
-        l: common_vendor.p({
+        w: common_vendor.o(handleSet)
+      } : {}, {
+        x: common_vendor.p({
           title: "修改个人信息",
           ["title-width"]: "150px",
           icon: "edit-outline",
           ["is-link"]: true,
           to: "/pages/updateUserInfo/updateUserInfo"
         }),
-        m: common_vendor.p({
+        y: common_vendor.p({
           title: "反馈中心",
           ["title-width"]: "150px",
           icon: "cloud-upload",
           ["is-link"]: true,
           to: "/pages/feedback/feedback"
         }),
-        n: common_vendor.p({
+        z: common_vendor.p({
           title: "联系我们",
           ["title-width"]: "150px",
           icon: "call",
           ["is-link"]: true,
           to: "/pages/relation/relation"
         }),
-        o: common_vendor.p({
+        A: common_vendor.p({
           border: true
         }),
-        p: common_vendor.o(handlePopupClose),
-        q: common_vendor.o(($event) => isPopupShow.value = $event),
-        r: common_vendor.p({
+        B: common_vendor.o(handlePopupClose),
+        C: common_vendor.o(($event) => isPopupShow.value = $event),
+        D: common_vendor.p({
           position: "left",
           ["custom-style"]: "height:100vh;width:70%",
           modelValue: isPopupShow.value
         }),
-        s: common_vendor.o(($event) => current.value = $event),
-        t: common_vendor.p({
+        E: common_vendor.o(($event) => current.value = $event),
+        F: common_vendor.p({
           options: list.value,
           value: current.value
         }),
-        v: current.value === "投稿"
-      }, current.value === "投稿" ? {
-        w: common_vendor.f(articleList.value, (item, index, i0) => {
+        G: current.value === "投稿"
+      }, current.value === "投稿" ? common_vendor.e({
+        H: !isLogin.value
+      }, !isLogin.value ? {} : {
+        I: common_vendor.f(articleList.value, (item, index, i0) => {
           return common_vendor.e({
             a: common_vendor.t(item.createTime.split("T")[0]),
             b: common_vendor.t(item.content),
@@ -409,7 +484,7 @@ const _sfc_defineComponent = common_vendor.defineComponent({
           }, item.imagesList.length != 0 ? {
             d: common_vendor.f(item.imagesList.slice(0, 3), (url, index2, i1) => {
               return common_vendor.e({
-                a: "2f1ef635-9-" + i0 + "-" + i1,
+                a: "2f1ef635-11-" + i0 + "-" + i1,
                 b: common_vendor.p({
                   width: "100%",
                   height: "100%",
@@ -431,80 +506,80 @@ const _sfc_defineComponent = common_vendor.defineComponent({
               return {
                 a: common_vendor.t(tag),
                 b: tag,
-                c: "2f1ef635-10-" + i0 + "-" + i1
+                c: "2f1ef635-12-" + i0 + "-" + i1
               };
             }),
-            g: "2f1ef635-11-" + i0,
+            g: "2f1ef635-13-" + i0,
             h: common_vendor.t(item.viewCount),
             i: item.isLike
           }, item.isLike ? {
-            j: "2f1ef635-12-" + i0,
+            j: "2f1ef635-14-" + i0,
             k: common_vendor.p({
               ["class-prefix"]: "t-icon",
               name: "like-selected"
             })
           } : {
-            l: "2f1ef635-13-" + i0,
+            l: "2f1ef635-15-" + i0,
             m: common_vendor.p({
               ["class-prefix"]: "t-icon",
               name: "like"
             })
           }, {
             n: common_vendor.t(item.likeCount),
-            o: "2f1ef635-14-" + i0,
+            o: "2f1ef635-16-" + i0,
             p: common_vendor.t(item.commentCount),
             q: index
           });
         }),
-        x: userInfo.value.imageUrl,
-        y: common_vendor.t(userInfo.value.userName),
-        z: common_vendor.p({
+        J: userInfo.value.imageUrl,
+        K: common_vendor.t(userInfo.value.userName),
+        L: common_vendor.p({
           type: "primary",
           plain: true,
           mark: true
         }),
-        A: common_vendor.p({
+        M: common_vendor.p({
           name: "view",
           size: "16px"
         }),
-        B: common_vendor.p({
+        N: common_vendor.p({
           name: "chat",
           size: "16px"
         })
-      } : {}, {
-        C: current.value === "活动"
+      }) : {}, {
+        O: current.value === "活动"
       }, current.value === "活动" ? {
-        D: common_vendor.f(activityList.value, (item, index, i0) => {
+        P: common_vendor.f(activityList.value, (item, index, i0) => {
           return {
             a: item.coverPicture,
             b: common_vendor.t(common_vendor.unref(utils_activityEnum.getActivityStatus)(item == null ? void 0 : item.status)),
             c: common_vendor.t(item.title),
-            d: "2f1ef635-15-" + i0,
+            d: "2f1ef635-17-" + i0,
             e: common_vendor.t(item.endTime),
-            f: "2f1ef635-16-" + i0,
+            f: "2f1ef635-18-" + i0,
             g: common_vendor.t(item.position),
             h: index,
             i: common_vendor.o(($event) => handleActivityClick(index), index)
           };
         }),
-        E: common_vendor.p({
+        Q: common_vendor.p({
           name: "time"
         }),
-        F: common_vendor.p({
+        R: common_vendor.p({
           name: "location"
         })
       } : {}, {
-        G: current.value === "收藏"
+        S: current.value === "收藏"
       }, current.value === "收藏" ? common_vendor.e({
-        H: collectList.value.length === 0
+        T: collectList.value.length === 0
       }, collectList.value.length === 0 ? {} : {}) : {}, {
-        I: current.value === "喜欢"
+        U: current.value === "喜欢"
       }, current.value === "喜欢" ? common_vendor.e({
-        J: likeList.value.length === 0
+        V: likeList.value.length === 0
       }, likeList.value.length === 0 ? {} : {}, {
-        K: common_vendor.f(likeList.value, (item, index, i0) => {
+        W: common_vendor.f(likeList.value, (item, index, i0) => {
           return common_vendor.e({
-            a: "2f1ef635-17-" + i0,
+            a: "2f1ef635-19-" + i0,
             b: common_vendor.p({
               src: item.userVO.imageUrl,
               width: 45,
@@ -515,7 +590,7 @@ const _sfc_defineComponent = common_vendor.defineComponent({
             c: common_vendor.t(item.userVO.userName),
             d: common_vendor.t(item.createTime),
             e: common_vendor.o(($event) => handleToDetail(item.userVO.id), index),
-            f: "2f1ef635-18-" + i0,
+            f: "2f1ef635-20-" + i0,
             g: common_vendor.p({
               text: item.content,
               color: "#565756",
@@ -527,9 +602,9 @@ const _sfc_defineComponent = common_vendor.defineComponent({
           }, item.imagesList != null ? {
             j: common_vendor.f(item.imagesList.slice(0, 9), (url, index2, i1) => {
               return common_vendor.e({
-                a: "2f1ef635-20-" + i0 + "-" + i1 + "," + ("2f1ef635-19-" + i0 + "-" + i1),
+                a: "2f1ef635-22-" + i0 + "-" + i1 + "," + ("2f1ef635-21-" + i0 + "-" + i1),
                 b: common_vendor.o(($event) => _ctx.previewImage(url, item.imagesList), index2),
-                c: "2f1ef635-19-" + i0 + "-" + i1,
+                c: "2f1ef635-21-" + i0 + "-" + i1,
                 d: common_vendor.p({
                   width: "100%",
                   height: "100%",
@@ -548,18 +623,18 @@ const _sfc_defineComponent = common_vendor.defineComponent({
             k: common_vendor.o(($event) => handleArticleInfo(item.id), index),
             l: common_vendor.n(getImageLayoutClass(item.imagesList.length))
           } : {}, {
-            m: "2f1ef635-21-" + i0,
+            m: "2f1ef635-23-" + i0,
             n: common_vendor.t(item.viewCount),
             o: item.isLike
           }, item.isLike ? {} : {}, {
             p: common_vendor.t(item.likeCount),
             q: common_vendor.o(($event) => _ctx.handleLikeItem(item.id, index), index),
-            r: "2f1ef635-22-" + i0,
+            r: "2f1ef635-24-" + i0,
             s: common_vendor.t(item.commentCount),
             t: common_vendor.o(($event) => handleArticleInfo(item.id), index),
-            v: "2f1ef635-24-" + i0 + "," + ("2f1ef635-23-" + i0),
+            v: "2f1ef635-26-" + i0 + "," + ("2f1ef635-25-" + i0),
             w: common_vendor.o(($event) => _ctx.link(item.id), index),
-            x: "2f1ef635-23-" + i0,
+            x: "2f1ef635-25-" + i0,
             y: common_vendor.o(
               //@ts-ignore
               (...args) => _ctx.closeOutside && _ctx.closeOutside(...args),
@@ -568,25 +643,25 @@ const _sfc_defineComponent = common_vendor.defineComponent({
             z: index
           });
         }),
-        L: common_vendor.p({
+        X: common_vendor.p({
           name: "view",
           size: "16px"
         }),
-        M: common_vendor.p({
+        Y: common_vendor.p({
           name: "chat",
           size: "16px"
         }),
-        N: common_vendor.p({
+        Z: common_vendor.p({
           name: "more",
           size: "16px"
         }),
-        O: common_vendor.p({
+        aa: common_vendor.p({
           mode: "menu",
           content: _ctx.menu
         })
       }) : {}, {
-        P: common_vendor.o(retryLoad),
-        Q: common_vendor.p({
+        ab: common_vendor.o(retryLoad),
+        ac: common_vendor.p({
           ["custom-class"]: "loadmore",
           state: loadStatus.value,
           ["loading-text"]: "别急在跑了...",

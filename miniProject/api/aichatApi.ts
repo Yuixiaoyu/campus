@@ -52,9 +52,9 @@ export function doChat(roomId: number, message?: string): Promise<BaseResponse<s
 }
 
 // 发送聊天消息（流式）
-export function doChatStream(roomId: number, message: string):Promise<BaseResponse<any>>  {
+export function doChatStream(clientId: number,roomId: number, message: string):Promise<BaseResponse<any>>  {
     return request<BaseResponse<any>>({
-        url : `/api/ai/${roomId}/chat?message=${encodeURIComponent(message)}`,
+        url : `/api/ai/${roomId}/streamChat?clientId=${clientId}&message=${encodeURIComponent(message)}`,
         method: 'GET',
         enableChunked: true
     });

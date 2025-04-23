@@ -45,7 +45,7 @@ import { ref } from 'vue'
 
 const showAIChat = () => {
   uni.navigateTo({
-    url: '/pages/ai-chat/ai-chat'
+    url: '/pages/aiService/aiChat/aiChat'
   })
 }
 

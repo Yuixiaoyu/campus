@@ -8,7 +8,6 @@ const api_commentApi = require("../../api/commentApi.js");
 const utils_userStorage = require("../../utils/userStorage.js");
 if (!Array) {
   const _easycom_wd_img2 = common_vendor.resolveComponent("wd-img");
-  const _easycom_wd_text2 = common_vendor.resolveComponent("wd-text");
   const _easycom_wd_icon2 = common_vendor.resolveComponent("wd-icon");
   const _easycom_wd_divider2 = common_vendor.resolveComponent("wd-divider");
   const _easycom_wd_status_tip2 = common_vendor.resolveComponent("wd-status-tip");
@@ -16,10 +15,9 @@ if (!Array) {
   const _easycom_wd_input2 = common_vendor.resolveComponent("wd-input");
   const _easycom_wd_button2 = common_vendor.resolveComponent("wd-button");
   const _easycom_wd_toast2 = common_vendor.resolveComponent("wd-toast");
-  (_easycom_wd_img2 + _easycom_wd_text2 + _easycom_wd_icon2 + _easycom_wd_divider2 + _easycom_wd_status_tip2 + _easycom_wd_gap2 + _easycom_wd_input2 + _easycom_wd_button2 + _easycom_wd_toast2)();
+  (_easycom_wd_img2 + _easycom_wd_icon2 + _easycom_wd_divider2 + _easycom_wd_status_tip2 + _easycom_wd_gap2 + _easycom_wd_input2 + _easycom_wd_button2 + _easycom_wd_toast2)();
 }
 const _easycom_wd_img = () => "../../uni_modules/wot-design-uni/components/wd-img/wd-img.js";
-const _easycom_wd_text = () => "../../uni_modules/wot-design-uni/components/wd-text/wd-text.js";
 const _easycom_wd_icon = () => "../../uni_modules/wot-design-uni/components/wd-icon/wd-icon.js";
 const _easycom_wd_divider = () => "../../uni_modules/wot-design-uni/components/wd-divider/wd-divider.js";
 const _easycom_wd_status_tip = () => "../../uni_modules/wot-design-uni/components/wd-status-tip/wd-status-tip.js";
@@ -28,7 +26,7 @@ const _easycom_wd_input = () => "../../uni_modules/wot-design-uni/components/wd-
 const _easycom_wd_button = () => "../../uni_modules/wot-design-uni/components/wd-button/wd-button.js";
 const _easycom_wd_toast = () => "../../uni_modules/wot-design-uni/components/wd-toast/wd-toast.js";
 if (!Math) {
-  (_easycom_wd_img + _easycom_wd_text + _easycom_wd_icon + _easycom_wd_divider + _easycom_wd_status_tip + _easycom_wd_gap + _easycom_wd_input + _easycom_wd_button + _easycom_wd_toast)();
+  (_easycom_wd_img + _easycom_wd_icon + _easycom_wd_divider + _easycom_wd_status_tip + _easycom_wd_gap + _easycom_wd_input + _easycom_wd_button + _easycom_wd_toast)();
 }
 const _sfc_defineComponent = common_vendor.defineComponent({
   __name: "articleInfo",
@@ -43,8 +41,8 @@ const _sfc_defineComponent = common_vendor.defineComponent({
     const parentId = common_vendor.ref(0);
     const user = common_vendor.ref();
     common_vendor.onLoad((options) => {
-      console.log("接收到的数据：", options.articleId);
-      articleId.value = options.articleId;
+      console.log("接收到的数据：", options == null ? void 0 : options.articleId);
+      articleId.value = options == null ? void 0 : options.articleId;
       getArticleInfo();
       getCommentList();
       user.value = utils_userStorage.getUserInfo();
@@ -158,111 +156,112 @@ const _sfc_defineComponent = common_vendor.defineComponent({
         // 分享图片
       };
     });
+    const formatContent = (content) => {
+      if (!content)
+        return "";
+      return content.split("\n").map((text2) => `<div class="content-paragraph">${text2}</div>`).join("");
+    };
     return (_ctx, _cache) => {
-      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o;
+      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y;
       return common_vendor.e({
         a: common_vendor.p({
-          width: 40,
-          height: 40,
+          width: 60,
+          height: 60,
           src: (_a = userInfo.value) == null ? void 0 : _a.imageUrl,
-          radius: "5"
+          round: true
         }),
-        b: common_vendor.t((_b = userInfo.value) == null ? void 0 : _b.userName),
-        c: common_vendor.p({
-          size: "16px",
-          color: "#5e5e5e",
-          text: (_c = articleInfo.value) == null ? void 0 : _c.content
-        }),
-        d: ((_d = articleInfo.value) == null ? void 0 : _d.imagesList) != null
-      }, ((_e = articleInfo.value) == null ? void 0 : _e.imagesList) != null ? {
-        e: common_vendor.f((_f = articleInfo.value) == null ? void 0 : _f.imagesList, (url, index, i0) => {
-          return {
-            a: common_vendor.o(($event) => previewImage(url, articleInfo.value.imagesList), index),
-            b: "e87f28a7-2-" + i0,
-            c: common_vendor.p({
+        b: ((_b = user.value) == null ? void 0 : _b.id) == ((_c = articleInfo.value) == null ? void 0 : _c.userId)
+      }, ((_d = user.value) == null ? void 0 : _d.id) == ((_e = articleInfo.value) == null ? void 0 : _e.userId) ? {} : {}, {
+        c: common_vendor.t((_f = userInfo.value) == null ? void 0 : _f.userName),
+        d: common_vendor.t(common_vendor.unref(uni_modules_wotDesignUni_components_common_dayjs.dayjs)((_g = articleInfo.value) == null ? void 0 : _g.createTime).format("MM月DD日 HH:mm")),
+        e: formatContent((_h = articleInfo.value) == null ? void 0 : _h.content),
+        f: (_j = (_i = articleInfo.value) == null ? void 0 : _i.imagesList) == null ? void 0 : _j.length
+      }, ((_l = (_k = articleInfo.value) == null ? void 0 : _k.imagesList) == null ? void 0 : _l.length) ? {
+        g: common_vendor.f((_m = articleInfo.value) == null ? void 0 : _m.imagesList, (url, index, i0) => {
+          return common_vendor.e({
+            a: "e87f28a7-1-" + i0,
+            b: common_vendor.p({
               width: "100%",
               height: "100%",
               mode: "aspectFill",
               ["show-menu-by-longpress"]: true,
-              radius: "5px",
+              radius: "12px",
               src: url
             }),
-            d: index
-          };
+            c: index === 0 && articleInfo.value.imagesList.length > 1
+          }, index === 0 && articleInfo.value.imagesList.length > 1 ? {
+            d: "e87f28a7-2-" + i0,
+            e: common_vendor.p({
+              name: "picture",
+              size: "14px",
+              color: "#fff"
+            }),
+            f: common_vendor.t(articleInfo.value.imagesList.length)
+          } : {}, {
+            g: index,
+            h: common_vendor.o(($event) => previewImage(url, articleInfo.value.imagesList), index)
+          });
         }),
-        f: common_vendor.n(getImageLayoutClass((_g = articleInfo.value) == null ? void 0 : _g.imagesList.length))
+        h: common_vendor.n(getImageLayoutClass((_n = articleInfo.value) == null ? void 0 : _n.imagesList.length))
       } : {}, {
-        g: common_vendor.p({
-          size: "12px",
-          text: common_vendor.unref(uni_modules_wotDesignUni_components_common_dayjs.dayjs)((_h = articleInfo.value) == null ? void 0 : _h.createTime).format("YYYY年MM月DD日HH:mm")
-        }),
-        h: ((_i = user.value) == null ? void 0 : _i.id) == ((_j = articleInfo.value) == null ? void 0 : _j.userId)
-      }, ((_k = user.value) == null ? void 0 : _k.id) == ((_l = articleInfo.value) == null ? void 0 : _l.userId) ? {
-        i: common_vendor.o(handleDeleteArticle),
-        j: common_vendor.p({
-          name: "delete",
-          size: "14px",
-          color: "#5A6C8F"
-        })
-      } : {}, {
+        i: ((_o = user.value) == null ? void 0 : _o.id) == ((_p = articleInfo.value) == null ? void 0 : _p.userId)
+      }, ((_q = user.value) == null ? void 0 : _q.id) == ((_r = articleInfo.value) == null ? void 0 : _r.userId) ? common_vendor.e({
+        j: ((_s = user.value) == null ? void 0 : _s.id) == ((_t = articleInfo.value) == null ? void 0 : _t.userId)
+      }, ((_u = user.value) == null ? void 0 : _u.id) == ((_v = articleInfo.value) == null ? void 0 : _v.userId) ? {
         k: common_vendor.p({
-          text: `评论(` + ((_m = articleInfo.value) == null ? void 0 : _m.commentCount) + `)`
+          name: "delete",
+          size: "16px",
+          color: "#FF5252"
         }),
-        l: ((_n = commentList.value) == null ? void 0 : _n.length) != 0
-      }, ((_o = commentList.value) == null ? void 0 : _o.length) != 0 ? {
-        m: common_vendor.f(commentList.value, (item, k0, i0) => {
-          var _a2;
-          return {
-            a: "e87f28a7-7-" + i0,
+        l: common_vendor.o(handleDeleteArticle)
+      } : {}) : {}, {
+        m: common_vendor.t(((_w = articleInfo.value) == null ? void 0 : _w.commentCount) || 0),
+        n: (_x = commentList.value) == null ? void 0 : _x.length
+      }, ((_y = commentList.value) == null ? void 0 : _y.length) ? {
+        o: common_vendor.f(commentList.value, (item, k0, i0) => {
+          var _a2, _b2, _c2;
+          return common_vendor.e({
+            a: "e87f28a7-5-" + i0,
             b: common_vendor.p({
-              width: 40,
-              height: 40,
+              width: 50,
+              height: 50,
               src: item.userVO.imageUrl,
               round: true
             }),
             c: common_vendor.t((_a2 = item.userVO) == null ? void 0 : _a2.userName),
-            d: "e87f28a7-8-" + i0,
-            e: common_vendor.p({
-              text: item.createTime,
-              size: "12px"
-            }),
-            f: common_vendor.t(item.content),
-            g: common_vendor.o(($event) => handleComment(item), item.id),
+            d: common_vendor.t(item.createTime),
+            e: common_vendor.t(item.content),
+            f: common_vendor.o(($event) => handleComment(item), item.id),
+            g: (_b2 = item.replies) == null ? void 0 : _b2.length
+          }, ((_c2 = item.replies) == null ? void 0 : _c2.length) ? {
             h: common_vendor.f(item.replies, (sub, k1, i1) => {
-              var _a3, _b2;
+              var _a3, _b3;
               return {
                 a: common_vendor.t((_a3 = sub.userVO) == null ? void 0 : _a3.userName),
-                b: "e87f28a7-9-" + i0 + "-" + i1,
-                c: common_vendor.t((_b2 = sub.parentUserVO) == null ? void 0 : _b2.userName),
-                d: common_vendor.t(sub.content),
-                e: common_vendor.o(($event) => handleComment(sub), sub.id),
-                f: "e87f28a7-10-" + i0 + "-" + i1,
-                g: common_vendor.p({
-                  text: sub.createTime,
-                  size: "12px"
-                }),
-                h: sub.id
+                b: common_vendor.t((_b3 = sub.parentUserVO) == null ? void 0 : _b3.userName),
+                c: common_vendor.t(sub.content),
+                d: common_vendor.o(($event) => handleComment(sub), sub.id),
+                e: common_vendor.t(sub.createTime),
+                f: sub.id
               };
-            }),
+            })
+          } : {}, {
             i: item.id
-          };
-        }),
-        n: common_vendor.p({
-          text: "回复"
+          });
         })
       } : {
-        o: common_vendor.p({
+        p: common_vendor.p({
           image: "content",
           tip: "暂无评论"
         })
       }, {
-        p: common_vendor.p({
+        q: common_vendor.p({
           ["safe-area-bottom"]: true,
-          height: "60"
+          height: "120"
         }),
-        q: common_vendor.o(submitComment),
-        r: common_vendor.o(($event) => commentText.value = $event),
-        s: common_vendor.p({
+        r: common_vendor.o(submitComment),
+        s: common_vendor.o(($event) => commentText.value = $event),
+        t: common_vendor.p({
           placeholder: text.value,
           clearable: true,
           ["no-border"]: true,
@@ -270,8 +269,8 @@ const _sfc_defineComponent = common_vendor.defineComponent({
           ["placeholder-style"]: "color: #999;",
           modelValue: commentText.value
         }),
-        t: common_vendor.o(submitComment),
-        v: common_vendor.p({
+        v: common_vendor.o(submitComment),
+        w: common_vendor.p({
           type: "primary",
           size: "small",
           disabled: !commentText.value

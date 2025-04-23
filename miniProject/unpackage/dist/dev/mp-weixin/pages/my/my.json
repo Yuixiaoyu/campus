@@ -4,8 +4,8 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "wd-img": "../../uni_modules/wot-design-uni/components/wd-img/wd-img",
-    "wd-tag": "../../uni_modules/wot-design-uni/components/wd-tag/wd-tag",
     "wd-icon": "../../uni_modules/wot-design-uni/components/wd-icon/wd-icon",
+    "wd-tag": "../../uni_modules/wot-design-uni/components/wd-tag/wd-tag",
     "wd-cell": "../../uni_modules/wot-design-uni/components/wd-cell/wd-cell",
     "wd-cell-group": "../../uni_modules/wot-design-uni/components/wd-cell-group/wd-cell-group",
     "wd-popup": "../../uni_modules/wot-design-uni/components/wd-popup/wd-popup",
